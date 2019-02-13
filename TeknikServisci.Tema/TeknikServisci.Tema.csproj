@@ -1,0 +1,879 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8841E42A-8A1C-44A1-B676-479BF4A7DF2F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TeknikServisci.Tema</RootNamespace>
+    <AssemblyName>TeknikServisci.Tema</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="calendar.html" />
+    <Content Include="charts-flot.html" />
+    <Content Include="charts-morris.html" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\demo\demo.css" />
+    <Content Include="css\demo\gamma-gallery.css" />
+    <Content Include="css\demo\icons.css" />
+    <Content Include="css\demo\jasmine.css" />
+    <Content Include="css\demo\jquery-steps.min.css" />
+    <Content Include="css\demo\normalize.css" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="css\style.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="forms-components.html" />
+    <Content Include="forms-layout.html" />
+    <Content Include="forms-switchery.html" />
+    <Content Include="forms-validation.html" />
+    <Content Include="forms-wizard.html" />
+    <Content Include="img\av1.png" />
+    <Content Include="img\av2.png" />
+    <Content Include="img\av3.png" />
+    <Content Include="img\av4.png" />
+    <Content Include="img\av5.png" />
+    <Content Include="img\av6.png" />
+    <Content Include="img\av7.png" />
+    <Content Include="img\favicon.ico" />
+    <Content Include="img\favicon.png" />
+    <Content Include="img\flags\france.png" />
+    <Content Include="img\flags\germany.png" />
+    <Content Include="img\flags\italy.png" />
+    <Content Include="img\flags\spain.png" />
+    <Content Include="img\flags\united-kingdom.png" />
+    <Content Include="img\gamma\large\3.jpg" />
+    <Content Include="img\gamma\loader-dark.gif" />
+    <Content Include="img\gamma\loader-light.gif" />
+    <Content Include="img\gamma\medium\3.jpg" />
+    <Content Include="img\gamma\medium\gallery-1.png" />
+    <Content Include="img\gamma\medium\gallery-2.png" />
+    <Content Include="img\gamma\medium\gallery-3.png" />
+    <Content Include="img\gamma\medium\gallery-4.png" />
+    <Content Include="img\gamma\medium\gallery-5.png" />
+    <Content Include="img\gamma\medium\gallery-6.png" />
+    <Content Include="img\gamma\medium\gallery-7.png" />
+    <Content Include="img\gamma\medium\gallery-8.png" />
+    <Content Include="img\gamma\medium\gallery-9.png" />
+    <Content Include="img\gamma\small\3.jpg" />
+    <Content Include="img\gamma\xlarge\3.jpg" />
+    <Content Include="img\gamma\xsmall\3.jpg" />
+    <Content Include="img\gamma\xxlarge\3.jpg" />
+    <Content Include="img\gamma\xxxlarge\3.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\photos\big-user-image-10.jpg" />
+    <Content Include="img\photos\big-user-image-11.jpg" />
+    <Content Include="img\photos\big-user-image-12.jpg" />
+    <Content Include="img\photos\big-user-image-13.jpg" />
+    <Content Include="img\photos\big-user-image-14.jpg" />
+    <Content Include="img\photos\big-user-image-2.jpg" />
+    <Content Include="img\photos\big-user-image-3.jpg" />
+    <Content Include="img\photos\big-user-image-4.jpg" />
+    <Content Include="img\photos\big-user-image-5.jpg" />
+    <Content Include="img\photos\big-user-image-6.jpg" />
+    <Content Include="img\photos\big-user-image-7.jpg" />
+    <Content Include="img\photos\big-user-image-8.jpg" />
+    <Content Include="img\photos\big-user-image-9.jpg" />
+    <Content Include="img\photos\big-user-image.jpg" />
+    <Content Include="img\photos\profile-logo.png" />
+    <Content Include="img\photos\profile-pic-1.png" />
+    <Content Include="img\photos\profile-pic.png" />
+    <Content Include="img\thumbs\3.JPG" />
+    <Content Include="img\thumbs\6.jpg" />
+    <Content Include="img\thumbs\img1.jpg" />
+    <Content Include="img\thumbs\img2.jpg" />
+    <Content Include="img\thumbs\img3.jpg" />
+    <Content Include="img\thumbs\img4.png" />
+    <Content Include="img\user.png" />
+    <Content Include="img\Zipper-icon.jpg" />
+    <Content Include="index.html" />
+    <Content Include="js\bootstrap-4.js" />
+    <Content Include="js\bootstrap-4.min.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\demo\charts-flot.js" />
+    <Content Include="js\demo\charts-morris.js" />
+    <Content Include="js\demo\dashboard-v2.js" />
+    <Content Include="js\demo\dashboard-v3.js" />
+    <Content Include="js\demo\form-component.js" />
+    <Content Include="js\demo\form-layout.js" />
+    <Content Include="js\demo\form-switchery.js" />
+    <Content Include="js\demo\form-validation.js" />
+    <Content Include="js\demo\form-wizard.js" />
+    <Content Include="js\demo\fullcalendar.js" />
+    <Content Include="js\demo\index.js" />
+    <Content Include="js\demo\mail-compose.js" />
+    <Content Include="js\demo\mail.js" />
+    <Content Include="js\demo\maps-vectormap.js" />
+    <Content Include="js\demo\misc-gmaps.js" />
+    <Content Include="js\demo\pages-directory.js" />
+    <Content Include="js\demo\pages-gallery.js" />
+    <Content Include="js\demo\pages-register.js" />
+    <Content Include="js\demo\tables-bs-table.js" />
+    <Content Include="js\demo\tables-datatables.js" />
+    <Content Include="js\demo\tables-footable.js" />
+    <Content Include="js\demo\ui-animation.js" />
+    <Content Include="js\demo\ui-dragdrop.js" />
+    <Content Include="js\demo\ui-modals.js" />
+    <Content Include="js\demo\ui-nested-lists.js" />
+    <Content Include="js\demo\ui-notification.js" />
+    <Content Include="js\demo\ui-panels.js" />
+    <Content Include="js\demo\ui-tab.js" />
+    <Content Include="js\demo\ui-typography.js" />
+    <Content Include="js\demo\widgets.js" />
+    <Content Include="js\demo\wizard.js" />
+    <Content Include="js\demo\x-editable.js" />
+    <Content Include="js\jquery-1.11.2.min.js" />
+    <Content Include="js\jquery-2.1.1.min.js" />
+    <Content Include="js\jquery-migrate-1.2.1.min.js" />
+    <Content Include="js\jquery-ui-1.9.2.custom.min.js" />
+    <Content Include="js\jquery-ui.js" />
+    <Content Include="js\jquery-ui.min.js" />
+    <Content Include="js\modernizr.custom.js" />
+    <Content Include="js\moment.js" />
+    <Content Include="js\npm.js" />
+    <Content Include="js\scripts.js" />
+    <Content Include="js\tether.min.js" />
+    <Content Include="mail-compose.html" />
+    <Content Include="mail-inbox.html" />
+    <Content Include="mail-mailview.html" />
+    <Content Include="maps-gmap.html" />
+    <Content Include="maps-vectormap.html" />
+    <Content Include="pages-404.html" />
+    <Content Include="pages-500.html" />
+    <Content Include="pages-directory.html" />
+    <Content Include="pages-faq.html" />
+    <Content Include="pages-gallery.html" />
+    <Content Include="pages-invoice.html" />
+    <Content Include="pages-lock-screen.html" />
+    <Content Include="pages-login.html" />
+    <Content Include="pages-password-reminder.html" />
+    <Content Include="pages-profile.html" />
+    <Content Include="pages-register.html" />
+    <Content Include="plugins\animate-css\animate.min.css" />
+    <Content Include="plugins\bootbox\bootbox.min.js" />
+    <Content Include="plugins\bootstrap-datepicker\bootstrap-datepicker.css" />
+    <Content Include="plugins\bootstrap-datepicker\bootstrap-datepicker.js" />
+    <Content Include="plugins\bootstrap-select\bootstrap-select.css" />
+    <Content Include="plugins\bootstrap-select\bootstrap-select.js" />
+    <Content Include="plugins\bootstrap-select\bootstrap-select.js.map.txt" />
+    <Content Include="plugins\bootstrap-select\bootstrap-select.min.css" />
+    <Content Include="plugins\bootstrap-select\bootstrap-select.min.js" />
+    <Content Include="plugins\bootstrap-table\bootstrap-table.min.css" />
+    <Content Include="plugins\bootstrap-table\bootstrap-table.min.js" />
+    <Content Include="plugins\bootstrap-table\extensions\editable\bootstrap-table-editable.js" />
+    <Content Include="plugins\bootstrap-tagsinput\bootstrap-tagsinput.css" />
+    <Content Include="plugins\bootstrap-tagsinput\bootstrap-tagsinput.js" />
+    <Content Include="plugins\bootstrap-tagsinput\bootstrap-tagsinput.min.js" />
+    <Content Include="plugins\bootstrap-timepicker\bootstrap-timepicker.min.css" />
+    <Content Include="plugins\bootstrap-timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="plugins\bootstrap-validator\bootstrapValidator.min.css" />
+    <Content Include="plugins\bootstrap-validator\bootstrapValidator.min.js" />
+    <Content Include="plugins\bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
+    <Content Include="plugins\bootstrap3-editable\css\bootstrap-editable.css" />
+    <Content Include="plugins\bootstrap3-editable\img\clear.png" />
+    <Content Include="plugins\bootstrap3-editable\img\loading.gif" />
+    <Content Include="plugins\bootstrap3-editable\js\bootstrap-editable.js" />
+    <Content Include="plugins\bootstrap3-editable\js\bootstrap-editable.min.js" />
+    <Content Include="plugins\chosen\chosen-sprite%402x.html" />
+    <Content Include="plugins\chosen\chosen-sprite.html" />
+    <Content Include="plugins\chosen\chosen.jquery.min.js" />
+    <Content Include="plugins\chosen\chosen.min.css" />
+    <Content Include="plugins\data-tables\DT_bootstrap.css" />
+    <Content Include="plugins\data-tables\DT_bootstrap.js" />
+    <Content Include="plugins\data-tables\images\sort_asc.png" />
+    <Content Include="plugins\data-tables\images\sort_asc_disabled.html" />
+    <Content Include="plugins\data-tables\images\sort_both.png" />
+    <Content Include="plugins\data-tables\images\sort_desc.png" />
+    <Content Include="plugins\data-tables\images\sort_desc_disabled.html" />
+    <Content Include="plugins\data-tables\jquery.dataTables.js" />
+    <Content Include="plugins\datatables\extensions\Responsive\css\dataTables.responsive.css" />
+    <Content Include="plugins\datatables\extensions\Responsive\js\dataTables.responsive.min.js" />
+    <Content Include="plugins\datatables\media\css\dataTables.bootstrap.css" />
+    <Content Include="plugins\datatables\media\images\sort_asc.png" />
+    <Content Include="plugins\datatables\media\images\sort_asc_disabled.png" />
+    <Content Include="plugins\datatables\media\images\sort_both.png" />
+    <Content Include="plugins\datatables\media\images\sort_desc.png" />
+    <Content Include="plugins\datatables\media\images\sort_desc_disabled.png" />
+    <Content Include="plugins\datatables\media\js\dataTables.bootstrap.js" />
+    <Content Include="plugins\datatables\media\js\jquery.dataTables.js" />
+    <Content Include="plugins\dropzone\dropzone.css" />
+    <Content Include="plugins\dropzone\dropzone.min.js" />
+    <Content Include="plugins\easy-pie-chart\jquery.easypiechart.min.js" />
+    <Content Include="plugins\editable-table\editable-table-init.js" />
+    <Content Include="plugins\editable-table\editable-table.js" />
+    <Content Include="plugins\editable-table\mindmup-editabletable.js" />
+    <Content Include="plugins\editable-table\numeric-input-example.js" />
+    <Content Include="plugins\fast-click\fastclick.min.js" />
+    <Content Include="plugins\flot-charts\jquery.flot.categories.js" />
+    <Content Include="plugins\flot-charts\jquery.flot.min.js" />
+    <Content Include="plugins\flot-charts\jquery.flot.orderBars.js" />
+    <Content Include="plugins\flot-charts\jquery.flot.pie.min.js" />
+    <Content Include="plugins\flot-charts\jquery.flot.resize.min.js" />
+    <Content Include="plugins\flot-charts\jquery.flot.selection.js" />
+    <Content Include="plugins\flot-charts\jquery.flot.spline.js" />
+    <Content Include="plugins\flot-charts\jquery.flot.stack.js" />
+    <Content Include="plugins\flot-charts\jquery.flot.time.js" />
+    <Content Include="plugins\flot-charts\jquery.flot.tooltip.min.js" />
+    <Content Include="plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="plugins\font-awesome\fonts\fontawesome-webfonte0a5.svg" />
+    <Content Include="plugins\fooTable\css\fonts\footable.svg" />
+    <Content Include="plugins\fooTable\css\footable.core.css" />
+    <Content Include="plugins\fooTable\dist\footable.all.min.js" />
+    <Content Include="plugins\fullcalendar\fullcalendar.css" />
+    <Content Include="plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="plugins\fullcalendar\lib\jquery-ui.custom.min.js" />
+    <Content Include="plugins\fullcalendar\lib\moment.min.js" />
+    <Content Include="plugins\gamma-gallery\css\demo.css" />
+    <Content Include="plugins\gamma-gallery\css\noJS.css" />
+    <Content Include="plugins\gamma-gallery\css\style.css" />
+    <Content Include="plugins\gamma-gallery\js\gamma.js" />
+    <Content Include="plugins\gamma-gallery\js\jquery.history.js" />
+    <Content Include="plugins\gamma-gallery\js\jquery.masonry.min.js" />
+    <Content Include="plugins\gamma-gallery\js\jquerypp.custom.js" />
+    <Content Include="plugins\gamma-gallery\js\js-url.min.js" />
+    <Content Include="plugins\gamma-gallery\js\modernizr.custom.70736.js" />
+    <Content Include="plugins\gauge-js\gauge.min.js" />
+    <Content Include="plugins\gmaps\gmaps.js" />
+    <Content Include="plugins\gmaps\gmaps.min.js" />
+    <Content Include="plugins\img\sprite-skin-flat.png" />
+    <Content Include="plugins\img\sprite-skin-modern.png" />
+    <Content Include="plugins\img\sprite-skin-nice.png" />
+    <Content Include="plugins\img\sprite-skin-simple.png" />
+    <Content Include="plugins\ion-rangeslider\img\sprite-skin-flat.png" />
+    <Content Include="plugins\ion-rangeslider\img\sprite-skin-modern.png" />
+    <Content Include="plugins\ion-rangeslider\img\sprite-skin-nice.png" />
+    <Content Include="plugins\ion-rangeslider\img\sprite-skin-simple.png" />
+    <Content Include="plugins\ion-rangeslider\ion.rangeSlider.css" />
+    <Content Include="plugins\ion-rangeslider\ion.rangeSlider.js" />
+    <Content Include="plugins\ion-rangeslider\ion.rangeSlider.min.js" />
+    <Content Include="plugins\ion-rangeslider\ion.rangeSlider.skinFlat.css" />
+    <Content Include="plugins\ion-rangeslider\ion.rangeSlider.skinHTML5.css" />
+    <Content Include="plugins\ion-rangeslider\ion.rangeSlider.skinModern.css" />
+    <Content Include="plugins\ion-rangeslider\ion.rangeSlider.skinNice.css" />
+    <Content Include="plugins\ion-rangeslider\ion.rangeSlider.skinSimple.css" />
+    <Content Include="plugins\ion-rangeslider\normalize.css" />
+    <Content Include="plugins\jquery-count-to\jquery.count-to.js" />
+    <Content Include="plugins\jquery-nestable\jquery.nestable.css" />
+    <Content Include="plugins\jquery-nestable\jquery.nestable.js" />
+    <Content Include="plugins\jquery-nestable\jquery.nestable.min.css" />
+    <Content Include="plugins\jquery-nestable\jquery.nestable.min.js" />
+    <Content Include="plugins\jquery-print\.gitignore" />
+    <Content Include="plugins\jquery-print\demo\css\normalize.min.css" />
+    <Content Include="plugins\jquery-print\demo\index.html" />
+    <Content Include="plugins\jquery-print\demo\js\vendor\html5-3.6-respond-1.1.0.min.js" />
+    <Content Include="plugins\jquery-print\demo\js\vendor\jquery-1.9.1.min.js" />
+    <Content Include="plugins\jquery-print\jQuery.print.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\css\detail.css" />
+    <Content Include="plugins\jquery-ricksaw-chart\css\detail.min.css" />
+    <Content Include="plugins\jquery-ricksaw-chart\css\graph.css" />
+    <Content Include="plugins\jquery-ricksaw-chart\css\graph.min.css" />
+    <Content Include="plugins\jquery-ricksaw-chart\css\legend.css" />
+    <Content Include="plugins\jquery-ricksaw-chart\css\legend.min.css" />
+    <Content Include="plugins\jquery-ricksaw-chart\css\rickshaw.css" />
+    <Content Include="plugins\jquery-ricksaw-chart\css\rickshaw.min.css" />
+    <Content Include="plugins\jquery-ricksaw-chart\jquery.ricksaw.init.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\d3.layout.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\d3.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\d3.v2.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\d3.v2.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\d3.v3.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\extensions.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\extensions.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\raphael-min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\raphael-min.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Class.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Class.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Color.Palette.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Color.Palette.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Compat.ClassList.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Compat.ClassList.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Fixtures.Color.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Fixtures.Color.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Fixtures.Number.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Fixtures.Number.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Fixtures.RandomData.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Fixtures.RandomData.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Fixtures.Time.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Fixtures.Time.Local.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Fixtures.Time.Local.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Fixtures.Time.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Ajax.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Ajax.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Annotate.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Annotate.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Axis.Time.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Axis.Time.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Axis.X.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Axis.X.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Axis.Y.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Axis.Y.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Axis.Y.Scaled.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Axis.Y.Scaled.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Behavior.Series.Highlight.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Behavior.Series.Highlight.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Behavior.Series.Order.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Behavior.Series.Order.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Behavior.Series.Toggle.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Behavior.Series.Toggle.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.HoverDetail.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.HoverDetail.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.JSONP.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.JSONP.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Legend.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Legend.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.RangeSlider.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.RangeSlider.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.Area.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.Area.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.Bar.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.Bar.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.Line.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.Line.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.LinePlot.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.LinePlot.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.Multi.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.Multi.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.ScatterPlot.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.ScatterPlot.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.Stack.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Renderer.Stack.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Smoother.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Smoother.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Unstacker.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Graph.Unstacker.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\rickshaw.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Series.FixedDuration.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Series.FixedDuration.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Series.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\js\Rickshaw.Series.min.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\ricksaw.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\rickshaw.css" />
+    <Content Include="plugins\jquery-ricksaw-chart\rickshaw.js" />
+    <Content Include="plugins\jquery-ricksaw-chart\rickshaw.min.css" />
+    <Content Include="plugins\jquery-ricksaw-chart\rickshaw.min.js" />
+    <Content Include="plugins\jQuery-slimScroll\examples\allow-page-scroll.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\chaining.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\disable-fade-out.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\dynamic-content.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\height-width.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\index.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\libs\prettify\prettify.css" />
+    <Content Include="plugins\jQuery-slimScroll\examples\libs\prettify\prettify.js" />
+    <Content Include="plugins\jQuery-slimScroll\examples\mouse-wheel.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\multiple-elements.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\navigation.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\nested.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\programmatic-scrolling.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\rail.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\scroll-events.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\scrollbar.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\start-position.html" />
+    <Content Include="plugins\jQuery-slimScroll\examples\style.css" />
+    <Content Include="plugins\jQuery-slimScroll\jquery.slimscroll.js" />
+    <Content Include="plugins\jQuery-slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="plugins\jquery-steps\jquery-steps.min.js" />
+    <Content Include="plugins\jquery-tocify\css\tocify.css" />
+    <Content Include="plugins\jquery-tocify\js\jquery.tocify.js" />
+    <Content Include="plugins\jquery-tocify\js\jquery.tocify.min.js" />
+    <Content Include="plugins\jvectormap\jquery-jvectormap-ar-mill.js" />
+    <Content Include="plugins\jvectormap\jquery-jvectormap-au-mill.js" />
+    <Content Include="plugins\jvectormap\jquery-jvectormap-de-mill.js" />
+    <Content Include="plugins\jvectormap\jquery-jvectormap-north_america-mill.js" />
+    <Content Include="plugins\jvectormap\jquery-jvectormap-uk_countries-mill.js" />
+    <Content Include="plugins\jvectormap\jquery-jvectormap-us-aea-en.js" />
+    <Content Include="plugins\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="plugins\jvectormap\jquery-jvectormap.css" />
+    <Content Include="plugins\jvectormap\jquery-jvectormap.min.js" />
+    <Content Include="plugins\masked-input\bootstrap-inputmask.min.js" />
+    <Content Include="plugins\masked-input\jquery.maskedinput.js" />
+    <Content Include="plugins\masked-input\jquery.maskedinput.min.js" />
+    <Content Include="plugins\metismenu\.gitattributes" />
+    <Content Include="plugins\metismenu\.gitignore" />
+    <Content Include="plugins\metismenu\dist\metisMenu.css" />
+    <Content Include="plugins\metismenu\dist\metisMenu.js" />
+    <Content Include="plugins\metismenu\dist\metisMenu.min.css" />
+    <Content Include="plugins\metismenu\dist\metisMenu.min.js" />
+    <Content Include="plugins\metismenu\Gruntfile.js" />
+    <Content Include="plugins\metismenu\metismenu.js" />
+    <Content Include="plugins\metismenu\metismenu.min.js" />
+    <Content Include="plugins\metismenu\package.js" />
+    <Content Include="plugins\metismenu\src\metisMenu.css" />
+    <Content Include="plugins\metismenu\src\metisMenu.js" />
+    <Content Include="plugins\metismenu\test\animate.html" />
+    <Content Include="plugins\metismenu\test\demo.css" />
+    <Content Include="plugins\metismenu\test\event.html" />
+    <Content Include="plugins\metismenu\test\hover.html" />
+    <Content Include="plugins\metismenu\test\index.html" />
+    <Content Include="plugins\metismenu\test\metisFolder.css" />
+    <Content Include="plugins\metismenu\test\metisFolder.html" />
+    <Content Include="plugins\metismenu\test\mini.css" />
+    <Content Include="plugins\metismenu\test\mini.html" />
+    <Content Include="plugins\metismenu\test\zurb.html" />
+    <Content Include="plugins\moment-range\moment-range.js" />
+    <Content Include="plugins\moment\moment.min.js" />
+    <Content Include="plugins\morris-js\morris.min.css" />
+    <Content Include="plugins\morris-js\morris.min.js" />
+    <Content Include="plugins\morris-js\raphael-js\raphael.min.js" />
+    <Content Include="plugins\nanoscrollerjs\.gitattributes" />
+    <Content Include="plugins\nanoscrollerjs\.gitignore" />
+    <Content Include="plugins\nanoscrollerjs\bin\css\main.css" />
+    <Content Include="plugins\nanoscrollerjs\bin\css\nanoscroller.css" />
+    <Content Include="plugins\nanoscrollerjs\bin\css\style.css" />
+    <Content Include="plugins\nanoscrollerjs\bin\dev.html" />
+    <Content Include="plugins\nanoscrollerjs\bin\images\bg.png" />
+    <Content Include="plugins\nanoscrollerjs\bin\images\gh-ribbon.png" />
+    <Content Include="plugins\nanoscrollerjs\bin\images\h1.png" />
+    <Content Include="plugins\nanoscrollerjs\bin\index.html" />
+    <Content Include="plugins\nanoscrollerjs\bin\javascripts\ga.js" />
+    <Content Include="plugins\nanoscrollerjs\bin\javascripts\jquery.nanoscroller.js" />
+    <Content Include="plugins\nanoscrollerjs\bin\javascripts\jquery.nanoscroller.min.js" />
+    <Content Include="plugins\nanoscrollerjs\bin\javascripts\main.js" />
+    <Content Include="plugins\nanoscrollerjs\bin\javascripts\overthrow.min.js" />
+    <Content Include="plugins\nanoscrollerjs\bin\readme.html" />
+    <Content Include="plugins\nanoscrollerjs\docs\api.js" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\css\external-small.png" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\css\logo.png" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\css\main.css" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\favicon.png" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\img\spinner.gif" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\index.html" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\js\api-filter.js" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\js\api-list.js" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\js\api-search.js" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\js\apidocs.js" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\js\yui-prettify.js" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\vendor\prettify\CHANGES.html" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\vendor\prettify\prettify-min.css" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\vendor\prettify\prettify-min.js" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\vendor\prettify\README.html" />
+    <Content Include="plugins\nanoscrollerjs\docs\classes\index.html" />
+    <Content Include="plugins\nanoscrollerjs\docs\classes\NanoScroll.html" />
+    <Content Include="plugins\nanoscrollerjs\docs\files\bin_javascripts_jquery.nanoscroller.js.html" />
+    <Content Include="plugins\nanoscrollerjs\docs\files\index.html" />
+    <Content Include="plugins\nanoscrollerjs\docs\index.html" />
+    <Content Include="plugins\nanoscrollerjs\docs\modules\index.html" />
+    <Content Include="plugins\nanoscrollerjs\fig1.png" />
+    <Content Include="plugins\nanoscrollerjs\jquery.nanoscroller.js" />
+    <Content Include="plugins\nanoscrollerjs\jquery.nanoscroller.min.js" />
+    <Content Include="plugins\nanoscrollerjs\tests\lib\jasmine-1.3.1\jasmine-html.js" />
+    <Content Include="plugins\nanoscrollerjs\tests\lib\jasmine-1.3.1\jasmine.css" />
+    <Content Include="plugins\nanoscrollerjs\tests\lib\jasmine-1.3.1\jasmine.js" />
+    <Content Include="plugins\nanoscrollerjs\tests\lib\jasmine-jquery.js" />
+    <Content Include="plugins\nanoscrollerjs\tests\lib\jquery.min.js" />
+    <Content Include="plugins\nanoscrollerjs\tests\SpecRunner.html" />
+    <Content Include="plugins\nanoscrollerjs\tests\spec\fixtures\nano-content.html" />
+    <Content Include="plugins\nanoscrollerjs\tests\spec\fixtures\nano-no-content.html" />
+    <Content Include="plugins\nanoscrollerjs\tests\spec\nano-spec.js" />
+    <Content Include="plugins\nanoscrollerjs\_SpecRunner.html" />
+    <Content Include="plugins\noty-master\.gitignore" />
+    <Content Include="plugins\noty-master\demo\allLayouts.html" />
+    <Content Include="plugins\noty-master\demo\allTypes.html" />
+    <Content Include="plugins\noty-master\demo\animate.css" />
+    <Content Include="plugins\noty-master\demo\api.html" />
+    <Content Include="plugins\noty-master\demo\buttons.css" />
+    <Content Include="plugins\noty-master\demo\consumingAlert.html" />
+    <Content Include="plugins\noty-master\demo\customContainer.html" />
+    <Content Include="plugins\noty-master\demo\font-awesome\css\font-awesome.min.css" />
+    <Content Include="plugins\noty-master\demo\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="plugins\noty-master\demo\index.html" />
+    <Content Include="plugins\noty-master\demo\jquery-1.7.2.min.js" />
+    <Content Include="plugins\noty-master\demo\jquery-1.8.0.js" />
+    <Content Include="plugins\noty-master\demo\killer.html" />
+    <Content Include="plugins\noty-master\demo\notification_html.js" />
+    <Content Include="plugins\noty-master\demo\themeBootstrap.html" />
+    <Content Include="plugins\noty-master\demo\themeCss.html" />
+    <Content Include="plugins\noty-master\demo\usingMaxVisible.html" />
+    <Content Include="plugins\noty-master\demo\usingWithAnimate.css.html" />
+    <Content Include="plugins\noty-master\demo\usingWithButtons.html" />
+    <Content Include="plugins\noty-master\demo\usingWithButtons2.html" />
+    <Content Include="plugins\noty-master\demo\usingWithModal.html" />
+    <Content Include="plugins\noty-master\demo\usingWithOldOptions.html" />
+    <Content Include="plugins\noty-master\Gruntfile.js" />
+    <Content Include="plugins\noty-master\LICENSE.txt" />
+    <Content Include="plugins\noty\jquery.noty.js" />
+    <Content Include="plugins\noty\layouts\bottom.js" />
+    <Content Include="plugins\noty\layouts\bottomCenter.js" />
+    <Content Include="plugins\noty\layouts\bottomLeft.js" />
+    <Content Include="plugins\noty\layouts\bottomRight.js" />
+    <Content Include="plugins\noty\layouts\center.js" />
+    <Content Include="plugins\noty\layouts\centerLeft.js" />
+    <Content Include="plugins\noty\layouts\centerRight.js" />
+    <Content Include="plugins\noty\layouts\inline.js" />
+    <Content Include="plugins\noty\layouts\top.js" />
+    <Content Include="plugins\noty\layouts\topCenter.js" />
+    <Content Include="plugins\noty\layouts\topLeft.js" />
+    <Content Include="plugins\noty\layouts\topRight.js" />
+    <Content Include="plugins\noty\packaged\jquery.noty.packaged.js" />
+    <Content Include="plugins\noty\packaged\jquery.noty.packaged.min.js" />
+    <Content Include="plugins\noty\promise.js" />
+    <Content Include="plugins\noty\themes\bootstrap.js" />
+    <Content Include="plugins\noty\themes\default.js" />
+    <Content Include="plugins\noty\themes\relax.js" />
+    <Content Include="plugins\noUiSlider\jquery.nouislider.all.min.js" />
+    <Content Include="plugins\noUiSlider\jquery.nouislider.min.css" />
+    <Content Include="plugins\noUiSlider\jquery.nouislider.pips.min.css" />
+    <Content Include="plugins\noUiSlider\nouislider.css" />
+    <Content Include="plugins\noUiSlider\nouislider.js" />
+    <Content Include="plugins\pace\pace.min.css" />
+    <Content Include="plugins\pace\pace.min.js" />
+    <Content Include="plugins\parsley\parsley.min.js" />
+    <Content Include="plugins\rickshaw-master\examples\ajax.html" />
+    <Content Include="plugins\rickshaw-master\examples\bars.html" />
+    <Content Include="plugins\rickshaw-master\examples\colors.html" />
+    <Content Include="plugins\rickshaw-master\examples\css\extensions.css" />
+    <Content Include="plugins\rickshaw-master\examples\css\lines.css" />
+    <Content Include="plugins\rickshaw-master\examples\extensions.html" />
+    <Content Include="plugins\rickshaw-master\examples\fixed.html" />
+    <Content Include="plugins\rickshaw-master\examples\formatter.html" />
+    <Content Include="plugins\rickshaw-master\examples\gaps.html" />
+    <Content Include="plugins\rickshaw-master\examples\hover.html" />
+    <Content Include="plugins\rickshaw-master\examples\images\interp_cardinal.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\interp_linear.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\interp_step.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\offset_pct.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\offset_stack.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\offset_stream.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\offset_value.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\om_bar.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\om_curves.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\om_lines.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\om_percent.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\om_scatter.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\om_stack.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\om_step.png" />
+    <Content Include="plugins\rickshaw-master\examples\images\om_stream.png" />
+    <Content Include="plugins\rickshaw-master\examples\inconsistent.html" />
+    <Content Include="plugins\rickshaw-master\examples\index.html" />
+    <Content Include="plugins\rickshaw-master\examples\jsonp.html" />
+    <Content Include="plugins\rickshaw-master\examples\js\extensions.js" />
+    <Content Include="plugins\rickshaw-master\examples\legend.html" />
+    <Content Include="plugins\rickshaw-master\examples\lineplot.html" />
+    <Content Include="plugins\rickshaw-master\examples\lines.html" />
+    <Content Include="plugins\rickshaw-master\examples\logscale.html" />
+    <Content Include="plugins\rickshaw-master\examples\milliseconds.html" />
+    <Content Include="plugins\rickshaw-master\examples\multi.html" />
+    <Content Include="plugins\rickshaw-master\examples\negative.html" />
+    <Content Include="plugins\rickshaw-master\examples\refresh.html" />
+    <Content Include="plugins\rickshaw-master\examples\resize.html" />
+    <Content Include="plugins\rickshaw-master\examples\scaled.html" />
+    <Content Include="plugins\rickshaw-master\examples\scatterplot.html" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\ajax.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\colors.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\extensions.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\lines.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\logscale.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\scaled.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\scatterplot.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\simple.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\start.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\status.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\stops.png" />
+    <Content Include="plugins\rickshaw-master\examples\screenshots\y_axis.png" />
+    <Content Include="plugins\rickshaw-master\examples\series.html" />
+    <Content Include="plugins\rickshaw-master\examples\simple.html" />
+    <Content Include="plugins\rickshaw-master\examples\socket.io\app.js" />
+    <Content Include="plugins\rickshaw-master\examples\socket.io\socket.io.html" />
+    <Content Include="plugins\rickshaw-master\examples\sparse.html" />
+    <Content Include="plugins\rickshaw-master\examples\start.html" />
+    <Content Include="plugins\rickshaw-master\examples\status.html" />
+    <Content Include="plugins\rickshaw-master\examples\stops.html" />
+    <Content Include="plugins\rickshaw-master\examples\timescale.html" />
+    <Content Include="plugins\rickshaw-master\examples\x_axis.html" />
+    <Content Include="plugins\rickshaw-master\examples\y_axis.html" />
+    <Content Include="plugins\rickshaw-master\rickshaw.css" />
+    <Content Include="plugins\rickshaw-master\rickshaw.js" />
+    <Content Include="plugins\rickshaw-master\rickshaw.min.css" />
+    <Content Include="plugins\rickshaw-master\rickshaw.min.js" />
+    <Content Include="plugins\rickshaw-master\src\css\detail.css" />
+    <Content Include="plugins\rickshaw-master\src\css\graph.css" />
+    <Content Include="plugins\rickshaw-master\src\css\legend.css" />
+    <Content Include="plugins\rickshaw-master\src\helpers\endUMD.js" />
+    <Content Include="plugins\rickshaw-master\src\helpers\startUMD.js" />
+    <Content Include="plugins\rickshaw-master\src\js\rickshaw.Class.js" />
+    <Content Include="plugins\rickshaw-master\src\js\rickshaw.Color.Palette.js" />
+    <Content Include="plugins\rickshaw-master\src\js\rickshaw.Compat.ClassList.js" />
+    <Content Include="plugins\rickshaw-master\src\js\rickshaw.Fixtures.Color.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Fixtures.Number.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Fixtures.RandomData.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Fixtures.Time.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Fixtures.Time.Local.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Ajax.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Annotate.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Axis.Time.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Axis.X.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Axis.Y.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Axis.Y.Scaled.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Behavior.Series.Highlight.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Behavior.Series.Order.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Behavior.Series.Toggle.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.HoverDetail.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.JSONP.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Legend.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.RangeSlider.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.RangeSlider.Preview.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Renderer.Area.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Renderer.Bar.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Renderer.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Renderer.Line.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Renderer.LinePlot.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Renderer.Multi.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Renderer.ScatterPlot.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Renderer.Stack.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Smoother.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Graph.Socketio.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Series.FixedDuration.js" />
+    <Content Include="plugins\rickshaw-master\src\js\Rickshaw.Series.js" />
+    <Content Include="plugins\rickshaw-master\vendor\d3.layout.min.js" />
+    <Content Include="plugins\rickshaw-master\vendor\d3.min.js" />
+    <Content Include="plugins\rickshaw-master\vendor\d3.v2.js" />
+    <Content Include="plugins\rickshaw-master\vendor\d3.v3.js" />
+    <Content Include="plugins\screenfull\screenfull.js" />
+    <Content Include="plugins\skycons\skycons.min.js" />
+    <Content Include="plugins\sparkline\jquery.sparkline.min.js" />
+    <Content Include="plugins\summernote\summernote.min.css" />
+    <Content Include="plugins\summernote\summernote.min.js" />
+    <Content Include="plugins\switchery\switchery.min.css" />
+    <Content Include="plugins\switchery\switchery.min.js" />
+    <Content Include="plugins\tag-it\jquery.tagit.css" />
+    <Content Include="plugins\tag-it\tag-it.js" />
+    <Content Include="plugins\tag-it\tag-it.min.js" />
+    <Content Include="plugins\typeahead\typeahead.bundle.js" />
+    <Content Include="plugins\weather-icons\font\weathericons-regular-webfont.svg" />
+    <Content Include="plugins\weather-icons\weather-icons.css" />
+    <Content Include="plugins\weather-icons\weather-icons.min.css" />
+    <Content Include="plugins\x-editable\css\bootstrap-editable.css" />
+    <Content Include="plugins\x-editable\img\clear.png" />
+    <Content Include="plugins\x-editable\img\loading.gif" />
+    <Content Include="plugins\x-editable\js\bootstrap-editable.js" />
+    <Content Include="plugins\x-editable\js\bootstrap-editable.min.js" />
+    <Content Include="table-datatable.html" />
+    <Content Include="table-footable.html" />
+    <Content Include="table-static.html" />
+    <Content Include="ui-accordions.html" />
+    <Content Include="ui-animation.html" />
+    <Content Include="ui-button.html" />
+    <Content Include="ui-checkboxes-radio.html" />
+    <Content Include="ui-components.html" />
+    <Content Include="ui-dragdrop.html" />
+    <Content Include="ui-fontawesome.html" />
+    <Content Include="ui-grids.html" />
+    <Content Include="ui-icons.html" />
+    <Content Include="ui-model.html" />
+    <Content Include="ui-nested-lists.html" />
+    <Content Include="ui-notification.html" />
+    <Content Include="ui-panel.html" />
+    <Content Include="ui-tab.html" />
+    <Content Include="ui-timeline.html" />
+    <Content Include="ui-typography.html" />
+    <Content Include="ui-widgets.html" />
+    <Content Include="ui-xeditable.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="css\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="data\bs-table-simple.json" />
+    <Content Include="data\bs-table.json" />
+    <Content Include="data\datatables.json" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="packages.config" />
+    <Content Include="plugins\bootstrap-select\bootstrap-select.css.map" />
+    <Content Include="plugins\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="plugins\font-awesome\fonts\fontawesome-webfonte0a5.eot" />
+    <Content Include="plugins\font-awesome\fonts\fontawesome-webfonte0a5.ttf" />
+    <Content Include="plugins\font-awesome\fonts\fontawesome-webfonte0a5.woff" />
+    <Content Include="plugins\font-awesome\fonts\fontawesome-webfonte0a5.woff2" />
+    <Content Include="plugins\fooTable\css\fonts\footable.eot" />
+    <Content Include="plugins\fooTable\css\fonts\footable.ttf" />
+    <Content Include="plugins\fooTable\css\fonts\footable.woff" />
+    <Content Include="plugins\fooTable\css\fonts\footabled41d.eot" />
+    <Content Include="plugins\gamma-gallery\css\.DS_Store" />
+    <Content Include="plugins\gmaps\gmaps.min.js.map" />
+    <Content Include="plugins\jquery-print\bower.json" />
+    <Content Include="plugins\jquery-print\README.md" />
+    <Content Include="plugins\metismenu\.eslintrc.json" />
+    <Content Include="plugins\metismenu\.travis.yml" />
+    <Content Include="plugins\metismenu\.verb.md" />
+    <Content Include="plugins\metismenu\.versions" />
+    <Content Include="plugins\metismenu\bower.json" />
+    <Content Include="plugins\metismenu\composer.json" />
+    <Content Include="plugins\metismenu\dist\metisMenu.js.map" />
+    <Content Include="plugins\metismenu\LICENSE" />
+    <Content Include="plugins\metismenu\package.json" />
+    <Content Include="plugins\metismenu\README.md" />
+    <Content Include="plugins\nanoscrollerjs\.csslintrc" />
+    <Content Include="plugins\nanoscrollerjs\bin\css\nanoscroller.less" />
+    <Content Include="plugins\nanoscrollerjs\bin\css\nanoscroller.scss" />
+    <Content Include="plugins\nanoscrollerjs\bin\javascripts\jquery.nanoscroller.js.map" />
+    <Content Include="plugins\nanoscrollerjs\bin\javascripts\jquery.nanoscroller.min.js.map" />
+    <Content Include="plugins\nanoscrollerjs\bin\javascripts\jquery.nanoscroller.min.map" />
+    <Content Include="plugins\nanoscrollerjs\bower.json" />
+    <Content Include="plugins\nanoscrollerjs\coffeescripts\jquery.nanoscroller.coffee" />
+    <Content Include="plugins\nanoscrollerjs\docs\assets\vendor\prettify\COPYING" />
+    <Content Include="plugins\nanoscrollerjs\docs\data.json" />
+    <Content Include="plugins\nanoscrollerjs\Gruntfile.coffee" />
+    <Content Include="plugins\nanoscrollerjs\LICENSE" />
+    <Content Include="plugins\nanoscrollerjs\nanoscroller.jquery.json" />
+    <Content Include="plugins\nanoscrollerjs\package.json" />
+    <Content Include="plugins\nanoscrollerjs\README.md" />
+    <Content Include="plugins\nanoscrollerjs\tests\coffeescripts\nano-spec.coffee" />
+    <Content Include="plugins\nanoscrollerjs\tests\lib\jasmine-1.3.1\MIT.LICENSE" />
+    <Content Include="plugins\noty-master\bower.json" />
+    <Content Include="plugins\noty-master\composer.json" />
+    <Content Include="plugins\noty-master\demo\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="plugins\noty-master\demo\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="plugins\noty-master\demo\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="plugins\noty-master\demo\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="plugins\noty-master\noty.jquery.json" />
+    <Content Include="plugins\noty-master\package.json" />
+    <Content Include="plugins\noty-master\README.markdown" />
+    <Content Include="plugins\rickshaw-master\examples\data\data.json" />
+    <Content Include="plugins\rickshaw-master\examples\data\data.jsonp" />
+    <Content Include="plugins\rickshaw-master\examples\data\data2.json" />
+    <Content Include="plugins\rickshaw-master\examples\data\status.json" />
+    <Content Include="plugins\rickshaw-master\examples\socket.io\package.json" />
+    <Content Include="plugins\rickshaw-master\examples\socket.io\README.md" />
+    <Content Include="plugins\weather-icons\font\weathericons-regular-webfont.eot" />
+    <Content Include="plugins\weather-icons\font\weathericons-regular-webfont.ttf" />
+    <Content Include="plugins\weather-icons\font\weathericons-regular-webfont.woff" />
+    <Content Include="plugins\weather-icons\font\WeatherIcons-Regular.otf" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="plugins\metismenu\metismenu.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="plugins\data-tables\images\css\" />
+    <Folder Include="plugins\data-tables\images\images\gallery\" />
+    <Folder Include="plugins\data-tables\images\images\photos\" />
+    <Folder Include="plugins\data-tables\images\js\easypiechart\" />
+    <Folder Include="plugins\data-tables\images\js\flot-chart\" />
+    <Folder Include="plugins\data-tables\images\js\iCheck\skins\minimal\" />
+    <Folder Include="plugins\data-tables\images\js\iCheck\skins\square\" />
+    <Folder Include="plugins\data-tables\images\js\sparkline\" />
+    <Folder Include="plugins\noty-master\js\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52608</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52608/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
