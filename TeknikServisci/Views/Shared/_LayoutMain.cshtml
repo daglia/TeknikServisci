@@ -1,0 +1,70 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | Teknik Servisçi - Teknik Servisçiniz</title>
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:500,400italic,100,700italic,300,700,500italic,400" rel="stylesheet">
+    @Styles.Render("~/bundle/css")
+    <link href="~/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    @RenderSection("top", false)
+</head>
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+    <div id="container" class="effect mainnav-sm navbar-fixed mainnav-fixed">
+        <!--NAVBAR-->
+        <!--===================================================-->
+        <header id="navbar">
+            <div id="navbar-container" class="boxed">
+                <!-- Header -->
+                @{Html.RenderAction("HeaderPartial", "Partial");}
+                <!-- End header -->
+            </div>
+        </header>
+        <!--===================================================-->
+        <!--END NAVBAR-->
+        <div class="boxed">
+            <!--CONTENT CONTAINER-->
+            <!--===================================================-->
+            <div id="content-container">
+                @RenderBody()
+            </div>
+            <!--===================================================-->
+            <!--END CONTENT CONTAINER-->
+            <!--MAIN NAVIGATION-->
+            <!--===================================================-->
+            <nav id="mainnav-container">
+                @{Html.RenderAction("DrawerPartial", "Partial");}
+            </nav>
+            <!--===================================================-->
+            <!--END MAIN NAVIGATION-->
+        </div>
+        <!-- FOOTER -->
+        <!--===================================================-->
+        <footer id="footer">
+            <p class="pad-lft">&#0169; @DateTime.Now.Year Jedi Danışmanlık, Bilişim Hizmetleri A.Ş.</p>
+        </footer>
+        <!--===================================================-->
+        <!-- END FOOTER -->
+        <!-- SCROLL TOP BUTTON -->
+        <!--===================================================-->
+        <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
+        <!--===================================================-->
+    </div>
+    <!--===================================================-->
+    <!-- END OF CONTAINER -->
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+    @Scripts.Render("~/bundle/js")
+
+    @RenderSection("bottom",false)
+</body>
+</html>
