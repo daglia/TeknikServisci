@@ -679,8 +679,6 @@
     <Content Include="assets\plugins\rickshaw-master\examples\screenshots\y_axis.png" />
     <Content Include="assets\plugins\rickshaw-master\examples\series.html" />
     <Content Include="assets\plugins\rickshaw-master\examples\simple.html" />
-    <Content Include="assets\plugins\rickshaw-master\examples\socket.io\app.js" />
-    <Content Include="assets\plugins\rickshaw-master\examples\socket.io\socket.io.html" />
     <Content Include="assets\plugins\rickshaw-master\examples\sparse.html" />
     <Content Include="assets\plugins\rickshaw-master\examples\start.html" />
     <Content Include="assets\plugins\rickshaw-master\examples\status.html" />
@@ -834,8 +832,6 @@
     <Content Include="assets\plugins\rickshaw-master\examples\data\data.jsonp" />
     <Content Include="assets\plugins\rickshaw-master\examples\data\data2.json" />
     <Content Include="assets\plugins\rickshaw-master\examples\data\status.json" />
-    <Content Include="assets\plugins\rickshaw-master\examples\socket.io\package.json" />
-    <Content Include="assets\plugins\rickshaw-master\examples\socket.io\README.md" />
     <Content Include="assets\plugins\weather-icons\font\weathericons-regular-webfont.eot" />
     <Content Include="assets\plugins\weather-icons\font\weathericons-regular-webfont.ttf" />
     <Content Include="assets\plugins\weather-icons\font\weathericons-regular-webfont.woff" />
