@@ -82,9 +82,11 @@
     <Compile Include="Repository\FailureRepo.cs" />
     <Compile Include="Repository\InvoiceRepo.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
-    <Compile Include="Services\Senders\EntityHelpers.cs" />
-    <Compile Include="Services\Senders\EnumHelpers.cs" />
-    <Compile Include="Services\Senders\StringHelpers.cs" />
+    <Compile Include="Helpers\EntityHelpers.cs" />
+    <Compile Include="Helpers\EnumHelpers.cs" />
+    <Compile Include="Helpers\StringHelpers.cs" />
+    <Compile Include="Services\Senders\EmailService.cs" />
+    <Compile Include="Services\Senders\IMessageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TeknikServisci.DAL\TeknikServisci.DAL.csproj">
@@ -100,8 +102,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
