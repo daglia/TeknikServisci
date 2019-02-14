@@ -851,6 +851,7 @@
     <Content Include="Views\Shared\Partial\_HeaderPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -871,7 +872,6 @@
     <Folder Include="assets\plugins\noty-master\js\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="assets\plugins\metismenu\metismenu.d.ts" />
