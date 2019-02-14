@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web;
 using TeknikServisci.DAL;
 using TeknikServisci.Models.IdentityModels;
 
@@ -49,14 +44,15 @@ namespace TeknikServisci.BLL.Identity
             {
                 var id = HttpContext.Current.User.Identity.GetUserId();
                 if (string.IsNullOrEmpty(id))
-                    return "/assets/img/user.png";
+                    return "/assets/img/avatars/avatar3.jpg";
+
                 user = NewUserManager().FindById(id);
             }
             else
             {
                 user = NewUserManager().FindById(userId);
                 if (user == null)
-                    return "/assets/img/user.png";
+                    return "/assets/img/avatars/avatar3.jpg";
             }
 
             return $"{user.AvatarPath}";
