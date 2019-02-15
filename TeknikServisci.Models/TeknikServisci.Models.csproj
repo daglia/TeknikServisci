@@ -80,11 +80,13 @@
     <Compile Include="Abstracts\BaseEntity2.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Failure.cs" />
-    <Compile Include="Entities\Invoice.cs" />
+    <Compile Include="Entities\Operation.cs" />
     <Compile Include="Enums\FailureTypes.cs" />
     <Compile Include="Enums\IdentityRoles.cs" />
     <Compile Include="Enums\MessageStates.cs" />
+    <Compile Include="Enums\OperationStatuses.cs" />
     <Compile Include="Enums\RepairProcesses.cs" />
+    <Compile Include="Enums\TechnicianStatuses.cs" />
     <Compile Include="IdentityModels\Role.cs" />
     <Compile Include="IdentityModels\User.cs" />
     <Compile Include="Models\ResponseData.cs" />

@@ -23,13 +23,13 @@ namespace TeknikServisci.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Invoice>()
+            modelBuilder.Entity<Operation>()
                 .Property(x => x.Price)
                 .HasPrecision(6, 2);
         }
 
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Failure> Failures { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<Operation> Invoices { get; set; }
     }
 }

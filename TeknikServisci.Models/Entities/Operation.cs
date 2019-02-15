@@ -11,7 +11,7 @@ using TeknikServisci.Models.IdentityModels;
 
 namespace TeknikServisci.Models.Entities
 {
-    public class Invoice : BaseEntity2<int,int>
+    public class Operation : BaseEntity2<int,int>
     {
         [DisplayName("Fiyat")]
         [Required]

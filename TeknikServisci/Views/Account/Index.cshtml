@@ -4,7 +4,7 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,13 +45,13 @@
 				<h4> Hello User !</h4>
 				<p class="text-center">Please login to Access your Account</p>
 				<div class="row">
-					<form id="registration" class="form-inline" action="#">
 						<div class="form-group col-md-12 col-sm-12 col-xs-12">
 							<div id="demo-error-container"></div>
 						</div>
 
 						@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
 						{
+						    @Html.AntiForgeryToken()
 							<div class="form-group col-md-12 col-sm-12 col-xs-12">
 
 								<div class="text-left">
@@ -66,7 +66,13 @@
 									@Html.TextBoxFor(x => x.Surname, new { @class = "form-control", placeholder = "Soyad" })
 								</div>
 							</div>
+						    <div class="form-group col-md-12 col-sm-12 col-xs-12">
 
+                                <div class="text-left">
+                                    @Html.LabelFor(x => x.Phone, new { @class = "sr-only" })
+                                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", placeholder = "Telefon" })
+                                </div>
+                            </div>
 
 							<div class="form-group col-md-12 col-sm-12 col-xs-12">
 								<div class="text-left">
@@ -95,7 +101,6 @@
 							</div>
 							<button type="submit" class="btn btn-app btn-block">Kayıt Ol</button>
 						}
-					</form>
 				</div>
 			</div>
 			<div class="registration"> Çoktan kayıt olmuşsun dostum! @Html.ActionLink("Giriş Yap", "Index") </div>

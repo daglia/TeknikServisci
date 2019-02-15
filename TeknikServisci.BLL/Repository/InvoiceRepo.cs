@@ -7,7 +7,7 @@ using TeknikServisci.Models.Entities;
 
 namespace TeknikServisci.BLL.Repository
 {
-    public class InvoiceRepo : RepositoryBase<Invoice, int>
+    public class InvoiceRepo : RepositoryBase<Operation, int>
     {
     }
 }

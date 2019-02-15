@@ -27,12 +27,20 @@ namespace TeknikServisci.Models.Entities
         [DisplayName("Açıklama")]
         [Required]
         public string Description { get; set; }
+
+        [DisplayName("İşlem Durumu")]
+        public OperationStatuses OperationStatus { get; set; }
+        [DisplayName("İşlem Zamanı")]
+        public DateTime? OperationTime { get; set; }
+
         [DisplayName("Süreç")]
         public RepairProcesses RepairProcess { get; set; }
+        
         [DisplayName("Başlama Zamanı")]
         public DateTime? StartingTime { get; set; }
         [DisplayName("Bitirme Zamanı")]
         public DateTime? FinishingTime { get; set; }
+
         [DisplayName("Adres")]
         [StringLength(100, ErrorMessage = "Adres alanı  en az 10, en fazla 100 karakter içerebilir.", MinimumLength = 10)]
         [Required]
@@ -57,6 +65,6 @@ namespace TeknikServisci.Models.Entities
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
-        public virtual ICollection<Invoice> Invoices { get; set; } = new HashSet<Invoice>();
+        public virtual ICollection<Operation> Invoices { get; set; } = new HashSet<Operation>();
     }
 }
