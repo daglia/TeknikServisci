@@ -30,6 +30,12 @@ namespace TeknikServisci.Controllers
             return View();
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
         
         [HttpPost]
         [ValidateAntiForgeryToken]

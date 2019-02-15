@@ -1,124 +1,125 @@
-﻿@model TeknikServisci.Models.ViewModels.RegisterViewModel
-@{
-	Layout = null;
-}
+﻿@model TeknikServisci.Models.ViewModels.LoginViewModel
+    @{
+        Layout = null;
+    }
 
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title> Register page | Obama - Responsive admin template.</title>
-	<link rel="shortcut icon" href="~/assets/img/favicon.ico">
-	<!--STYLESHEET-->
-	<!--=================================================-->
-	<!--Roboto Slab Font [ OPTIONAL ] -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:500,400italic,100,700italic,300,700,500italic,400" rel="stylesheet">
-	<!--Bootstrap Stylesheet [ REQUIRED ]-->
-	<link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
-	<!--Jasmine Stylesheet [ REQUIRED ]-->
-	<link href="~/assets/css/style.css" rel="stylesheet">
-	<!--Font Awesome [ OPTIONAL ]-->
-	<link href="~/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<!--Switchery [ OPTIONAL ]-->
-	<link href="~/assets/plugins/switchery/switchery.min.css" rel="stylesheet">
-	<!--Bootstrap Select [ OPTIONAL ]-->
-	<link href="~/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
-	<!--Demo [ DEMONSTRATION ]-->
-	<link href="~/assets/css/demo/jasmine.css" rel="stylesheet">
-	<!--SCRIPT-->
-	<!--=================================================-->
-	<!--Page Load Progress Bar [ OPTIONAL ]-->
-	<link href="~/assets/plugins/pace/pace.min.css" rel="stylesheet">
-	<script src="~/assets/plugins/pace/pace.min.js"></script>
-</head>
-<!--TIPS-->
-<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
-<body>
-	<div id="container" class="cls-container">
-		<!-- REGISTRATION FORM -->
-		<!--===================================================-->
-		<div class="lock-wrapper">
-			<div class="panel lock-box">
-				<div class="center"> <img alt="" src="~/assets/img/user.png" class="img-circle" /> </div>
-				<h4> Hello User !</h4>
-				<p class="text-center">Please login to Access your Account</p>
-				<div class="row">
-						<div class="form-group col-md-12 col-sm-12 col-xs-12">
-							<div id="demo-error-container"></div>
-						</div>
+    <!DOCTYPE html>
+    <html lang="en">
 
-						@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
-						{
-						    @Html.AntiForgeryToken()
-							<div class="form-group col-md-12 col-sm-12 col-xs-12">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Login Page | Obama - Responsive admin template.</title>
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <!--STYLESHEET-->
+        <!--=================================================-->
+        <!--Roboto Slab Font [ OPTIONAL ] -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:500,400italic,100,700italic,300,700,500italic,400" rel="stylesheet">
+        <!--Bootstrap Stylesheet [ REQUIRED ]-->
+        <link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
+        <!--Jasmine Stylesheet [ REQUIRED ]-->
+        <link href="~/assets/css/style.css" rel="stylesheet">
+        <!--Font Awesome [ OPTIONAL ]-->
+        <link href="~/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!--Switchery [ OPTIONAL ]-->
+        <link href="~/assets/plugins/switchery/switchery.min.css" rel="stylesheet">r
+        <!--Bootstrap Select [ OPTIONAL ]-->
+        <link href="~/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+        <!--Demo [ DEMONSTRATION ]-->
+        <link href="~/assets/css/demo/jasmine.css" rel="stylesheet">
+        <!--SCRIPT-->
+        <!--=================================================-->
+        <!--Page Load Progress Bar [ OPTIONAL ]-->
+        <link href="~/assets/plugins/pace/pace.min.css" rel="stylesheet">
+        <script src="~/assets/plugins/pace/pace.min.js"></script>
+    </head>
+    <!--TIPS-->
+    <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 
-								<div class="text-left">
-									@Html.LabelFor(x => x.Name, new { @class = "sr-only" })
-									@Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Ad" })
-								</div>
-							</div>
-							<div class="form-group col-md-12 col-sm-12 col-xs-12">
-
-								<div class="text-left">
-									@Html.LabelFor(x => x.Surname, new { @class = "sr-only" })
-									@Html.TextBoxFor(x => x.Surname, new { @class = "form-control", placeholder = "Soyad" })
-								</div>
-							</div>
-						    <div class="form-group col-md-12 col-sm-12 col-xs-12">
-
-                                <div class="text-left">
-                                    @Html.LabelFor(x => x.Phone, new { @class = "sr-only" })
-                                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", placeholder = "Telefon" })
+    <body>
+        <div id="container">
+            <!-- LOGIN FORM -->
+            <!--===================================================-->
+            <div class="lock-wrapper">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="lock-box">
+                            <div class="main">
+                                <h3>Lütfen giriş yapın ya da @Html.ActionLink("Kaydolun", "Register")</h3>
+                                <!--Google ve Facebook ile giriş için-->
+                                @*<div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
+                                    </div>
                                 </div>
+                                <div class="login-or">
+                                    <hr class="hr-or">
+                                    <span class="span-or">or</span>
+                                </div>*@
+                                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.UserName, new { @class = "sr-only" })
+                                        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.Password, new { @class = "sr-only" })
+                                        @Html.TextBoxFor(x => x.Password, new { @class = "form-control", placeholder = "Şifre", type = "password" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label class ="form-checkbox form-icon form-text">@Html.CheckBoxFor(x => x.RememberMe)
+                                            @Html.DisplayNameFor(x => x.RememberMe)</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-app btn">Giriş Yap</button>
+                                    <a href="@Url.Action("RecoverPassword", "Account")" class="btn btn-app btn">
+                                        Şifremi Unuttum
+                                    </a>
+                                }
                             </div>
 
-							<div class="form-group col-md-12 col-sm-12 col-xs-12">
-								<div class="text-left">
-									@Html.LabelFor(x =>x.UserName , new { @class = "sr-only" })
-									@Html.TextBoxFor(x => x.UserName, new { @class = "form-control", placeholder = "Kullanıcı Adı"})
+                        </div>
+                    </div>
 
-								</div>                                                                                                
-							</div>
-							<div class="form-group col-md-12 col-sm-12 col-xs-12">
-								<div class="text-left">
-									@Html.LabelFor(x => x.Email, new { @class = "sr-only" })
-									@Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "E Mail", type = "email" })
-								</div>
-							</div>                                                               
-							<div class="form-group col-md-12 col-sm-12 col-xs-12">
-								<div class="text-left">
-									@Html.LabelFor(x => x.Password, new { @class = "sr-only" })
-									@Html.TextBoxFor(x => x.Password, new { @class = "form-control", placeholder = "Şifre", type = "password" })
-								</div>
-							</div>
-							<div class="form-group col-md-12 col-sm-12 col-xs-12">
-								<div class="text-left">
-									@Html.LabelFor(x => x.ConfirmPassword, new { @class = "sr-only" })
-									@Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", placeholder = "Şifre Tekrar", type = "password" })
-								</div>
-							</div>
-							<button type="submit" class="btn btn-app btn-block">Kayıt Ol</button>
-						}
-				</div>
-			</div>
-			<div class="registration"> Çoktan kayıt olmuşsun dostum! @Html.ActionLink("Giriş Yap", "Index") </div>
-		</div>
-		<!--===================================================-->
-		<!-- REGISTRATION FORM -->
-	</div>
-	<!--===================================================-->
-	<!-- END OF CONTAINER -->
-	<!--JAVASCRIPT-->
-	<!--=================================================-->
-	<!--jQuery [ REQUIRED ]-->
-	<script src="~/assets/js/jquery-2.1.1.min.js"></script>
-	<script src="~/assets/js/bootstrap.min.js"></script>
-	<script src="~/assets/plugins/fast-click/fastclick.min.js"></script>
-	<script src="~/assets/plugins/switchery/switchery.min.js"></script>
-	<script src="~/assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
-	<script src="~/assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
-	<script src="~/assets/js/demo/pages-register.js"></script>
-</body>
+                </div>
+            </div>
+            <!--===================================================-->
+            <!-- END OF CONTAINER -->
+            <!--JAVASCRIPT-->
+            <!--=================================================-->
+            <!--jQuery [ REQUIRED ]-->
+            <script src="~/assets/js/jquery-2.1.1.min.js"></script>
+            <!--BootstrapJS [ RECOMMENDED ]-->
+            <script src="~/assets/js/bootstrap.min.js"></script>
+            <!--Fast Click [ OPTIONAL ]-->
+            <script src="~/assets/plugins/fast-click/fastclick.min.js"></script>
+            <!--Jquery Nano Scroller js [ REQUIRED ]-->
+            <script src="~/assets/plugins/nanoscrollerjs/jquery.nanoscroller.min.js"></script>
+            <!--Metismenu js [ REQUIRED ]-->
+            <script src="~/assets/plugins/metismenu/metismenu.min.js"></script>
+            <!--Jasmine Admin [ RECOMMENDED ]-->
+            <script src="~/assets/js/scripts.js"></script>
+            <!--Switchery [ OPTIONAL ]-->
+            <script src="~/assets/plugins/switchery/switchery.min.js"></script>
+            <!--Jquery Steps [ OPTIONAL ]-->
+            <script src="~/assets/plugins/parsley/parsley.min.js"></script>
+            <!--Jquery Steps [ OPTIONAL ]-->
+            <script src="~/assets/plugins/jquery-steps/jquery-steps.min.js"></script>
+            <!--Bootstrap Select [ OPTIONAL ]-->
+            <script src="~/assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+            <!--Bootstrap Wizard [ OPTIONAL ]-->
+            <script src="~/assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+            <!--Masked Input [ OPTIONAL ]-->
+            <script src="~/assets/plugins/masked-input/bootstrap-inputmask.min.js"></script>
+            <!--Bootstrap Validator [ OPTIONAL ]-->
+            <script src="~/assets/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+            <!--Fullscreen jQuery [ OPTIONAL ]-->
+            <script src="~/assets/plugins/screenfull/screenfull.js"></script>
+        </div>
+    </body>
+
 </html>

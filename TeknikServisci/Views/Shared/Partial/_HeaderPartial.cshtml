@@ -1,4 +1,6 @@
-﻿<div class="navbar-content clearfix">
+﻿@using TeknikServisci.BLL.Identity
+
+<div class="navbar-content clearfix">
     <ul class="nav navbar-top-links pull-left">
         <!--Navigation toogle button-->
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -169,36 +171,21 @@
         <!--End notifications dropdown-->
     </ul>
     <ul class="nav navbar-top-links pull-right">
-        <!--Profile toogle button-->
-        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-        <li class="hidden-xs" id="toggleFullscreen">
-            <a class="fa fa-expand" data-toggle="fullscreen" href="#" role="button">
-                <span class="sr-only">Toggle fullscreen</span>
-            </a>
-        </li>
-        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-        <!--End Profile toogle button-->
         <!--User dropdown-->
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <li id="dropdown-user" class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
-                <span class="pull-right"> <img class="img-circle img-user media-object" src="~/assets/img/av1.png" alt="Profile Picture"> </span>
-                <div class="username hidden-xs">John Doe</div>
+                <span class="pull-right"> <img class="img-circle img-user media-object" src="@MembershipTools.GetAvatarPath(null)" alt="Profil Resmi"> </span>
+                <div class="username hidden-xs">@MembershipTools.GetNameSurname(null)</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right with-arrow">
                 <!-- User dropdown menu -->
                 <ul class="head-list">
                     <li>
-                        <a href="#"> <i class="fa fa-user fa-fw"></i> Profile </a>
+                        <a href="@Url.Action("UserProfile","Account")"> <i class="fa fa-user fa-fw"></i>Profil</a>
                     </li>
                     <li>
-                        <a href="#">  <i class="fa fa-envelope fa-fw"></i> Messages </a>
-                    </li>
-                    <li>
-                        <a href="#">  <i class="fa fa-gear fa-fw"></i> Settings </a>
-                    </li>
-                    <li>
-                        <a href="#"> <i class="fa fa-sign-out fa-fw"></i> Logout </a>
+                        <a href="@Url.Action("Logout","Account")"> <i class="fa fa-sign-out fa-fw"></i>Çıkış Yap</a>
                     </li>
                 </ul>
             </div>

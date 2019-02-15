@@ -18,7 +18,8 @@ namespace TeknikServisci.Web.App_Start
                 "~/assets/js/scripts.js",
                 "~/assets/js/demo/wizard.js",
                 "~/assets/js/demo/form-wizard.js",
-                "~/assets/js/demo/dashboard-v2.js"
+                "~/assets/js/demo/dashboard-v2.js",
+                "~/assets/plugins/screenfull/screenfull.js"
             ));
 
             bundles.Add(new StyleBundle("~/bundle/css").Include(
