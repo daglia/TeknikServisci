@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TeknikServisci.Models.Entities;
+using TeknikServisci.Models.Enums;
 
 namespace TeknikServisci.Models.IdentityModels
 {
@@ -21,7 +22,13 @@ namespace TeknikServisci.Models.IdentityModels
         public string ActivationCode { get; set; }
         public string AvatarPath { get; set; }
 
-        public virtual List<Invoice> Invoices { get; set; } = new List<Invoice>();
+        // Teknisyene özel
+
+        public string[] TechSpacilities { get; set; }
+        public TechnicianStatuses? TechnicianStatus { get; set; }
+        
+
+        public virtual List<Operation> Operations { get; set; } = new List<Operation>();
         public virtual List<Failure> Failures { get; set; } = new List<Failure>();
     }
 }

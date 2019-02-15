@@ -13,8 +13,8 @@
 	<!--STYLESHEET-->
 	<!--=================================================-->
 	<!--Roboto Slab Font [ OPTIONAL ] -->
-	<link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700" rel="stylesheet">
-	<link href="http://fonts.googleapis.com/css?family=Roboto:500,400italic,100,700italic,300,700,500italic,400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:500,400italic,100,700italic,300,700,500italic,400" rel="stylesheet">
 	<!--Bootstrap Stylesheet [ REQUIRED ]-->
 	<link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
 	<!--Jasmine Stylesheet [ REQUIRED ]-->
@@ -45,13 +45,13 @@
 				<h4> Hello User !</h4>
 				<p class="text-center">Please login to Access your Account</p>
 				<div class="row">
-					<form id="registration" class="form-inline" action="#">
 						<div class="form-group col-md-12 col-sm-12 col-xs-12">
 							<div id="demo-error-container"></div>
 						</div>
 
 						@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
 						{
+						    @Html.AntiForgeryToken()
 							<div class="form-group col-md-12 col-sm-12 col-xs-12">
 
 								<div class="text-left">
@@ -66,7 +66,13 @@
 									@Html.TextBoxFor(x => x.Surname, new { @class = "form-control", placeholder = "Soyad" })
 								</div>
 							</div>
+						    <div class="form-group col-md-12 col-sm-12 col-xs-12">
 
+                                <div class="text-left">
+                                    @Html.LabelFor(x => x.Phone, new { @class = "sr-only" })
+                                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", placeholder = "Telefon" })
+                                </div>
+                            </div>
 
 							<div class="form-group col-md-12 col-sm-12 col-xs-12">
 								<div class="text-left">
@@ -95,7 +101,6 @@
 							</div>
 							<button type="submit" class="btn btn-app btn-block">Kayıt Ol</button>
 						}
-					</form>
 				</div>
 			</div>
 			<div class="registration"> Çoktan kayıt olmuşsun dostum! <a href="#"> <span class="text-primary"> Lütfen giriş yapınız. </span> </a> </div>

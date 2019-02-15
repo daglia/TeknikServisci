@@ -25,7 +25,7 @@ namespace TeknikServisci.App_Start
 
         private static void InvoiceMapping(IMapperConfigurationExpression cfg)
         {
-            cfg.CreateMap<Invoice, InvoiceViewModel>();
+            cfg.CreateMap<Operation, InvoiceViewModel>();
         }
 
         private static void FailureMapping(IMapperConfigurationExpression cfg)
