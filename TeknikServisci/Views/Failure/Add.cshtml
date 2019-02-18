@@ -1,5 +1,4 @@
-﻿@using TeknikServisci.BLL.Identity
-@model TeknikServisci.Models.ViewModels.FailureViewModel
+﻿@model TeknikServisci.Models.ViewModels.FailureViewModel
 @{
     ViewBag.Title = "Yeni Arıza Ekle";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
@@ -19,7 +18,7 @@
             <h3>@TempData["Message"]</h3>
             @Html.ValidationSummary()
 
-            @using (Html.BeginForm("Add", "Failure", FormMethod.Post, new { @class = "fieldset", enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("Add", "Failure", FormMethod.Post, new { @class = "form-horizontal" ,enctype= "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -27,18 +26,22 @@
                     <div class="col-sm-9 control-label">
                         @Html.LabelFor(x => x.FailureName)
                         @Html.TextBoxFor(x => x.FailureName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.FailureName, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-sm-9 control-label">
                         @Html.LabelFor(x => x.Description)
                         @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-sm-9 control-label">
-                        @Html.LabelFor(x => x.Model)
-                        @Html.TextBoxFor(x => x.Model, new { @class = "form-control" })
+                        @Html.LabelFor(x => x.ProductModel)
+                        @Html.TextBoxFor(x => x.ProductModel, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.ProductModel, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-sm-9 control-label">
                         @Html.LabelFor(x => x.Address)
                         @Html.TextAreaFor(x => x.Address, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-sm-9 control-label">
                         @Html.LabelFor(x => x.PostedFile)
