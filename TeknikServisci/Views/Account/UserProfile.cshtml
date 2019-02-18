@@ -19,7 +19,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                         <div class="userWidget-1">
                             <div class="avatar bg-info">
-                                <img src="@Model.UserProfileViewModel.AvatarPath" alt="Kullanıcı Avatarı"/>
+                                <img src="@MembershipTools.GetAvatarPath(null)" alt="Kullanıcı Avatarı"/>
                                 <div class="name osLight">@MembershipTools.GetNameSurname(null) - @Model.UserProfileViewModel.UserName</div>
                             </div>
                             <div class="title"><br/><br/><br/><br/><br/>@*@Roles.GetRolesForUser(Model.UserProfileViewModel.UserName)*@</div>
