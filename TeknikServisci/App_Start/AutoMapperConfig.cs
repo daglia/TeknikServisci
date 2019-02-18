@@ -17,12 +17,17 @@ namespace TeknikServisci.App_Start
                 CategoryMapping(cfg);
                 FailureMapping(cfg);
                 InvoiceMapping(cfg);
+                RegisterMapping(cfg);
             });
 
            
 
         }
 
+        private static void RegisterMapping(IMapperConfigurationExpression cfg)
+        {
+            cfg.CreateMap<Operation, RegisterViewModel>().ReverseMap();
+        }
         private static void InvoiceMapping(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<Operation, InvoiceViewModel>().ReverseMap(); 
