@@ -52,7 +52,7 @@ namespace TeknikServisci.Models.ViewModels
         public string PhotoPath { get; set; }
         [DisplayName("Arıza Fotoğrafı")]
         public HttpPostedFile PostedFile { get; set; }
-
+        public string OperatorId { get; set; }
         public string ClientId { get; set; }
         public string TechnicianId { get; set; }
 

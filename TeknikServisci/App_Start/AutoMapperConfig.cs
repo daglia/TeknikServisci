@@ -35,7 +35,8 @@ namespace TeknikServisci.App_Start
 
         private static void FailureMapping(IMapperConfigurationExpression cfg)
         {
-            cfg.CreateMap<Failure, FailureViewModel>().ReverseMap(); 
+            cfg.CreateMap<Failure, FailureViewModel>()
+                .ForMember(dest=>dest.FailureName, opt => opt.MapFrom(x => x.Id)).ReverseMap(); 
         }
 
         private static void CategoryMapping(IMapperConfigurationExpression cfg)
