@@ -22,19 +22,19 @@ namespace TeknikServisci.Models.Entities
         [StringLength(100, ErrorMessage = "Model adı en az 3, en fazla 100 karakter içerebilir.", MinimumLength = 3)]
         [DisplayName("Model Adı")]
         [Required]
-        public string Model { get; set; }
+        public string ProductModel { get; set; }
         [StringLength(300, ErrorMessage = "Açıklama en az 20, en fazla 300 karakter içerebilir.", MinimumLength = 20)]
         [DisplayName("Açıklama")]
         [Required]
         public string Description { get; set; }
 
         [DisplayName("İşlem Durumu")]
-        public OperationStatuses OperationStatus { get; set; }
+        public OperationStatuses OperationStatus { get; set; } = OperationStatuses.Pending;
         [DisplayName("İşlem Zamanı")]
         public DateTime? OperationTime { get; set; }
 
         [DisplayName("Süreç")]
-        public RepairProcesses RepairProcess { get; set; }
+        public RepairProcesses? RepairProcess { get; set; }
         
         [DisplayName("Başlama Zamanı")]
         public DateTime? StartingTime { get; set; }
@@ -45,10 +45,9 @@ namespace TeknikServisci.Models.Entities
         [StringLength(100, ErrorMessage = "Adres alanı  en az 10, en fazla 100 karakter içerebilir.", MinimumLength = 10)]
         [Required]
         public string Address { get; set; }
-        [Required]
-        public string Latitude { get; set; }
-        [Required]
-        public string Longitude { get; set; }
+
+        //public string Latitude { get; set; }
+        //public string Longitude { get; set; }
 
         [DisplayName("Rapor")]
         public string Report { get; set; }

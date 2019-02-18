@@ -23,12 +23,22 @@ namespace TeknikServisci.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            return View();
+            var data = new FailureViewModel()
+            {
+                FailureName = "test",
+                Address = "adres"
+            };
+            return View(data);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(FailureViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Index", model);
+            }
             try
             {
                 new FailureRepo().Insert(Mapper.Map<FailureViewModel, Failure>(model));
