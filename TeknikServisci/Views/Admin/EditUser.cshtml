@@ -1,0 +1,102 @@
+﻿@model TeknikServisci.Models.ViewModels.UserProfileViewModel
+@{
+    ViewBag.Title = "Kullanıcıyı Düzenle";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+@section top
+{
+    <link rel="stylesheet" href="~/assets/plugins/select2/select2.min.css" />
+    <link rel="stylesheet" href="~/assets/plugins/select2/select2-bootstrap.css" />
+}
+
+<div id="container" class="effect mainnav-sm navbar-fixed mainnav-fixed">
+    <div class="boxed">
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div class="pageheader hidden-xs">
+            <h3><i class="fa fa-home"></i>Yeni Arıza Bildirimi</h3>
+        </div>
+        <!--Page content-->
+        <!--===================================================-->
+        <div id="page-content" class="col-lg-6 col-lg-offset-3">
+            <br /><br /><br /><br />
+            <h3>@TempData["Message"]</h3>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { @class = "fieldset", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.Id)
+                @Html.HiddenFor(x => x.UserName)
+                <h4 class="col-md-3 control-label">Profil Bilgileri</h4>
+                <div class="form-group row">
+                    <div class="col-sm-9 control-label">
+                        @Html.LabelFor(x => x.Name)
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="col-sm-9 control-label">
+                        @Html.LabelFor(x => x.Surname)
+                        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-9 control-label">
+                        @Html.LabelFor(x => x.Email)
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control col-sm-9", type = "email" })
+                    </div>
+                    <div class="col-sm-9 control-label">
+                        @Html.LabelFor(x => x.PhoneNumber)
+                        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control col-sm-9" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-9 control-label">
+                        @Html.LabelFor(x => x.PostedFile)
+                        @Html.TextBoxFor(x => x.PostedFile, new { @class = "form-control col-sm-9", type = "file", multiple = false })
+                    </div>
+                </div>
+                <div class="row narrow-gutter">
+                    <div class="col-xs-6">
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
+                    </div>
+                </div>
+            }
+
+            <div class="form-group">
+                @using (Html.BeginForm("EditUserRoles", "Admin", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.Id)
+                    @Html.Label("Roles", new { @class = "col-md-3 control-label" })
+                    <div class="col-md-7">
+                        @Html.DropDownList("Roles", (List<SelectListItem>)ViewBag.RoleList, new { @class = "js-select2 form-control", size = "1", multiple = "multiple" })
+                    </div>
+                    <input type="submit" value="Rol Güncelle" class="btn btn-primary" />
+                }
+            </div>
+        </div>
+        <!--===================================================-->
+        <!--End page content-->
+    </div>
+    <!--===================================================-->
+    <!--END CONTENT CONTAINER-->
+
+</div>
+<!-- SCROLL TOP BUTTON -->
+<!--===================================================-->
+<button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
+<!--===================================================-->
+
+@section bottom
+{
+    <script src="~/assets/plugins/select2/select2.full.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <script>
+        $(function () {
+            App.initHelpers(['select2']);
+        });
+    </script>
+}

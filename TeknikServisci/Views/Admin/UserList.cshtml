@@ -5,7 +5,7 @@
 }
 @section top
 {
-
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="~/assets/js/plugins/datatables/jquery.dataTables.min.css" />
 }
@@ -47,13 +47,13 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button class="btn btn-xs btn-default btnsendcode" name="@data.Id" type="button" title="Send Activation Code">
-                                        <i class="ion-android-mail"></i>
+                                        <i class="glyphicon glyphicon-check"></i>
                                     </button>
                                     <button class="btn btn-xs btn-default btnsendpassword" name="@data.Id" type="button" title="Send Password">
-                                        <i class="ion-key"></i>
+                                        <i class="glyphicon glyphicon-refresh"></i>
                                     </button>
                                     <a href="@Url.Action("EditUser", "Admin", new {id = data.Id})" class="btn btn-xs btn-default" title="Edit User">
-                                        <i class="glyphicon-wrench"></i>
+                                        <i class="glyphicon glyphicon-wrench"></i>
                                     </a>
                                 </div>
                             </td>
