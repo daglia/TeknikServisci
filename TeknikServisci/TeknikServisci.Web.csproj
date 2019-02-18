@@ -18,9 +18,12 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44395</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -773,6 +776,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FailureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartialController.cs" />
     <Compile Include="Global.asax.cs">
@@ -859,6 +863,9 @@
     <Content Include="Views\Account\UserProfile.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\RecoverPassword.cshtml" />
+    <Content Include="Views\Failure\Index.cshtml" />
+    <Content Include="Views\Failure\Add.cshtml" />
+    <Content Include="Views\Admin\UserList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -878,7 +885,6 @@
     <Folder Include="assets\plugins\data-tables\images\js\sparkline\" />
     <Folder Include="assets\plugins\noty-master\js\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="assets\plugins\metismenu\metismenu.d.ts" />

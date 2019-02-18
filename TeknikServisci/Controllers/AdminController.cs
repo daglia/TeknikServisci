@@ -24,6 +24,12 @@ namespace TeknikServisci.Controllers
             return View(NewUserStore().Users.ToList());
         }
 
+        [HttpGet]
+        public ActionResult UserList()
+        {
+            return View(NewUserStore().Users.ToList());
+        }
+
         [HttpPost]
         public async Task<JsonResult> SendCode(string id)
         {

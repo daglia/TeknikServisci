@@ -18,11 +18,29 @@
             <div class="nano-content">
                 <ul id="mainnav-menu" class="list-group">
                     <!--Category name-->
-                    <li class="list-header">Navigation</li>
+                    <li class="list-header">Menü</li>
                     <!--Menu list item-->
-                    <li> <a href="index.html"> <i class="fa fa-home"></i> <span class="menu-title"> Dashboard </span> </a> </li>
-                    <!--Category name-->
-                    <li class="list-header">Components</li>
+                    
+                    <li> <a href="@Url.Action("Index","Home")"> <i class="fa fa-home"></i> <span class="menu-title">Ana Sayfa</span> </a> </li>
+                
+                @if (User.IsInRole("Admin"))
+                    {
+                        //Here you can write anything you want to show.
+                        <li><a href="@Url.Action("UserList","Admin")"> <i class="fa fa-user"></i> <span class="menu-title">Kullanıcı Listesi</span></a></li>
+                }
+                else if (User.IsInRole("Technician"))
+                {
+                    // Teknisyenle ilgili menü
+                }
+                else if (User.IsInRole("Operator"))
+                {
+                        // Operatörle ilgili menü
+                    }
+                    else
+                    {
+                        
+                    }
+
                     <!--Menu list item-->
                     <li>
                         <a href="#">

@@ -46,9 +46,9 @@ namespace TeknikServisci.Models.Entities
         [Required]
         public string Address { get; set; }
         [Required]
-        public string Attitude { get; set; }
-        [Required]
         public string Latitude { get; set; }
+        [Required]
+        public string Longitude { get; set; }
 
         [DisplayName("Rapor")]
         public string Report { get; set; }
@@ -61,7 +61,7 @@ namespace TeknikServisci.Models.Entities
         public virtual User Client { get; set; }
         [ForeignKey("TechnicianId")]
         public virtual User Technician { get; set; }
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 

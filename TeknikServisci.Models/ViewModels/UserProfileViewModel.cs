@@ -30,6 +30,7 @@ namespace TeknikServisci.Models.ViewModels
         public string PhoneNumber { get; set; }
 
         public string AvatarPath { get; set; }
+        [Display(Name = "Kullanıcı Avatarı")]
         public HttpPostedFileBase PostedFile { get; set; }
     }
 }

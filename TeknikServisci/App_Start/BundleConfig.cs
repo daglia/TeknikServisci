@@ -25,7 +25,7 @@ namespace TeknikServisci.Web.App_Start
             bundles.Add(new StyleBundle("~/bundle/css").Include(
                 "~/assets/css/bootstrap.min.css",
                 "~/assets/css/style.css",
-               "~/assets/plugins/switchery/switchery.min.css",
+                "~/assets/plugins/switchery/switchery.min.css",
                 "~/assets/plugins/bootstrap-select/bootstrap-select.min.css",
                 "~/assets/plugins/jquery-ricksaw-chart/css/rickshaw.css",
                 "~/assets/plugins/bootstrap-validator/bootstrapValidator.min.css",

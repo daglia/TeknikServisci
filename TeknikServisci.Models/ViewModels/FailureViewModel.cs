@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using TeknikServisci.Models.Enums;
 
 namespace TeknikServisci.Models.ViewModels
@@ -23,27 +24,38 @@ namespace TeknikServisci.Models.ViewModels
         [DisplayName("Açıklama")]
         [Required]
         public string Description { get; set; }
+
+        [DisplayName("İşlem Durumu")]
+        public OperationStatuses OperationStatus { get; set; }
+        [DisplayName("İşlem Zamanı")]
+        public DateTime? OperationTime { get; set; }
+
         [DisplayName("Süreç")]
         public RepairProcesses RepairProcess { get; set; }
+
         [DisplayName("Başlama Zamanı")]
         public DateTime? StartingTime { get; set; }
         [DisplayName("Bitirme Zamanı")]
         public DateTime? FinishingTime { get; set; }
+
         [DisplayName("Adres")]
         [StringLength(100, ErrorMessage = "Adres alanı  en az 10, en fazla 100 karakter içerebilir.", MinimumLength = 10)]
         [Required]
         public string Address { get; set; }
         [Required]
-        public string Attitude { get; set; }
-        [Required]
         public string Latitude { get; set; }
+        [Required]
+        public string Longitude { get; set; }
 
         [DisplayName("Rapor")]
         public string Report { get; set; }
         public string PhotoPath { get; set; }
+        [DisplayName("Arıza Fotoğrafı")]
+        public HttpPostedFile PostedFile { get; set; }
 
         public string ClientId { get; set; }
         public string TechnicianId { get; set; }
+
         public int? CategoryId { get; set; }
 
     }
