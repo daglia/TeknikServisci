@@ -55,11 +55,14 @@ namespace TeknikServisci.Models.Entities
 
         public string ClientId { get; set; }
         public string TechnicianId { get; set; }
+        public string OperatorId { get; set; }
 
         [ForeignKey("ClientId")]
         public virtual User Client { get; set; }
         [ForeignKey("TechnicianId")]
         public virtual User Technician { get; set; }
+        [ForeignKey("OperatorId")]
+        public User Operator { get; set; }
         public int? CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }

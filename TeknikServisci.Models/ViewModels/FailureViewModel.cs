@@ -50,10 +50,9 @@ namespace TeknikServisci.Models.ViewModels
         [DisplayName("Rapor")]
         public string Report { get; set; }
         public string PhotoPath { get; set; }
-
-        [Display(Name = "Arıza Fotoğrafı")]
-        public HttpPostedFileBase PostedFile { get; set; }
-
+        [DisplayName("Arıza Fotoğrafı")]
+        public HttpPostedFile PostedFile { get; set; }
+        public string OperatorId { get; set; }
         public string ClientId { get; set; }
         public string TechnicianId { get; set; }
 
