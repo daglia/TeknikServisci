@@ -869,6 +869,8 @@
     <Content Include="Views\Admin\UserList.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
     <Content Include="Views\Operator\FailureList.cshtml" />
+    <Content Include="Views\Failure\Detail.cshtml" />
+    <Content Include="Views\Operator\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -20,6 +20,16 @@ namespace TeknikServisci.Controllers
             return View();
         }
 
+        public ActionResult Detail(int? id)
+        {
+            if (id == null) return RedirectToAction("Index");
+
+            var data = new FailureRepo().GetById(id);
+            if (data == null) return RedirectToAction("Index");
+
+            return View(data);
+        }
+
         [HttpGet]
         public ActionResult Add()
         {

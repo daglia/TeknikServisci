@@ -38,7 +38,7 @@ namespace TeknikServisci.Models.ViewModels
         public RepairProcesses? RepairProcess { get; set; }
 
         [DisplayName("Oluşturulma Zamanı")]
-        public DateTime CreatedTime { get; set; } = DateTime.Now;
+        public DateTime CreatedTime { get; set; }
 
         [DisplayName("Başlama Zamanı")]
         public DateTime? StartingTime { get; set; }

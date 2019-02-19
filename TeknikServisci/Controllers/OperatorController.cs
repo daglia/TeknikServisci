@@ -27,7 +27,7 @@ namespace TeknikServisci.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> FailureDetail(int id)
+        public async Task<ActionResult> Detail(int id)
         {
             try
             {

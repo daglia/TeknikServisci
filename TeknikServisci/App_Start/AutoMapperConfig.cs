@@ -38,6 +38,7 @@ namespace TeknikServisci.App_Start
         {
             cfg.CreateMap<Failure, FailureViewModel>()
                 .ForMember(dest=>dest.FailureId, opt => opt.MapFrom(x => x.Id))
+                .ForMember(dest => dest.CreatedTime, opt => opt.MapFrom(x => x.CreatedDate))
                 //.ForMember(dest => dest.ClientName,opt=>opt.MapFrom(x=>x.Client.Name))
                 //.ForMember(dest => dest.ClientSurname, opt => opt.MapFrom(x => x.Client.Surname))
                 .ForMember(dest => dest.Operator, opt => opt.MapFrom((s, d) => s.Operator == null ? "-" : (s.Operator.Name + " " + s.Operator.Surname)))
