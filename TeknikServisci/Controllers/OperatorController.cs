@@ -33,7 +33,25 @@ namespace TeknikServisci.Controllers
             {
                 var x = await new FailureRepo().GetByIdAsync(id);
                 var data = Mapper.Map<FailureViewModel>(x);
+
+                var TechnicianRole = NewRoleManager().FindByName("Technician").Users.Select(y => y.UserId).ToList();
+                for (int i = 0; i < TechnicianRole.Count; i++)
+                {
+
+                    var User = NewUserManager().FindById(TechnicianRole[i]);
+                    Technicians.Add(new SelectListItem()
+                    {
+                        Text = User.Name + " " + User.Surname,
+                        Value = User.Id
+                    });
+                }
+
+                ViewBag.TechnicianList = Technicians;
+
+
                 return View(data);
+
+
             }
             catch (Exception ex)
             {
@@ -116,7 +134,7 @@ namespace TeknikServisci.Controllers
         {
             try
             {
-                var failure = new FailureRepo().GetById(model.FailureName);
+                var failure = new FailureRepo().GetById(model.FailureId);
                 failure.TechnicianId = model.TechnicianId;
                 failure.OperationStatus = OperationStatuses.Accepted;
                 new FailureRepo().Update(failure);
@@ -140,14 +158,13 @@ namespace TeknikServisci.Controllers
             }
 
         }
-
+        
         List<SelectListItem> Technicians = new List<SelectListItem>();
-        public ActionResult OperationFailureDetail(int id)
+        [HttpGet]
+        public ActionResult TechnicianAdd(int id)
         {
-
             try
             {
-
                 var TechnicianRole = NewRoleManager().FindByName("Technician").Users.Select(x => x.UserId).ToList();
                 for (int i = 0; i < TechnicianRole.Count; i++)
                 {
@@ -160,11 +177,11 @@ namespace TeknikServisci.Controllers
                     });
                 }
 
-                ViewBag.Title= Technicians;
+                ViewBag.TechnicianList = Technicians;
                 var data = new FailureRepo()
                     .GetAll(x => x.Id == id)
                     .Select(x => Mapper.Map<FailureViewModel>(x)).FirstOrDefault();
-                return View(data);
+                return View("Detail",data);
             }
             catch (Exception ex)
             {
