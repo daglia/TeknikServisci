@@ -37,11 +37,14 @@ namespace TeknikServisci.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Index", model);
+                return View(model);
             }
             try
             {
-                new FailureRepo().Insert(Mapper.Map<FailureViewModel, Failure>(model));
+                var data = Mapper.Map<FailureViewModel, Failure>(model);
+                data.Client = null;
+                data.Invoices = null;
+                new FailureRepo().Insert(data);
                 TempData["Message"] = $"{model.FailureName} adlı arızanız operatörlerimizce incelenecektir ve size 24 saat içinde dönüş yapılacaktır.";
                 return RedirectToAction("Add");
             }

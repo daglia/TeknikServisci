@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
+using TeknikServisci.BLL.Identity;
 using TeknikServisci.Models.Entities;
 using TeknikServisci.Models.ViewModels;
 
@@ -37,11 +38,10 @@ namespace TeknikServisci.App_Start
         {
             cfg.CreateMap<Failure, FailureViewModel>()
                 .ForMember(dest=>dest.FailureId, opt => opt.MapFrom(x => x.Id))
-                .ForMember(dest => dest.CreatedTime,opt=>opt.MapFrom(x=>x.CreatedDate))
-                .ForMember(dest => dest.ClientName,opt=>opt.MapFrom(x=>x.Client.Name))
-                .ForMember(dest => dest.ClientSurname, opt => opt.MapFrom(x => x.Client.Surname))
-                .ForMember(dest => dest.Technician, opt => opt.MapFrom(x => (x.Technician.Name + " " + x.Technician.Surname)))
-                .ForMember(dest => dest.Operator, opt => opt.MapFrom(x => (x.Operator.Name + " " + x.Operator.Surname)))
+                //.ForMember(dest => dest.ClientName,opt=>opt.MapFrom(x=>x.Client.Name))
+                //.ForMember(dest => dest.ClientSurname, opt => opt.MapFrom(x => x.Client.Surname))
+                .ForMember(dest => dest.Operator, opt => opt.MapFrom((s, d) => s.Operator == null ? "-" : (s.Operator.Name + " " + s.Operator.Surname)))
+                .ForMember(dest => dest.Technician, opt => opt.MapFrom((s, d) => s.Technician == null ? "-" : (s.Technician.Name + " " + s.Technician.Surname)))
                 .ReverseMap(); 
         }
 

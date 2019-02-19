@@ -43,16 +43,18 @@
                             @for (int i = 0; i < Model.Count; i++)
                             {
                                 var data = Model[i];
+                                <tr>
                                 <td class="text-center">@(i + 1)</td>
                                 <td>@data.CreatedTime</td>
                                 <td>@data.ClientName</td>
                                 <td>@data.ClientSurname</td>
                                 <td>@data.OperationStatus</td>
-                                <td>@(data.Technician)</td>
+                                <td class="text-center">@(data.Technician)</td>
                                 <td class="text-center">
                                     <a href="@Url.Action("Detail", "Operator", new {id = data.FailureId})" class="btn btn-success">Ayrıntılar
                                     </a>
                                 </td>
+                                </tr>
                             }
                         </tbody>
                         </table>

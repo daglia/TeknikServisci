@@ -1,4 +1,5 @@
-﻿@model TeknikServisci.Models.ViewModels.FailureViewModel
+﻿@using Microsoft.AspNet.Identity
+@model TeknikServisci.Models.ViewModels.FailureViewModel
 @{
     ViewBag.Title = "Yeni Arıza Ekle";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
@@ -16,11 +17,12 @@
         <div id="page-content" class="col-lg-6 col-lg-offset-3">
             <br /><br /><br /><br />
             <h3>@TempData["Message"]</h3>
-            @Html.ValidationSummary()
-
+            
             @using (Html.BeginForm("Add", "Failure", FormMethod.Post, new { @class = "form-horizontal" ,enctype= "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.TextBox("ClientId", HttpContext.Current.User.Identity.GetUserId())
 
                 <div class="form-group row">
                     <div class="col-sm-9 control-label">

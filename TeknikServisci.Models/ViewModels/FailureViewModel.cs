@@ -38,7 +38,7 @@ namespace TeknikServisci.Models.ViewModels
         public RepairProcesses? RepairProcess { get; set; }
 
         [DisplayName("Oluşturulma Zamanı")]
-        public DateTime CreatedTime { get; set; }
+        public DateTime CreatedTime { get; set; } = DateTime.Now;
 
         [DisplayName("Başlama Zamanı")]
         public DateTime? StartingTime { get; set; }
@@ -68,6 +68,9 @@ namespace TeknikServisci.Models.ViewModels
 
         public int? CategoryId { get; set; }
         public virtual Category Category { get; set; }
+
+        [Display(Name = "Kullanıcı Avatarı")]
+        public HttpPostedFileBase PostedFile { get; set; }
 
     }
 }
