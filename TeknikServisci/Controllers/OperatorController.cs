@@ -87,7 +87,6 @@ namespace TeknikServisci.Controllers
         [HttpGet]
         public ActionResult FailureList()
         {
-            //operator bulunuyor ve o operatorun aldıgı kayıtlar listelenip çekiliyor.
             var operatorId = HttpContext.User.Identity.GetUserId();
             try
             {
@@ -113,18 +112,15 @@ namespace TeknikServisci.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Technician(FailureViewModel model)
+        public async Task<ActionResult> TechnicianAdd(FailureViewModel model)
         {
-            //TODO NOT Eger bir yerlerde program view modelden patlarsa string birşeyler EKledik ondandır.
             try
             {
-                //TODO Teknisyen atandıgı tarihde eklenebilir istenirse.
                 var failure = new FailureRepo().GetById(model.FailureName);
                 failure.TechnicianId = model.TechnicianId;
                 failure.OperationStatus = OperationStatuses.Accepted;
                 new FailureRepo().Update(failure);
-                var technician = await NewUserStore().FindByIdAsync(failure.TechnicianId);
-                //TODO Musteriye ve Teknisyene mail gönder. 
+                var technician = await NewUserStore().FindByIdAsync(failure.TechnicianId); 
                 TempData["Message"] =
                     $"{failure.Id} nolu arızaya {technician.Name}  {technician.Surname} atanmıştır.İyi çalışmalar.";
 
@@ -152,20 +148,19 @@ namespace TeknikServisci.Controllers
             try
             {
 
-                var RoleTechnician = NewRoleManager().FindByName("Technician").Users.Select(x => x.UserId).ToList();
-                for (int i = 0; i < RoleTechnician.Count; i++)
+                var TechnicianRole = NewRoleManager().FindByName("Technician").Users.Select(x => x.UserId).ToList();
+                for (int i = 0; i < TechnicianRole.Count; i++)
                 {
 
-                    var User = NewUserManager().FindById(RoleTechnician[i]);
+                    var User = NewUserManager().FindById(TechnicianRole[i]);
                     Technicians.Add(new SelectListItem()
                     {
-                        
                         Text = User.Name + " " + User.Surname,
                         Value = User.Id
                     });
                 }
 
-                ViewBag.TechnicianS = Technicians;
+                ViewBag.Title= Technicians;
                 var data = new FailureRepo()
                     .GetAll(x => x.Id == id)
                     .Select(x => Mapper.Map<FailureViewModel>(x)).FirstOrDefault();
