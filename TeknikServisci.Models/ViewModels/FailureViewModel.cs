@@ -6,13 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using TeknikServisci.Models.Entities;
 using TeknikServisci.Models.Enums;
+using TeknikServisci.Models.IdentityModels;
 
 namespace TeknikServisci.Models.ViewModels
 {
     public class FailureViewModel
     {
-        public string FailureId { get; set; }
+        public int FailureId { get; set; }
+
         [StringLength(100, ErrorMessage = "Arıza adı en az 3, en fazla 100 karakter içerebilir.", MinimumLength = 3)]
         [DisplayName("Arıza Adı")]
         [Required]
@@ -34,6 +37,9 @@ namespace TeknikServisci.Models.ViewModels
         [DisplayName("Süreç")]
         public RepairProcesses? RepairProcess { get; set; }
 
+        [DisplayName("Oluşturulma Zamanı")]
+        public DateTime CreatedTime { get; set; }
+
         [DisplayName("Başlama Zamanı")]
         public DateTime? StartingTime { get; set; }
         [DisplayName("Bitirme Zamanı")]
@@ -50,13 +56,18 @@ namespace TeknikServisci.Models.ViewModels
         [DisplayName("Rapor")]
         public string Report { get; set; }
         public string PhotoPath { get; set; }
-        [DisplayName("Arıza Fotoğrafı")]
-        public HttpPostedFile PostedFile { get; set; }
-        public string OperatorId { get; set; }
+
         public string ClientId { get; set; }
         public string TechnicianId { get; set; }
+        public string OperatorId { get; set; }
+
+        public string ClientName { get; set; }
+        public string ClientSurname { get; set; }
+        public string Technician { get; set; }
+        public string Operator { get; set; }
 
         public int? CategoryId { get; set; }
+        public virtual Category Category { get; set; }
 
     }
 }

@@ -102,7 +102,7 @@
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\UpdateUserRoleViewModel.cs" />
     <Compile Include="ViewModels\UserProfileViewModel.cs" />
-    <Compile Include="ViewModels\InvoiceViewModel.cs" />
+    <Compile Include="ViewModels\OperationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

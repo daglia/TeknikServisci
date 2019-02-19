@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TeknikServisci.Models.ViewModels
 {
-    public class InvoiceViewModel
+    public class OperationViewModel
     {
         [DisplayName("Fiyat")]
         [Required]

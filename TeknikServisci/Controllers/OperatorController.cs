@@ -92,7 +92,7 @@ namespace TeknikServisci.Controllers
             try
             {
                 var data = new FailureRepo()
-                    .GetAll(x => x.OperatorId == operatorId)
+                    .GetAll()
                     .Select(x => Mapper.Map<FailureViewModel>(x))
                     .OrderBy(x => x.OperationTime)
                     .ToList();

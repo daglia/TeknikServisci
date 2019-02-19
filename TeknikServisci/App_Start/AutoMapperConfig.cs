@@ -30,13 +30,19 @@ namespace TeknikServisci.App_Start
         }
         private static void InvoiceMapping(IMapperConfigurationExpression cfg)
         {
-            cfg.CreateMap<Operation, InvoiceViewModel>().ReverseMap(); 
+            cfg.CreateMap<Operation, OperationViewModel>().ReverseMap(); 
         }
 
         private static void FailureMapping(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<Failure, FailureViewModel>()
-                .ForMember(dest=>dest.FailureName, opt => opt.MapFrom(x => x.Id)).ReverseMap(); 
+                .ForMember(dest=>dest.FailureId, opt => opt.MapFrom(x => x.Id))
+                .ForMember(dest => dest.CreatedTime,opt=>opt.MapFrom(x=>x.CreatedDate))
+                .ForMember(dest => dest.ClientName,opt=>opt.MapFrom(x=>x.Client.Name))
+                .ForMember(dest => dest.ClientSurname, opt => opt.MapFrom(x => x.Client.Surname))
+                .ForMember(dest => dest.Technician, opt => opt.MapFrom(x => (x.Technician.Name + " " + x.Technician.Surname)))
+                .ForMember(dest => dest.Operator, opt => opt.MapFrom(x => (x.Operator.Name + " " + x.Operator.Surname)))
+                .ReverseMap(); 
         }
 
         private static void CategoryMapping(IMapperConfigurationExpression cfg)
