@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Linq;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web;
 using TeknikServisci.DAL;
@@ -56,6 +57,65 @@ namespace TeknikServisci.BLL.Identity
             }
 
             return $"{user.AvatarPath}";
+        }
+
+        public static string GetRole(string userId)
+        {
+            User user;
+            string rolename = "";
+            if (string.IsNullOrEmpty(userId))
+            {
+                var id = HttpContext.Current.User.Identity.GetUserId();
+                if (string.IsNullOrEmpty(id))
+                    return "";
+            }
+            else
+            {
+                user = NewUserManager().FindById(userId);
+                if (user == null)
+                    return null;
+                rolename = NewUserManager().GetRoles(user.Id).FirstOrDefault();
+            }
+
+            return rolename;
+        }
+
+        public static string GetRoleWithColor(string userId)
+        {
+            User user;
+            string span = "";
+            if (string.IsNullOrEmpty(userId))
+            {
+                var id = HttpContext.Current.User.Identity.GetUserId();
+                if (string.IsNullOrEmpty(id))
+                    return "";
+            }
+            else
+            {
+                user = NewUserManager().FindById(userId);
+                if (user == null)
+                    return null;
+
+                var rolename = NewUserManager().GetRoles(user.Id).FirstOrDefault();
+
+                switch (rolename)
+                {
+                    case "Admin":
+                        span = "label-purple";
+                        break;
+                    case "Technician":
+                        span = "label-warning";
+                        break;
+                    case "Operator":
+                        span = "label-success";
+                        break;
+                    default:
+                        span = "label-primary";
+                        break;
+                }
+            }
+
+            return span;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿@model List<TeknikServisci.Models.IdentityModels.User>
+﻿@using Microsoft.AspNet.Identity
+@using TeknikServisci.BLL.Identity
+@model List<TeknikServisci.Models.IdentityModels.User>
 @{
     ViewBag.Title = "Kullanıcı Yönetimi";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
@@ -22,12 +24,13 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th>Avatar</th>
-                        <th>UserName</th>
-                        <th>Name</th>
-                        <th>Surname</th>
+                        <th>Kullanıcı Adı</th>
+                        <th>Ad</th>
+                        <th>Soyad</th>
+                        <th>Görevi</th>
                         <th>Email</th>
-                        <th>Confirmed</th>
-                        <th class="text-center" style="width: 10%;">Actions</th>
+                        <th>Onaylı</th>
+                        <th class="text-center" style="width: 10%;">İşlemler</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,17 +45,18 @@
                             <td class="font-500">@data.UserName</td>
                             <td>@data.Name</td>
                             <td>@data.Surname</td>
+                            <td><span class="text-center label @MembershipTools.GetRoleWithColor(data.Id)">@MembershipTools.GetRole(data.Id)</span></td>
                             <td>@data.Email</td>
                             <td>@Html.CheckBox("EmailConfirm", data.EmailConfirmed, new { disabled = "true" })</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button class="btn btn-xs btn-default btnsendcode" name="@data.Id" type="button" title="Send Activation Code">
+                                    <button class="btn btn-xs btn-default btnsendcode" name="@data.Id" type="button" title="Yeni Aktivasyon Kodu Gönder">
                                         <i class="glyphicon glyphicon-check"></i>
                                     </button>
-                                    <button class="btn btn-xs btn-default btnsendpassword" name="@data.Id" type="button" title="Send Password">
+                                    <button class="btn btn-xs btn-default btnsendpassword" name="@data.Id" type="button" title="Yeni Şifre Gönder">
                                         <i class="glyphicon glyphicon-refresh"></i>
                                     </button>
-                                    <a href="@Url.Action("EditUser", "Admin", new {id = data.Id})" class="btn btn-xs btn-default" title="Edit User">
+                                    <a href="@Url.Action("EditUser", "Admin", new {id = data.Id})" class="btn btn-xs btn-default" title="Kullanıcıyı Düzenle">
                                         <i class="glyphicon glyphicon-wrench"></i>
                                     </a>
                                 </div>
