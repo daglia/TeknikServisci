@@ -872,6 +872,7 @@
     <Content Include="Views\Operator\FailureList.cshtml" />
     <Content Include="Views\Failure\Detail.cshtml" />
     <Content Include="Views\Operator\Detail.cshtml" />
+    <Content Include="Views\Technician\FailureList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -891,7 +892,6 @@
     <Folder Include="assets\plugins\data-tables\images\js\sparkline\" />
     <Folder Include="assets\plugins\noty-master\js\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Technician\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="assets\plugins\metismenu\metismenu.d.ts" />

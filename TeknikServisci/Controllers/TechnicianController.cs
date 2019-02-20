@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Repository;
+using TeknikServisci.Models.Enums;
 using TeknikServisci.Models.ViewModels;
+
 
 namespace TeknikServisci.Controllers
 {
@@ -36,5 +39,68 @@ namespace TeknikServisci.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+        public ActionResult FailureList()
+        {
+            var techId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            try
+            {
+                var ariza = new FailureRepo().GetById(techId);
+                var data = Mapper.Map<FailureViewModel>(ariza);
+                return View(data);
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Index",
+                    ControllerName = "Home",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+
+            }
+
+        }
+        [HttpGet]
+        public async Task<ActionResult> TeknisyenArızaBildiriOnayla(FailureViewModel model)
+        {
+            try
+            {
+                var failure = await new FailureRepo().GetByIdAsync(model.FailureId);
+                if (model.TechnicianStatus== null)
+                {
+                    return RedirectToAction("", "Technician", model);
+                }
+                failure.Report = model.Report;
+                failure.Technician.TechnicianStatus = model.TechnicianStatus;
+                if (model.RepairProcess == RepairProcesses.Successful)
+                {
+                    failure.FinishingTime = DateTime.Now;
+                }
+                else if(model.RepairProcess == RepairProcesses.Failed)
+                    failure.FinishingTime = DateTime.Now;
+             
+
+                new FailureRepo().Update(failure);
+                TempData["Message"] = $"{model.FailureId} no lu Kayıt Raporu Alınmıştır. İyi çalışamlar";
+                return RedirectToAction("Index", "Technician");
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Index",
+                    ControllerName = "Teknisyen",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
+
+        }
+
     }
 }
