@@ -17,44 +17,44 @@
         <div id="page-content" class="col-lg-6 col-lg-offset-3">
             <br /><br /><br /><br />
             <h3>@TempData["Message"]</h3>
-            
+
             @using (Html.BeginForm("Add", "Failure", FormMethod.Post, new { @class = "form-horizontal" ,enctype= "multipart/form-data" }))
             {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.TextBox("ClientId", HttpContext.Current.User.Identity.GetUserId())
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.TextBox("ClientId", HttpContext.Current.User.Identity.GetUserId())
 
-                <div class="form-group row">
-                    <div class="col-sm-9 control-label">
-                        @Html.LabelFor(x => x.FailureName)
-                        @Html.TextBoxFor(x => x.FailureName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.FailureName, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-sm-9 control-label">
-                        @Html.LabelFor(x => x.Description)
-                        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-sm-9 control-label">
-                        @Html.LabelFor(x => x.ProductModel)
-                        @Html.TextBoxFor(x => x.ProductModel, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.ProductModel, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-sm-9 control-label">
-                        @Html.LabelFor(x => x.Address)
-                        @Html.TextAreaFor(x => x.Address, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-sm-9 control-label">
-                        @Html.LabelFor(x => x.PostedFile)
-                        @Html.TextBoxFor(x => x.PostedFile, new {@class = "form-control col-sm-9", type = "file", multiple = false})
-                    </div>
+            <div class="form-group row">
+                <div class="col-sm-9 control-label">
+                    @Html.LabelFor(x => x.FailureName)
+                    @Html.TextBoxFor(x => x.FailureName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.FailureName, "", new { @class = "text-danger" })
                 </div>
-                <div class="row narrow-gutter">
-                    <div class="col-xs-6">
-                        <button type="submit" class="btn btn-primary">Arızayı Gönder</button>
-                    </div>
+                <div class="col-sm-9 control-label">
+                    @Html.LabelFor(x => x.Description)
+                    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
                 </div>
+                <div class="col-sm-9 control-label">
+                    @Html.LabelFor(x => x.ProductModel)
+                    @Html.TextBoxFor(x => x.ProductModel, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ProductModel, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-9 control-label">
+                    @Html.LabelFor(x => x.Address)
+                    @Html.TextAreaFor(x => x.Address, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-9 control-label">
+                    @Html.LabelFor(x => x.PostedFile)
+                    @Html.TextBoxFor(x => x.PostedFile, new {@class = "form-control col-sm-9", type = "file", multiple = false})
+                </div>
+            </div>
+            <div class="row narrow-gutter">
+                <div class="col-xs-6">
+                    <button type="submit" class="btn btn-primary">Arızayı Gönder</button>
+                </div>
+            </div>
 
             }
         </div>
@@ -63,7 +63,7 @@
     </div>
     <!--===================================================-->
     <!--END CONTENT CONTAINER-->
-    
+
 </div>
 <!-- SCROLL TOP BUTTON -->
 <!--===================================================-->

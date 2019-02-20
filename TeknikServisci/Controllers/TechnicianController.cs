@@ -44,10 +44,13 @@ namespace TeknikServisci.Controllers
             var techId = System.Web.HttpContext.Current.User.Identity.GetUserId();
             try
             {
-                var ariza = new FailureRepo().GetById(techId);
-                var data = Mapper.Map<FailureViewModel>(ariza);
+                var data = new FailureRepo()
+                    .GetAll()
+                    .Select(x => Mapper.Map<FailureViewModel>(x))
+                    .Where(x=>x.TechnicianId == techId)
+                    .OrderBy(x => x.OperationTime)
+                    .ToList();
                 return View(data);
-
             }
             catch (Exception ex)
             {

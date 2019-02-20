@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Repository;
 using TeknikServisci.BLL.Services.Senders;
 using TeknikServisci.Models.Entities;
@@ -12,7 +13,7 @@ using TeknikServisci.Models.ViewModels;
 
 namespace TeknikServisci.Controllers
 {
-    public class FailureController : Controller
+    public class FailureController : BaseController
     {
         // GET: Failure
         public ActionResult Index()
@@ -33,12 +34,7 @@ namespace TeknikServisci.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            var data = new FailureViewModel()
-            {
-                FailureName = "test",
-                Address = "adres"
-            };
-            return View(data);
+            return View();
         }
 
         [HttpPost]

@@ -35,7 +35,7 @@ namespace TeknikServisci.Models.Entities
 
         [DisplayName("Süreç")]
         public RepairProcesses? RepairProcess { get; set; }
-        
+
         [DisplayName("Başlama Zamanı")]
         public DateTime? StartingTime { get; set; }
         [DisplayName("Bitirme Zamanı")]
