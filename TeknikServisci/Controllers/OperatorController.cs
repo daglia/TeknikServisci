@@ -7,7 +7,9 @@ using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Repository;
+using TeknikServisci.BLL.Services.Senders;
 using TeknikServisci.Models.Enums;
+using TeknikServisci.Models.Models;
 using TeknikServisci.Models.ViewModels;
 using static TeknikServisci.BLL.Identity.MembershipTools;
 
@@ -15,6 +17,8 @@ namespace TeknikServisci.Controllers
 {
     public class OperatorController : Controller
     {
+        List<SelectListItem> Technicians = new List<SelectListItem>();
+
         // GET: Operator
         public ActionResult Index()
         {
@@ -103,6 +107,7 @@ namespace TeknikServisci.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Operator")]
         public ActionResult FailureList()
         {
             var operatorId = HttpContext.User.Identity.GetUserId();
@@ -130,6 +135,7 @@ namespace TeknikServisci.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Operator")]
         public async Task<ActionResult> TechnicianAdd(FailureViewModel model)
         {
             try
@@ -142,7 +148,15 @@ namespace TeknikServisci.Controllers
                 TempData["Message"] =
                     $"{failure.Id} nolu arızaya {technician.Name}  {technician.Surname} atanmıştır.İyi çalışmalar.";
 
-                return RedirectToAction("Index", "Operator");
+                var emailService = new EmailService();
+                var body = $"Merhaba <b>{failure.Client.Name} {failure.Client.Surname}</b><br>{failure.FailureName} adlı arızanız onaylanmış ve alanında uzman teknisyenlerimizden birine atanmıştır. Sizinle yeniden iletişime geçilecektir.<br><br>İyi günler dileriz.";
+                await emailService.SendAsync(new IdentityMessage()
+                {
+                    Body = body,
+                    Subject = $"{failure.FailureName} adlı arızanız onaylanmıştır. | Teknik Servisçi"
+                }, failure.Client.Email);
+
+                return RedirectToAction("Detail", "Operator",new {id = model.FailureId});
             }
 
             catch (Exception ex)
@@ -158,37 +172,74 @@ namespace TeknikServisci.Controllers
             }
 
         }
-        
-        List<SelectListItem> Technicians = new List<SelectListItem>();
-        [HttpGet]
-        public ActionResult TechnicianAdd(int id)
+
+        [HttpPost]
+        public async Task<ActionResult> Decline(FailureViewModel model)
         {
             try
             {
-                var TechnicianRole = NewRoleManager().FindByName("Technician").Users.Select(x => x.UserId).ToList();
-                for (int i = 0; i < TechnicianRole.Count; i++)
+                var failure = new FailureRepo().GetById(model.FailureId);
+                failure.TechnicianId = null;
+                failure.OperationStatus = OperationStatuses.Declined;
+                failure.Report = model.Report;
+                new FailureRepo().Update(failure);
+                TempData["Message"] =
+                    $"{failure.Id} nolu arıza reddedilmiştir.";
+
+                var emailService = new EmailService();
+                var body = $"Merhaba <b>{failure.Client.Name} {failure.Client.Surname}</b><br>{failure.FailureName} adlı arızanız şu nedenden dolayı reddedilmiştir:<br><br>{failure.Report}<br><br>İyi günler dileriz.";
+                await emailService.SendAsync(new IdentityMessage()
                 {
+                    Body = body,
+                    Subject = $"{failure.FailureName} adlı arızanız reddedilmiştir. | Teknik Servisçi"
+                }, failure.Client.Email);
 
-                    var User = NewUserManager().FindById(TechnicianRole[i]);
-                    Technicians.Add(new SelectListItem()
-                    {
-                        Text = User.Name + " " + User.Surname,
-                        Value = User.Id
-                    });
-                }
-
-                ViewBag.TechnicianList = Technicians;
-                var data = new FailureRepo()
-                    .GetAll(x => x.Id == id)
-                    .Select(x => Mapper.Map<FailureViewModel>(x)).FirstOrDefault();
-                return View("Detail",data);
+                return RedirectToAction("Detail", "Operator", new { id = model.FailureId });
             }
+
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                throw;
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Index",
+                    ControllerName = "Admin",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
             }
         }
+        
+        
+        //[HttpGet]
+        //public ActionResult TechnicianAdd(int id)
+        //{
+        //    try
+        //    {
+        //        var TechnicianRole = NewRoleManager().FindByName("Technician").Users.Select(x => x.UserId).ToList();
+        //        for (int i = 0; i < TechnicianRole.Count; i++)
+        //        {
+
+        //            var User = NewUserManager().FindById(TechnicianRole[i]);
+        //            Technicians.Add(new SelectListItem()
+        //            {
+        //                Text = User.Name + " " + User.Surname,
+        //                Value = User.Id
+        //            });
+        //        }
+
+        //        ViewBag.TechnicianList = Technicians;
+        //        var data = new FailureRepo()
+        //            .GetAll(x => x.Id == id)
+        //            .Select(x => Mapper.Map<FailureViewModel>(x)).FirstOrDefault();
+        //        return View("Detail",data);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex);
+        //        throw;
+        //    }
+        //}
     }
 }
 

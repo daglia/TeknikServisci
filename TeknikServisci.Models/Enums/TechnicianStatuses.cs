@@ -14,8 +14,8 @@ namespace TeknikServisci.Models.Enums
         [Description("Uygun")]
         Available = 1,
         [Description("Yolda")]
-        OnWay = 3,
+        OnWay = 2,
         [Description("İş Başında")]
-        OnWork = 4
+        OnWork = 3
     }
 }

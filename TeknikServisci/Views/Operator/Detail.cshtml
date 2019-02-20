@@ -75,8 +75,28 @@
                                     </tr>
                                     <tr>
                                         <th>Güncelleme</th>
-                                        <td>@Html.DropDownListFor(x => x.TechnicianId, (List<SelectListItem>)ViewBag.TechnicianList, new { @class = "form-control", size = "1" })</td>
-                                        <td><a href="@Url.Action("TechnicianAdd","Operator")" class="btn btn-success">Teknisyeni Ata</a></td>
+                                        <td>
+                                            @using (Html.BeginForm("TechnicianAdd", "Operator", FormMethod.Post, new { @class = "form-horizontal" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.HiddenFor(x => x.FailureId)
+                                                @Html.DropDownListFor(x => x.TechnicianId, (List<SelectListItem>)ViewBag.TechnicianList, new { @class = "form-control", size = "1" })
+                                                <button class="btn btn-success" type="submit">Teknisyeni Ata</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reddet</th>
+                                        <td>
+                                            @using (Html.BeginForm("Decline", "Operator", FormMethod.Post, new { @class = "form-horizontal" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.HiddenFor(x => x.FailureId)
+                                                @Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                                                <button class="btn btn-danger" type="submit">Reddet</button>
+                                            }
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

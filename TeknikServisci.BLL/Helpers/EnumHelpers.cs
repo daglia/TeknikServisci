@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeknikServisci.BLL.Services.Senders
+namespace TeknikServisci.BLL.Helpers
 {
     public class EnumHelpers
     {
