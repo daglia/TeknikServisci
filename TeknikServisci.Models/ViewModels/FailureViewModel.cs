@@ -64,7 +64,7 @@ namespace TeknikServisci.Models.ViewModels
         public string ClientSurname { get; set; }
         public string Technician { get; set; }
         public string Operator { get; set; }
-        public TechnicianStatuses? TechnicianStatus{ get; set; }
+        public TechnicianStatuses TechnicianStatus { get; set; }
 
         public int? CategoryId { get; set; }
         public virtual Category Category { get; set; }

@@ -68,6 +68,7 @@ namespace TeknikServisci.Controllers
             }
 
         }
+
         public async Task<ActionResult> Detail(int id)
         {
             try
@@ -108,15 +109,17 @@ namespace TeknikServisci.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<ActionResult> TechnicianStartWork(FailureViewModel model)
         {
             try
             {
                 var failure = await new FailureRepo().GetByIdAsync(model.FailureId);
-                if (model.TechnicianStatus== null)
+                if (model.TechnicianStatus==TechnicianStatuses.Available)
                 {
-                    return RedirectToAction("", "Technician", model);
+                    model.TechnicianStatus = TechnicianStatuses.OnWay;
+                    //return View("Detail", model);
+                    //return RedirectToAction("", "Technician", model);
                 }
                 failure.Report = model.Report;
                 failure.Technician.TechnicianStatus = model.TechnicianStatus;
@@ -129,8 +132,11 @@ namespace TeknikServisci.Controllers
              
 
                 new FailureRepo().Update(failure);
-                TempData["Message"] = $"{model.FailureId} no lu Kayıt Raporu Alınmıştır. İyi çalışamlar";
-                return RedirectToAction("TechnicianStartWork", "Technician");
+                TempData["Message"] = $"{model.FailureId} no lu arıza için yola çıkılmıştır";
+                return RedirectToAction("Detail", "Technician",new
+                {
+                    id = model.FailureId
+                });
 
             }
             catch (Exception ex)
