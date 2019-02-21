@@ -22,7 +22,7 @@
             {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.TextBox("ClientId", HttpContext.Current.User.Identity.GetUserId())
+            @Html.HiddenFor(x=>x.ClientId)
 
             <div class="form-group row">
                 <div class="col-sm-9 control-label">

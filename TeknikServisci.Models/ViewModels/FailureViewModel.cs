@@ -55,8 +55,7 @@ namespace TeknikServisci.Models.ViewModels
 
         [DisplayName("Rapor")]
         public string Report { get; set; }
-        public string PhotoPath { get; set; }
-
+        
         public string ClientId { get; set; }
         public string TechnicianId { get; set; }
         public string OperatorId { get; set; }
@@ -70,7 +69,8 @@ namespace TeknikServisci.Models.ViewModels
         public int? CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
-        [Display(Name = "Kullanıcı Avatarı")]
+        public string PhotoPath { get; set; }
+        [Display(Name = "Arıza Fotoğrafı")]
         public HttpPostedFileBase PostedFile { get; set; }
 
     }

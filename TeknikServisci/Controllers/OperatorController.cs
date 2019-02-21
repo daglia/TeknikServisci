@@ -110,12 +110,39 @@ namespace TeknikServisci.Controllers
         [Authorize(Roles = "Admin, Operator")]
         public ActionResult FailureList()
         {
-            var operatorId = HttpContext.User.Identity.GetUserId();
             try
             {
                 var data = new FailureRepo()
                     .GetAll()
                     .Select(x => Mapper.Map<FailureViewModel>(x))
+                    .OrderBy(x => x.OperationTime)
+                    .ToList();
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Index",
+                    ControllerName = "Admin",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin, Operator")]
+        public ActionResult OperationList()
+        {
+            var operatorId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            try
+            {
+                var data = new FailureRepo()
+                    .GetAll()
+                    .Select(x => Mapper.Map<FailureViewModel>(x))
+                    .Where(x=>x.OperatorId == operatorId)
                     .OrderBy(x => x.OperationTime)
                     .ToList();
                 return View(data);
@@ -142,6 +169,8 @@ namespace TeknikServisci.Controllers
             {
                 var failure = new FailureRepo().GetById(model.FailureId);
                 failure.TechnicianId = model.TechnicianId;
+                failure.OperationTime = DateTime.Now;
+                failure.OperatorId = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 failure.OperationStatus = OperationStatuses.Accepted;
                 new FailureRepo().Update(failure);
                 var technician = await NewUserStore().FindByIdAsync(failure.TechnicianId); 
@@ -174,6 +203,8 @@ namespace TeknikServisci.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Operator")]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Decline(FailureViewModel model)
         {
             try
@@ -181,6 +212,8 @@ namespace TeknikServisci.Controllers
                 var failure = new FailureRepo().GetById(model.FailureId);
                 failure.TechnicianId = null;
                 failure.OperationStatus = OperationStatuses.Declined;
+                failure.OperationTime = DateTime.Now;
+                failure.OperatorId = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 failure.Report = model.Report;
                 new FailureRepo().Update(failure);
                 TempData["Message"] =

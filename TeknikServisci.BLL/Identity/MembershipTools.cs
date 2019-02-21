@@ -44,7 +44,7 @@ namespace TeknikServisci.BLL.Identity
             if (string.IsNullOrEmpty(userId))
             {
                 var id = HttpContext.Current.User.Identity.GetUserId();
-                if (!string.IsNullOrEmpty(id))
+                if (string.IsNullOrEmpty(id))
                     return "/assets/img/user.png";
 
                 user = NewUserManager().FindById(id);
