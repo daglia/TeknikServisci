@@ -11,6 +11,8 @@ namespace TeknikServisci.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return RedirectToAction("Logout", "Account");
             return View();
         }
         public ActionResult Error()

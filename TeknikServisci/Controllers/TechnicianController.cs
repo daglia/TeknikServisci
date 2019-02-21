@@ -115,12 +115,24 @@ namespace TeknikServisci.Controllers
             try
             {
                 var failure = await new FailureRepo().GetByIdAsync(model.FailureId);
-                if (model.TechnicianStatus==TechnicianStatuses.Available)
+
+                switch (failure.Technician.TechnicianStatus)
                 {
-                    model.TechnicianStatus = TechnicianStatuses.OnWay;
-                    //return View("Detail", model);
-                    //return RedirectToAction("", "Technician", model);
+                    case TechnicianStatuses.Available:
+                        model.TechnicianStatus = TechnicianStatuses.OnWay;
+                        //todo: Kullanıcıya mail gitsin.
+                        break;
+                    case TechnicianStatuses.OnWay:
+                        model.TechnicianStatus = TechnicianStatuses.OnWork;
+                        break;
+                    case TechnicianStatuses.OnWork:
+                        model.TechnicianStatus = TechnicianStatuses.Available;
+                        //todo: Rapor sayfasına yönlendirsin. Rapor sayfasında açıklama, garanti bilgisi ve fiyat girilsin.
+                        break;
+                    default:
+                        break;
                 }
+
                 failure.Report = model.Report;
                 failure.Technician.TechnicianStatus = model.TechnicianStatus;
                 if (model.RepairProcess == RepairProcesses.Successful)
@@ -144,8 +156,8 @@ namespace TeknikServisci.Controllers
                 TempData["Model"] = new ErrorViewModel()
                 {
                     Text = $"Bir hata oluştu {ex.Message}",
-                    ActionName = "Index",
-                    ControllerName = "Teknisyen",
+                    ActionName = "TechnicianStartWork",
+                    ControllerName = "Technician",
                     ErrorCode = 500
                 };
                 return RedirectToAction("Error", "Home");
@@ -159,15 +171,14 @@ namespace TeknikServisci.Controllers
                 var failure = new FailureRepo().GetById(id);
                 var data = Mapper.Map<FailureViewModel>(failure);
                 return View(data);
-
             }
             catch (Exception ex)
             {
                 TempData["Model"] = new ErrorViewModel()
                 {
                     Text = $"Bir hata oluştu {ex.Message}",
-                    ActionName = "Index",
-                    ControllerName = "Home",
+                    ActionName = "TechnicianReport",
+                    ControllerName = "Technician",
                     ErrorCode = 500
                 };
                 return RedirectToAction("Error", "Home");

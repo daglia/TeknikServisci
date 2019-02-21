@@ -26,73 +26,80 @@
 					<div class="panel-body">
 						<div class="table-responsive">
 							<table class="table table-striped">
-								<tbody>
-									<tr>
-										<th>Arızanın:</th>
-										<td></td>
-									</tr>
-									<tr>
-										<th>Kodu</th>
-										<td>@Model.FailureId</td>
-									</tr>
-									<tr>
-										<th>Adı</th>
-										<td>@Model.FailureName</td>
-									</tr>
-									<tr>
-										<th>Parçanın Modeli</th>
-										<td>@Model.ProductModel</td>
-									</tr>
-									<tr>
-										<th>Açıklama</th>
-										<td>@Model.Description</td>
-									</tr>
-									<tr>
-										<th>Fotoğrafı</th>
-										<td><img src="@(string.IsNullOrEmpty(Model.PhotoPath) ? "~/assets/img/thumbs/img2.jpg" : Model.PhotoPath)" width="200" height="200" /></td>
-									</tr>
-									<tr>
-										<th>Arızayı Bildirenin:</th>
-										<td></td>
-									</tr>
-									<tr>
-										<th>Kullanıcı ID</th>
-										<td>@Model.ClientId</td>
-									</tr>
-									<tr>
-										<th>Adı</th>
-										<td>@Model.ClientName</td>
-									</tr>
-									<tr>
-										<th>Soyadı</th>
-										<td>@Model.ClientSurname</td>
-									</tr>
-									<tr>
-										<th>Adresi</th>
-										<td>@Model.Address</td>
-									</tr>
-									<tr>
-										<th>Teknisyen</th>
-										<td>@Model.Technician</td>
-									</tr>
-								<tr>
-									<th>Teknisyenin durumu</th>
-									<td>@TeknikServisci.BLL.Helpers.EnumHelpers.GetDescription(Model.TechnicianStatus)
-								</tr>
-									@*<tr>
-										<th>Reddet</th>
-										<td>
-											@using (Html.BeginForm("Decline", "Operator", FormMethod.Post, new { @class = "form-horizontal" }))
-											{
-												@Html.AntiForgeryToken()
-												@Html.HiddenFor(x => x.FailureId)
-												@Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
-												@Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
-												<button class="btn btn-danger" type="submit">Reddet</button>
-											}
-										</td>
-									</tr>*@
-								</tbody>
+                                <tbody>
+                                    @if (Model.RepairProcess != null)
+                                    {
+                                        <tr>
+                                            <th>Fatura</th>
+                                            <td><a href="@Url.Action("Invoice", "Failure", new {id = Model.FailureId})" class="btn btn-info btn-block">Fatura</a></td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <th>Arızanın:</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kodu</th>
+                                        <td>@Model.FailureId</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Adı</th>
+                                        <td>@Model.FailureName</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Parçanın Modeli</th>
+                                        <td>@Model.ProductModel</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Açıklama</th>
+                                        <td>@Model.Description</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fotoğrafı</th>
+                                        <td><img src="@(string.IsNullOrEmpty(Model.PhotoPath) ? "~/assets/img/thumbs/img2.jpg" : Model.PhotoPath)" width="400" height="300" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Arızayı Bildirenin:</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kullanıcı ID</th>
+                                        <td>@Model.ClientId</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Adı</th>
+                                        <td>@Model.ClientName</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Soyadı</th>
+                                        <td>@Model.ClientSurname</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Adresi</th>
+                                        <td>@Model.Address</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Teknisyen</th>
+                                        <td>@Model.Technician</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Teknisyenin durumu</th>
+                                        <td>@TeknikServisci.BLL.Helpers.EnumHelpers.GetDescription(Model.TechnicianStatus)</td>
+                                    </tr>
+                                    @*<tr>
+            <th>Reddet</th>
+            <td>
+                @using (Html.BeginForm("Decline", "Operator", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.FailureId)
+                    @Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                    <button class="btn btn-danger" type="submit">Reddet</button>
+                }
+            </td>
+        </tr>*@
+                                </tbody>
 							</table>
 						</div>
 					</div>
