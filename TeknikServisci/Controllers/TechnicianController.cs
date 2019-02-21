@@ -9,12 +9,14 @@ using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Repository;
 using TeknikServisci.Models.Enums;
 using TeknikServisci.Models.ViewModels;
+using static TeknikServisci.BLL.Identity.MembershipTools;
 
 
 namespace TeknikServisci.Controllers
 {
     public class TechnicianController : Controller
     {
+        List<SelectListItem> Technicians = new List<SelectListItem>();
         // GET: Technician
         public ActionResult Index()
         {
@@ -66,6 +68,46 @@ namespace TeknikServisci.Controllers
             }
 
         }
+        public async Task<ActionResult> Detail(int id)
+        {
+            try
+            {
+                var x = await new FailureRepo().GetByIdAsync(id);
+                var data = Mapper.Map<FailureViewModel>(x);
+
+                var TechnicianRole = NewRoleManager().FindByName("Technician").Users.Select(y => y.UserId).ToList();
+                for (int i = 0; i < TechnicianRole.Count; i++)
+                {
+
+                    var User = NewUserManager().FindById(TechnicianRole[i]);
+                    Technicians.Add(new SelectListItem()
+                    {
+                        Text = User.Name + " " + User.Surname,
+                        Value = User.Id
+                    });
+                }
+
+                ViewBag.TechnicianList = Technicians;
+
+
+                return View(data);
+
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Detail",
+                    ControllerName = "Operator",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
+
+        }
+
         [HttpGet]
         public async Task<ActionResult> TechnicianStartWork(FailureViewModel model)
         {

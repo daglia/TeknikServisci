@@ -76,14 +76,16 @@
 										<td>@Model.Technician</td>
 									</tr>
 									<tr>
-										<th>Güncelleme</th>
+										<th>Teknisyenin durumu</th>
 										<td>
 											@using (Html.BeginForm("TechnicianStartWork", "Technician", FormMethod.Post, new { @class = "form-horizontal" }))
 											{
 												@Html.AntiForgeryToken()
 												@Html.HiddenFor(x => x.FailureId)
-												@Html.DropDownListFor(x => x.TechnicianId, (List<SelectListItem>)ViewBag.TechnicianList, new { @class = "form-control", size = "1" })
-												<button class="btn btn-success" type="submit">Teknisyeni Ata</button>
+												<button class="btn btn-danger" type="submit">Yola Çıktım</button>
+												<button class="btn btn-danger" type="submit">Reddet</button>
+												<button class="btn btn-danger" type="submit">Reddet</button>
+
 											}
 										</td>
 									</tr>
