@@ -1,11 +1,14 @@
 ﻿@model List<TeknikServisci.Models.ViewModels.FailureViewModel>
 
 @{
-    ViewBag.Title = "Arıza Listem";
-    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+                /**/
+
+                ViewBag.Title = "Arıza Listem";
+                Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
 @section top{
+    <link href="~/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
     <link href="~/assets/plugins/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet">
     <link href="~/assets/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" rel="stylesheet">
     <link href="~/assets/css/demo/jasmine.css" rel="stylesheet">
@@ -69,12 +72,12 @@
 
 @section bottom
 {
-    <script src="~/assets/plugins/fast-click/fastclick.min.js"></script>
-    <script src="~/assets/plugins/switchery/switchery.min.js"></script>
+    <script src="~/assets/js/jquery-2.1.1.min.js"></script>
+    <script src="~/assets/js/scripts.js"></script>
+    <script src="~/assets/plugins/nanoscrollerjs/jquery.nanoscroller.min.js"></script>
     <script src="~/assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
     <script src="~/assets/plugins/datatables/media/js/jquery.dataTables.js"></script>
     <script src="~/assets/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
     <script src="~/assets/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-    <script src="~/assets/plugins/screenfull/screenfull.js"></script>
     <script src="~/assets/js/demo/tables-datatables.js"></script>
 }

@@ -6,6 +6,7 @@
 }
 
 @section top{
+    <link href="~/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
     <link href="~/assets/plugins/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet">
     <link href="~/assets/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" rel="stylesheet">
     <link href="~/assets/css/demo/jasmine.css" rel="stylesheet">
@@ -44,20 +45,21 @@
                             {
                                 var data = Model[i];
                                 <tr>
-                                <td class="text-center">@(i + 1)</td>
-                                <td>@data.CreatedTime</td>
-                                <td>@data.ClientName</td>
-                                <td>@data.ClientSurname</td>
-                                <td>@TeknikServisci.BLL.Helpers.EnumHelpers.GetDescription(data.OperationStatus)</td>
-                                <td class="text-center">@(data.Technician)</td>
-                                <td class="text-center">
-                                    <a href="@Url.Action("Detail", "Operator", new {id = data.FailureId})" class="btn btn-success">Ayrıntılar
-                                    </a>
-                                </td>
+                                    <td class="text-center">@(i + 1)</td>
+                                    <td>@data.CreatedTime</td>
+                                    <td>@data.ClientName</td>
+                                    <td>@data.ClientSurname</td>
+                                    <td>@TeknikServisci.BLL.Helpers.EnumHelpers.GetDescription(data.OperationStatus)</td>
+                                    <td class="text-center">@(data.Technician)</td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("Detail", "Operator", new {id = data.FailureId})" class="btn btn-success">
+                                            Ayrıntılar
+                                        </a>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
-                        </table>
+                    </table>
                 </div>
             </div>
         </div>
@@ -65,15 +67,16 @@
     <!--===================================================-->
     <!-- End Striped Table -->
 </div>
-    
+
 @section bottom
 {
-    <script src="~/assets/plugins/fast-click/fastclick.min.js"></script>
-    <script src="~/assets/plugins/switchery/switchery.min.js"></script>
+    <script src="~/assets/js/jquery-2.1.1.min.js"></script>
+    <script src="~/assets/js/scripts.js"></script>
+    <script src="~/assets/plugins/nanoscrollerjs/jquery.nanoscroller.min.js"></script>
     <script src="~/assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
     <script src="~/assets/plugins/datatables/media/js/jquery.dataTables.js"></script>
     <script src="~/assets/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
     <script src="~/assets/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-    <script src="~/assets/plugins/screenfull/screenfull.js"></script>
     <script src="~/assets/js/demo/tables-datatables.js"></script>
 }
+
