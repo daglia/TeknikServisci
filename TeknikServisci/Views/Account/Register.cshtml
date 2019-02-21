@@ -46,7 +46,10 @@
                 <p class="text-center">Teknik Servisçi deneyimini doyasıya yaşamak için aşağıdaki formu doldurarak yeni bir hesap oluşturun. Hem de ücretsiz!</p>
                 <div class="row">
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <div id="demo-error-container"></div>
+                        <div id="demo-error-container">
+                            <p class="text-muted">@Html.ValidationSummary()</p>
+                            <h3>@TempData["Message"]</h3>
+                        </div>
                     </div>
 
                     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -103,7 +106,7 @@
                     }
                 </div>
             </div>
-            <div class="registration"> Hesabım var diyorsan: @Html.ActionLink("Giriş Yap", "Index") </div>
+            <div class="registration"> Hesabım var diyorsan: <strong class="btn btn-info">@Html.ActionLink("Giriş Yap", "Index")</strong></div>
         </div>
         <!--===================================================-->
         <!-- REGISTRATION FORM -->

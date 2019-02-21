@@ -25,7 +25,7 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
 
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { @class = "fieldset", enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("EditUser", "Admin", FormMethod.Post, new { @class = "fieldset", enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(x => x.Id)
@@ -64,14 +64,14 @@
                 </div>
             }
 
-            <div class="form-group">
+            <div class="form-group row">
                 @using (Html.BeginForm("EditUserRoles", "Admin", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(x => x.Id)
                     @Html.Label("Roles", new { @class = "col-md-3 control-label" })
                     <div class="col-md-7">
-                        @Html.DropDownList("Roles", (List<SelectListItem>)ViewBag.RoleList, new { @class = "js-select2 form-control", size = "1", multiple = "multiple" })
+                        @Html.DropDownList("Roles", (List<SelectListItem>)ViewBag.RoleList, new { @class = "btn dropdown-toggle btn-default" })
                     </div>
                     <input type="submit" value="Rol Güncelle" class="btn btn-primary" />
                 }

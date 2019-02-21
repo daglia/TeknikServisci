@@ -43,7 +43,7 @@ namespace TeknikServisci.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Index", model);
+                return View("Register", model);
             }
             try
             {
@@ -56,7 +56,7 @@ namespace TeknikServisci.Controllers
                 if (user != null)
                 {
                     ModelState.AddModelError("UserName", "Bu kullanıcı adı daha önceden alınmıştır");
-                    return View("Index", model);
+                    return View("Register", model);
                 }
 
                 var newUser = new User()
@@ -65,6 +65,7 @@ namespace TeknikServisci.Controllers
                     Email = rm.Email,
                     Name = rm.Name,
                     Surname = rm.Surname,
+                    PhoneNumber = rm.Phone,
                     ActivationCode = StringHelpers.GetCode()
                 };
                 var result = await userManager.CreateAsync(newUser, rm.Password);
@@ -94,7 +95,7 @@ namespace TeknikServisci.Controllers
                         err += resultError + " ";
                     }
                     ModelState.AddModelError("", err);
-                    return View("Index", model);
+                    return View("Register", model);
                 }
 
                 TempData["Message"] = "Kaydınız alınmıştır. Lütfen giriş yapınız";

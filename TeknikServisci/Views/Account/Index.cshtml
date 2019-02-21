@@ -9,7 +9,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Login Page | Obama - Responsive admin template.</title>
+        <title>Giriş Yap | Teknik Servisçi - Teknik Servisçiniz</title>
         <link rel="shortcut icon" href="img/favicon.ico">
         <!--STYLESHEET-->
         <!--=================================================-->
@@ -46,7 +46,9 @@
                     <div class="col-xs-12">
                         <div class="lock-box">
                             <div class="main">
-                                <h3>Lütfen giriş yapın ya da @Html.ActionLink("Kaydolun", "Register")</h3>
+                                <h3>Lütfen giriş yapın ya da <strong class="btn-default">@Html.ActionLink("Kaydolun", "Register")</strong></h3>
+                                <p class="text-muted">@Html.ValidationSummary()</p>
+                                <h3>@TempData["Message"]</h3>
                                 <!--Google ve Facebook ile giriş için-->
                                 @*<div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
