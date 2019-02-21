@@ -41,11 +41,23 @@ namespace TeknikServisci.App_Start
                 //.ForMember(dest => dest.ClientName,opt=>opt.MapFrom(x=>x.Client.Name))
                 //.ForMember(dest => dest.ClientSurname, opt => opt.MapFrom(x => x.Client.Surname))
                 //.ForMember(dest => dest.CreatedTime, opt => opt.MapFrom(x=>x.CreatedDate))
-                .ForMember(dest => dest.CreatedTime, opt => opt.MapFrom((s, d) => s.CreatedDate == null ? DateTime.Now : s.CreatedDate))
-                .ForMember(dest => dest.Operator, opt => opt.MapFrom((s, d) => s.Operator == null ? "-" : (s.Operator.Name + " " + s.Operator.Surname)))
-                .ForMember(dest => dest.Technician, opt => opt.MapFrom((s, d) => s.Technician == null ? "-" : (s.Technician.Name + " " + s.Technician.Surname)))
-                //.ForMember(dest => dest.TechnicianStatus, opt => opt.MapFrom(x => x.Technician.TechnicianStatus ))
-                .ReverseMap();
+                .ForMember(dest => dest.CreatedTime,
+                    opt => opt.MapFrom((s, d) => s.CreatedDate == null ? DateTime.Now : s.CreatedDate))
+                .ForMember(dest => dest.Operator,
+                    opt => opt.MapFrom(
+                        (s, d) => s.Operator == null ? "-" : (s.Operator.Name + " " + s.Operator.Surname)))
+                .ForMember(dest => dest.Technician,
+                    opt => opt.MapFrom((s, d) =>
+                        s.Technician == null ? "-" : (s.Technician.Name + " " + s.Technician.Surname)))
+                .ForMember(dest => dest.TechnicianStatus, opt => opt.MapFrom(x => x.Technician.TechnicianStatus));
+            //.ReverseMap();
+
+            cfg.CreateMap<FailureViewModel, Failure>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.FailureId))
+                //.ForMember(dest => dest.ClientName,opt=>opt.MapFrom(x=>x.Client.Name))
+                //.ForMember(dest => dest.ClientSurname, opt => opt.MapFrom(x => x.Client.Surname))
+                //.ForMember(dest => dest.CreatedTime, opt => opt.MapFrom(x=>x.CreatedDate))
+                .ForMember(dest => dest.Technician, opts => opts.Ignore());
         }
 
         private static void CategoryMapping(IMapperConfigurationExpression cfg)

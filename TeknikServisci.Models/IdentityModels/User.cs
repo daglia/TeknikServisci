@@ -18,7 +18,7 @@ namespace TeknikServisci.Models.IdentityModels
         [StringLength(60)]
         [Required]
         public string Surname { get; set; }
-        [Required]
+
         public string Phone { get; set; }
 
         public string ActivationCode { get; set; }
