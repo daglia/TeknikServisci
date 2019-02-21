@@ -20,9 +20,9 @@
                         <div class="userWidget-1">
                             <div class="avatar bg-info">
                                 <img src="@MembershipTools.GetAvatarPath(null)" alt="Kullanıcı Avatarı"/>
-                                <div class="name osLight">@MembershipTools.GetNameSurname(null) - @Model.UserProfileViewModel.UserName</div>
+                                <div class="name osLight">@MembershipTools.GetNameSurname(null)</div>
                             </div>
-                            <div class="title"><br/><br/><br/><br/><br/>@*@Roles.GetRolesForUser(Model.UserProfileViewModel.UserName)*@</div>
+                            <div class="title">@Model.UserProfileViewModel.UserName<br /><br /><span class="text-center label @MembershipTools.GetRoleWithColor(Model.UserProfileViewModel.Id)">@MembershipTools.GetRole(Model.UserProfileViewModel.Id)</span><br /><br /></div>
                             <div class="clearfix"> </div>
                         </div>
                         <div class="panel">

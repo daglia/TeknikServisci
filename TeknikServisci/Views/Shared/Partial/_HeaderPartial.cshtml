@@ -181,11 +181,15 @@
             <div class="dropdown-menu dropdown-menu-right with-arrow">
                 <!-- User dropdown menu -->
                 <ul class="head-list">
+                    @if (User.IsInRole("User"))
+                    {
+                        <li><a href="@Url.Action("Add", "Failure")"> <i class="fa fa-plus"></i> <span class="menu-title">Arıza Ekle</span></a></li>
+                    }
                     <li>
-                        <a href="@Url.Action("UserProfile","Account")"> <i class="fa fa-user fa-fw"></i>Profil</a>
+                        <a href="@Url.Action("UserProfile", "Account")"> <i class="fa fa-user fa-fw"></i>Profil</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Logout","Account")"> <i class="fa fa-sign-out fa-fw"></i>Çıkış Yap</a>
+                        <a href="@Url.Action("Logout", "Account")"> <i class="fa fa-sign-out fa-fw"></i>Çıkış Yap</a>
                     </li>
                 </ul>
             </div>

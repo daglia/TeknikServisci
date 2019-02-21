@@ -48,11 +48,13 @@ namespace TeknikServisci.BLL.Identity
                     return "/assets/img/user.png";
 
                 user = NewUserManager().FindById(id);
+                if (user.AvatarPath == null)
+                    return "/assets/img/user.png";
             }
             else
             {
                 user = NewUserManager().FindById(userId);
-                if (user == null)
+                if (user.AvatarPath == null)
                     return "/assets/img/user.png";
             }
 
