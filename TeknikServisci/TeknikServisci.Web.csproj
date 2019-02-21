@@ -873,6 +873,8 @@
     <Content Include="Views\Failure\Detail.cshtml" />
     <Content Include="Views\Operator\Detail.cshtml" />
     <Content Include="Views\Technician\FailureList.cshtml" />
+    <Content Include="Views\Technician\TechnicianReport.cshtml" />
+    <Content Include="Views\Technician\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
