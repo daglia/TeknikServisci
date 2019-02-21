@@ -67,7 +67,7 @@ namespace TeknikServisci.Controllers
 
         }
         [HttpGet]
-        public async Task<ActionResult> TeknisyenArızaBildiriOnayla(FailureViewModel model)
+        public async Task<ActionResult> TechnicianStartWork(FailureViewModel model)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace TeknikServisci.Controllers
 
                 new FailureRepo().Update(failure);
                 TempData["Message"] = $"{model.FailureId} no lu Kayıt Raporu Alınmıştır. İyi çalışamlar";
-                return RedirectToAction("Index", "Technician");
+                return RedirectToAction("TechnicianStartWork", "Technician");
 
             }
             catch (Exception ex)
@@ -101,6 +101,29 @@ namespace TeknikServisci.Controllers
                     ErrorCode = 500
                 };
                 return RedirectToAction("Error", "Home");
+            }
+
+        }
+        public ActionResult TechnicianReport(int id)
+        {
+            try
+            {
+                var failure = new FailureRepo().GetById(id);
+                var data = Mapper.Map<FailureViewModel>(failure);
+                return View(data);
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Index",
+                    ControllerName = "Home",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+
             }
 
         }
