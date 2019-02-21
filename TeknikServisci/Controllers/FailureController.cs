@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
@@ -84,9 +86,38 @@ namespace TeknikServisci.Controllers
             }
             try
             {
+                model.ClientId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+                if (model.PostedFile != null &&
+                    model.PostedFile.ContentLength > 0)
+                {
+                    var file = model.PostedFile;
+                    string fileName = "failure-";
+                    fileName += Path.GetFileNameWithoutExtension(file.FileName);
+                    string extName = Path.GetExtension(file.FileName);
+                    fileName = StringHelpers.UrlFormatConverter(fileName);
+                    fileName += StringHelpers.GetCode();
+                    var klasoryolu = Server.MapPath("~/Upload/Failure/");
+                    var dosyayolu = Server.MapPath("~/Upload/Failure/") + fileName + extName;
+
+                    if (!Directory.Exists(klasoryolu))
+                        Directory.CreateDirectory(klasoryolu);
+                    file.SaveAs(dosyayolu);
+
+                    WebImage img = new WebImage(dosyayolu);
+                    img.Resize(800, 600, false);
+                    img.AddTextWatermark("Teknik Servisçi");
+                    img.Save(dosyayolu);
+                    var oldPath = model.PhotoPath;
+                    model.PhotoPath = "/Upload/Failure/" + fileName + extName;
+
+                    System.IO.File.Delete(Server.MapPath(oldPath));
+                }
+
                 var data = Mapper.Map<FailureViewModel, Failure>(model);
                 data.Client = null;
                 data.Invoices = null;
+
                 new FailureRepo().Insert(data);
                 TempData["Message"] = $"{model.FailureName} adlı arızanız operatörlerimizce incelenecektir ve size 24 saat içinde dönüş yapılacaktır.";
                 return RedirectToAction("Add");
