@@ -19,7 +19,8 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">@Model.FailureName adlı arızanın ayrıntıları</h3>
                         <h3>@TempData["Message"]</h3>
-                    </div>
+                        @Html.ValidationSummary()
+                    </div><br /><br /><br /><br />
                     <!-- Striped Table -->
                     <!--===================================================-->
                     <div class="panel-body">

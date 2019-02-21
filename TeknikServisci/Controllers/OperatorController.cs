@@ -62,8 +62,8 @@ namespace TeknikServisci.Controllers
                 TempData["Model"] = new ErrorViewModel()
                 {
                     Text = $"Bir hata oluştu {ex.Message}",
-                    ActionName = "Index",
-                    ControllerName = "Admin",
+                    ActionName = "Detail",
+                    ControllerName = "Operator",
                     ErrorCode = 500
                 };
                 return RedirectToAction("Error", "Home");
@@ -98,8 +98,8 @@ namespace TeknikServisci.Controllers
                 TempData["Model"] = new ErrorViewModel()
                 {
                     Text = $"Bir hata oluştu {ex.Message}",
-                    ActionName = "Index",
-                    ControllerName = "Admin",
+                    ActionName = "FailureAccept",
+                    ControllerName = "Operator",
                     ErrorCode = 500
                 };
                 return RedirectToAction("Error", "Home");
@@ -164,8 +164,8 @@ namespace TeknikServisci.Controllers
                 TempData["Model"] = new ErrorViewModel()
                 {
                     Text = $"Bir hata oluştu {ex.Message}",
-                    ActionName = "Index",
-                    ControllerName = "Admin",
+                    ActionName = "TechnicianAdd",
+                    ControllerName = "Operator",
                     ErrorCode = 500
                 };
                 return RedirectToAction("Error", "Home");
@@ -202,8 +202,8 @@ namespace TeknikServisci.Controllers
                 TempData["Model"] = new ErrorViewModel()
                 {
                     Text = $"Bir hata oluştu {ex.Message}",
-                    ActionName = "Index",
-                    ControllerName = "Admin",
+                    ActionName = "Decline",
+                    ControllerName = "Operator",
                     ErrorCode = 500
                 };
                 return RedirectToAction("Error", "Home");

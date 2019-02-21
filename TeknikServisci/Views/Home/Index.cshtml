@@ -1,8 +1,68 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
+@using TeknikServisci.BLL.Identity
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Ana Sayfa";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
-<h2>Ana sayfa lan burası!</h2>
+@if (User.IsInRole("Admin"))
+{
+    <h1>Hoş geldin reis-i site!</h1>
+    <div class="panel-body">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="jumbotron">
+                <h1>Hoş geldin<br>
+                    <strong>@MembershipTools.GetNameSurname(HttpContext.Current.User.Identity.GetUserId())</strong>!
+                </h1>
+                <p>Cana geleceğine mala gelsin, siz hiç üzülmeyin! Arızanızı alanında uzman ekiplerimize bildirin ve sadece bir gün içinde çözmeye gelelim!</p>
+                <h1 class="text-center"><a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Add", "Failure")" role="button">Yeni arıza ekleyin</a></h1>
+            </div>
+        </div> 
+    </div>
+}
+else if (User.IsInRole("Technician"))
+{
+    <h1>Teknisyen Sayfası</h1>
+    <div class="panel-body">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="jumbotron">
+                <h1>Hoş geldin<br>
+                    <strong>@MembershipTools.GetNameSurname(HttpContext.Current.User.Identity.GetUserId())</strong>!
+                </h1>
+                <p>Cana geleceğine mala gelsin, siz hiç üzülmeyin! Arızanızı alanında uzman ekiplerimize bildirin ve sadece bir gün içinde çözmeye gelelim!</p>
+                <h1 class="text-center"><a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Add", "Failure")" role="button">Yeni arıza ekleyin</a></h1>
+            </div>
+        </div> 
+    </div>
+}
+else if (User.IsInRole("Operator"))
+{
+    <h1>Operatör Sayfası</h1>
+    <div class="panel-body">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="jumbotron">
+                <h1>Hoş geldin<br>
+                    <strong>@MembershipTools.GetNameSurname(HttpContext.Current.User.Identity.GetUserId())</strong>!
+                </h1>
+                <p>Cana geleceğine mala gelsin, siz hiç üzülmeyin! Arızanızı alanında uzman ekiplerimize bildirin ve sadece bir gün içinde çözmeye gelelim!</p>
+                <h1 class="text-center"><a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Add", "Failure")" role="button">Yeni arıza ekleyin</a></h1>
+            </div>
+        </div> 
+    </div>
+}
+else
+{
+    <div class="panel-body">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="jumbotron">
+                <h1>Hoş geldin<br>
+                    <strong>@MembershipTools.GetNameSurname(HttpContext.Current.User.Identity.GetUserId())</strong>!
+                    </h1>
+                <p>Cana geleceğine mala gelsin, siz hiç üzülmeyin! Arızanızı alanında uzman ekiplerimize bildirin ve sadece bir gün içinde çözmeye gelelim!</p>
+                <h1 class="text-center"><a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Add", "Failure")" role="button">Yeni arıza ekleyin</a></h1>
+            </div>
+        </div> 
+    </div>
+}
 

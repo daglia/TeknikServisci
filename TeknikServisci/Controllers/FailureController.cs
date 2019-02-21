@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Repository;
 using TeknikServisci.BLL.Services.Senders;
+using static TeknikServisci.BLL.Identity.MembershipTools;
 using TeknikServisci.Models.Entities;
 using TeknikServisci.Models.ViewModels;
 
@@ -18,17 +20,52 @@ namespace TeknikServisci.Controllers
         // GET: Failure
         public ActionResult Index()
         {
-            return View();
+            var clientId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            try
+            {
+                var data = new FailureRepo()
+                    .GetAll()
+                    .Select(x => Mapper.Map<FailureViewModel>(x))
+                    .Where(x => x.ClientId == clientId)
+                    .OrderBy(x => x.OperationTime)
+                    .ToList();
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Index",
+                    ControllerName = "Home",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+
+            }
         }
 
-        public ActionResult Detail(int? id)
+        [HttpGet]
+        public async Task<ActionResult> Detail(int id)
         {
-            if (id == null) return RedirectToAction("Index");
+            try
+            {
+                var x = await new FailureRepo().GetByIdAsync(id);
+                var data = Mapper.Map<FailureViewModel>(x);
 
-            var data = new FailureRepo().GetById(id);
-            if (data == null) return RedirectToAction("Index");
-
-            return View(data);
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Detail",
+                    ControllerName = "Failure",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         [HttpGet]
