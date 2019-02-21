@@ -115,8 +115,6 @@ namespace TeknikServisci.Controllers
                 }
 
                 var data = Mapper.Map<FailureViewModel, Failure>(model);
-                data.Client = null;
-                data.Invoices = null;
 
                 new FailureRepo().Insert(data);
                 TempData["Message"] = $"{model.FailureName} adlı arızanız operatörlerimizce incelenecektir ve size 24 saat içinde dönüş yapılacaktır.";

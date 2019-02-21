@@ -38,9 +38,6 @@ namespace TeknikServisci.App_Start
         {
             cfg.CreateMap<Failure, FailureViewModel>()
                 .ForMember(dest => dest.FailureId, opt => opt.MapFrom(x => x.Id))
-                //.ForMember(dest => dest.ClientName,opt=>opt.MapFrom(x=>x.Client.Name))
-                //.ForMember(dest => dest.ClientSurname, opt => opt.MapFrom(x => x.Client.Surname))
-                //.ForMember(dest => dest.CreatedTime, opt => opt.MapFrom(x=>x.CreatedDate))
                 .ForMember(dest => dest.CreatedTime,
                     opt => opt.MapFrom((s, d) => s.CreatedDate == null ? DateTime.Now : s.CreatedDate))
                 .ForMember(dest => dest.Operator,
@@ -50,15 +47,11 @@ namespace TeknikServisci.App_Start
                     opt => opt.MapFrom((s, d) =>
                         s.Technician == null ? "-" : (s.Technician.Name + " " + s.Technician.Surname)))
                 .ForMember(dest => dest.TechnicianStatus, opt => opt.MapFrom(x => x.Technician.TechnicianStatus));
-            //.ReverseMap();
+
+            // .ReverseMap() metodu çağrıldığında eğer bir entity başka bir entity ile ilişkiliyse, mapping oluşturulurken ilişkili olan entity'nin yeni bir instance'ı oluşturulur. Bunu istemeyiz. Bu yüzden tersine mapping ayrıca yapılmalıdır.
 
             cfg.CreateMap<FailureViewModel, Failure>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.FailureId))
-                .ForMember(dest => dest.ClientId, opt => opt.MapFrom(x => x.ClientId))
-                //.ForMember(dest => dest.ClientName,opt=>opt.MapFrom(x=>x.Client.Name))
-                //.ForMember(dest => dest.ClientSurname, opt => opt.MapFrom(x => x.Client.Surname))
-                //.ForMember(dest => dest.CreatedTime, opt => opt.MapFrom(x=>x.CreatedDate))
-                .ForMember(dest => dest.Technician, opts => opts.Ignore());
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.FailureId));
         }
 
         private static void CategoryMapping(IMapperConfigurationExpression cfg)
