@@ -13,8 +13,8 @@ namespace TeknikServisci.Models.ViewModels
     {
         public string Message { get; set; }
         public IdentityRoles FromWhom { get; set; }
+        public DateTime CreatedDate { get; set; }
 
-        public string ClientId { get; set; }
         public int FailureId { get; set; }
     }
 }

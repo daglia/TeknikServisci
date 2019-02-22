@@ -12,16 +12,13 @@ using TeknikServisci.Models.IdentityModels;
 
 namespace TeknikServisci.Models.Entities
 {
-    public class Operation : BaseEntity2<int,int>
+    public class Operation : BaseEntity<int>
     {
         public string Message { get; set; }
         public IdentityRoles FromWhom { get; set; }
 
-        public string ClientId { get; set; }
         public int FailureId { get; set; }
 
-        [ForeignKey("ClientId")]
-        public virtual User Client { get; set; }
         [ForeignKey("FailureId")]
         public virtual Failure Failure { get; set; }
     }

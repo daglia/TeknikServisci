@@ -215,10 +215,8 @@ namespace TeknikServisci.Controllers
                 user.Name = model.UserProfileViewModel.Name;
                 user.Surname = model.UserProfileViewModel.Surname;
                 user.PhoneNumber = model.UserProfileViewModel.PhoneNumber;
-                if (user.TechnicianStatus != null)
-                {
+                if(User.IsInRole("Technician"))
                     user.TechnicianStatus = model.UserProfileViewModel.TechnicianStatus;
-                }
                 if (user.Email != model.UserProfileViewModel.Email)
                 {
                     //todo tekrar aktivasyon maili gönderilmeli. rolü de aktif olmamış role çevrilmeli.
