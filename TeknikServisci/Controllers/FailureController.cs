@@ -13,6 +13,7 @@ using TeknikServisci.BLL.Repository;
 using TeknikServisci.BLL.Services.Senders;
 using static TeknikServisci.BLL.Identity.MembershipTools;
 using TeknikServisci.Models.Entities;
+using TeknikServisci.Models.Enums;
 using TeknikServisci.Models.ViewModels;
 
 namespace TeknikServisci.Controllers
@@ -54,6 +55,11 @@ namespace TeknikServisci.Controllers
             {
                 var x = await new FailureRepo().GetByIdAsync(id);
                 var data = Mapper.Map<FailureViewModel>(x);
+                //data.Operations.Clear();
+                //foreach (Operation operation in x.Operations)
+                //{
+                //    data.Operations.Add(Mapper.Map<OperationViewModel>(x));
+                //}
 
                 return View(data);
             }
@@ -69,6 +75,30 @@ namespace TeknikServisci.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult> Invoice(int id)
+        {
+            try
+            {
+                var x = await new FailureRepo().GetByIdAsync(id);
+                var data = Mapper.Map<FailureViewModel>(x);
+
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Detail",
+                    ControllerName = "Failure",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
 
         [HttpGet]
         public ActionResult Add()
@@ -117,6 +147,13 @@ namespace TeknikServisci.Controllers
                 var data = Mapper.Map<FailureViewModel, Failure>(model);
 
                 new FailureRepo().Insert(data);
+                new OperationRepo().Insert(new Operation()
+                {
+                    FailureId = data.Id,
+                    ClientId = data.ClientId,
+                    Message = $"#{data.Id} - {data.FailureName} adlı arıza kaydı oluşturuldu.",
+                    FromWhom = IdentityRoles.User
+                });
                 TempData["Message"] = $"{model.FailureName} adlı arızanız operatörlerimizce incelenecektir ve size 24 saat içinde dönüş yapılacaktır.";
                 return RedirectToAction("Add");
             }

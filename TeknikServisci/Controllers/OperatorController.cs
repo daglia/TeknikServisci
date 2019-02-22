@@ -8,6 +8,7 @@ using AutoMapper;
 using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Repository;
 using TeknikServisci.BLL.Services.Senders;
+using TeknikServisci.Models.Entities;
 using TeknikServisci.Models.Enums;
 using TeknikServisci.Models.Models;
 using TeknikServisci.Models.ViewModels;
@@ -179,6 +180,14 @@ namespace TeknikServisci.Controllers
                 var technician = await NewUserStore().FindByIdAsync(failure.TechnicianId); 
                 TempData["Message"] =
                     $"{failure.Id} nolu arızaya {technician.Name}  {technician.Surname} atanmıştır.İyi çalışmalar.";
+
+                new OperationRepo().Insert(new Operation()
+                {
+                    FailureId = model.FailureId,
+                    ClientId = model.ClientId,
+                    Message = $"Arızaya yeni teknisyen atanmıştır: {technician.Name} {technician.Surname}",
+                    FromWhom = IdentityRoles.Operator
+                });
 
                 var emailService = new EmailService();
                 var body = $"Merhaba <b>{failure.Client.Name} {failure.Client.Surname}</b><br>{failure.FailureName} adlı arızanız onaylanmış ve alanında uzman teknisyenlerimizden birine atanmıştır. Sizinle yeniden iletişime geçilecektir.<br><br>İyi günler dileriz.";

@@ -49,6 +49,9 @@ namespace TeknikServisci.Models.Entities
         //public string Latitude { get; set; }
         //public string Longitude { get; set; }
 
+        [DisplayName("Fiyat")]
+        public decimal Price { get; set; }
+        public bool HasWarranty { get; set; }
         [DisplayName("Rapor")]
         public string Report { get; set; }
         public string PhotoPath { get; set; }
@@ -66,6 +69,6 @@ namespace TeknikServisci.Models.Entities
         public virtual User Operator { get; set; }
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
-        public virtual ICollection<Operation> Invoices { get; set; } = new HashSet<Operation>();
+        public virtual ICollection<Operation> Operations { get; set; } = new HashSet<Operation>();
     }
 }
