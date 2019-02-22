@@ -55,7 +55,10 @@ namespace TeknikServisci.Models.ViewModels
 
         [DisplayName("Rapor")]
         public string Report { get; set; }
-        
+        [DisplayName("Fiyat")]
+        public decimal Price { get; set; }
+        public bool HasWarranty { get; set; }
+
         public string ClientId { get; set; }
         public string TechnicianId { get; set; }
         public string OperatorId { get; set; }
@@ -73,5 +76,6 @@ namespace TeknikServisci.Models.ViewModels
         [Display(Name = "Arıza Fotoğrafı")]
         public HttpPostedFileBase PostedFile { get; set; }
 
+        public List<OperationViewModel> Operations { get; set; }
     }
 }

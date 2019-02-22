@@ -877,6 +877,7 @@
     <Content Include="Views\Operator\OperationList.cshtml" />
     <Content Include="Views\Technician\TechnicianReport.cshtml" />
     <Content Include="Views\Technician\Detail.cshtml" />
+    <Content Include="Views\Failure\Invoice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

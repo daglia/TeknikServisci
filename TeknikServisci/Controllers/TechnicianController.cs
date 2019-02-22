@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Repository;
+using TeknikServisci.Models.Entities;
 using TeknikServisci.Models.Enums;
 using TeknikServisci.Models.IdentityModels;
 using TeknikServisci.Models.ViewModels;
@@ -121,13 +122,34 @@ namespace TeknikServisci.Controllers
                 {
                     case TechnicianStatuses.Available:
                         model.TechnicianStatus = TechnicianStatuses.OnWay;
+                        new OperationRepo().Insert(new Operation()
+                        {
+                            FailureId = model.FailureId,
+                            ClientId = model.ClientId,
+                            Message = "Teknisyen yola çıktı.",
+                            FromWhom = IdentityRoles.Technician
+                        });
                         //todo: Kullanıcıya mail gitsin.
                         break;
                     case TechnicianStatuses.OnWay:
                         model.TechnicianStatus = TechnicianStatuses.OnWork;
+                        new OperationRepo().Insert(new Operation()
+                        {
+                            FailureId = model.FailureId,
+                            ClientId = model.ClientId,
+                            Message = "Teknisyen işe başladı.",
+                            FromWhom = IdentityRoles.Technician
+                        });
                         break;
                     case TechnicianStatuses.OnWork:
                         model.TechnicianStatus = TechnicianStatuses.Available;
+                        new OperationRepo().Insert(new Operation()
+                        {
+                            FailureId = model.FailureId,
+                            ClientId = model.ClientId,
+                            Message = "İş tamamlandı.",
+                            FromWhom = IdentityRoles.Technician
+                        });
                         //todo: Rapor sayfasına yönlendirsin. Rapor sayfasında açıklama, garanti bilgisi ve fiyat girilsin.
                         break;
                     default:
@@ -145,6 +167,7 @@ namespace TeknikServisci.Controllers
              
 
                 new FailureRepo().Update(failure);
+
                 TempData["Message"] = $"{model.FailureId} no lu arıza için yola çıkılmıştır";
                 return RedirectToAction("Detail", "Technician",new
                 {
