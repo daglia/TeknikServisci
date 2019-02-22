@@ -10,9 +10,9 @@ namespace TeknikServisci.Models.Enums
     public enum TechnicianStatuses
     {
         [Description("Meşgul")]
-        Busy = 1,
+        Busy = 0,
         [Description("Uygun")]
-        Available = 0,
+        Available = 1,
         [Description("Yolda")]
         OnWay = 2,
         [Description("İş Başında")]

@@ -43,11 +43,14 @@ namespace TeknikServisci.Controllers
                 {
 
                     var User = NewUserManager().FindById(TechnicianRole[i]);
-                    Technicians.Add(new SelectListItem()
+                    if (User.TechnicianStatus == TechnicianStatuses.Available)
                     {
-                        Text = User.Name + " " + User.Surname,
-                        Value = User.Id
-                    });
+                        Technicians.Add(new SelectListItem()
+                        {
+                            Text = User.Name + " " + User.Surname,
+                            Value = User.Id
+                        });
+                    }
                 }
 
                 ViewBag.TechnicianList = Technicians;
