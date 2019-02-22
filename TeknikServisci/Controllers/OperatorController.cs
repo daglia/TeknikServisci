@@ -184,7 +184,6 @@ namespace TeknikServisci.Controllers
                 new OperationRepo().Insert(new Operation()
                 {
                     FailureId = model.FailureId,
-                    ClientId = model.ClientId,
                     Message = $"Arızaya yeni teknisyen atanmıştır: {technician.Name} {technician.Surname}",
                     FromWhom = IdentityRoles.Operator
                 });

@@ -1,4 +1,6 @@
-﻿@model TeknikServisci.Models.ViewModels.FailureViewModel
+﻿@using TeknikServisci.Models.Enums
+@using TeknikServisci.Models.ViewModels
+@model TeknikServisci.Models.ViewModels.FailureViewModel
 @{
 	ViewBag.Title = $"{Model.FailureName} arızasının ayrıntıları";
 	Layout = "~/Views/Shared/_LayoutMain.cshtml";
@@ -118,73 +120,33 @@
                             <div class="timeline-header">
                                 <div class="timeline-header-title bg-info">Şimdi</div>
                             </div>
-                            <div class="timeline-entry">
-                                <div class="timeline-stat">
-                                    <div class="timeline-icon bg-purple"><i class="fa fa-check fa-lg"></i> </div>
-                                </div>
-                                <div class="timeline-label">
-                                    <img class="img-xs img-circle" src="img/av1.png" alt="Profile picture"> <a href="#" class="btn-link text-semibold"> John Doe </a> posted a new blog.
-                                    <div>
-                                        <img src="img/photos/profile-pic-1.png" class="profile-img img-left" alt="">
-                                        <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...</p>
+                            
+                            @foreach (OperationViewModel operation in Model.Operations)
+                            {
+                                <div class="timeline-entry">
+                                    <div class="timeline-stat">
+                                        @switch (operation.FromWhom)
+                                        {
+                                            case IdentityRoles.Operator:
+                                                <div class="timeline-icon bg-success"><i class="fa fa-clipboard fa-lg"></i> </div>
+                                            break;
+                                            case IdentityRoles.User:
+                                                <div class="timeline-icon bg-info"><i class="fa fa-check fa-lg"></i> </div>
+                                                break;
+                                            case IdentityRoles.Technician:
+                                                <div class="timeline-icon bg-warning"><i class="fa fa-briefcase fa-lg"></i> </div>
+                                            break;
+                                            default:
+                                                <div class="timeline-icon bg-purple"><i class="fa fa-check fa-lg"></i> </div>
+                                                break;
+                                        }
+                                    </div>
+                                    <div class="timeline-label">
+                                        @operation.CreatedDate
+                                        <h3>@operation.Message</h3>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="timeline-entry">
-                                <div class="timeline-stat">
-                                    <div class="timeline-icon bg-mint"><i class="fa fa-users fa-lg"></i> </div>
-                                </div>
-                                <div class="timeline-label"> <img class="img-xs img-circle" src="img/av4.png" alt="Profile picture"> <a href="#" class="btn-link text-semibold">Shirley Anderson</a> started following. <img class="img-xs img-circle" src="img/av7.png" alt="Profile picture"> <img class="img-xs img-circle" src="img/av6.png" alt="Profile picture"></div>
-                            </div>
-                            <div class="timeline-entry">
-                                <div class="timeline-stat">
-                                    <div class="timeline-icon bg-primary"><i class="fa fa-image fa-lg"></i> </div>
-                                </div>
-                                <div class="timeline-label">
-                                    <img class="img-xs img-circle" src="img/av1.png" alt="Profile picture"> <a href="#" class="btn-link text-semibold"> Jonathan Anderson </a> Uploaded 4 images
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</h4>
-                                    <div> <img src="img/photos/profile-pic-1.png" class="profile-img" alt=""> <img src="img/photos/profile-pic-1.png" class="profile-img" alt=""> <img src="img/photos/profile-pic-1.png" class="profile-img" alt=""> <img src="img/photos/profile-pic-1.png" class="profile-img" alt=""> </div>
-                                </div>
-                            </div>
-                            <div class="timeline-entry">
-                                <div class="timeline-stat">
-                                    <div class="timeline-icon bg-info"><i class="fa fa-tasks fa-lg"></i> </div>
-                                </div>
-                                <div class="timeline-label"> <img class="img-xs img-circle" src="img/av4.png" alt="Profile picture"> <a href="#" class="btn-link text-semibold">Shirley Anderson</a> completed the task “Application UI Re-design” within the dead line</div>
-                            </div>
-                            <div class="timeline-entry">
-                                <div class="timeline-stat">
-                                    <div class="timeline-icon bg-danger"><i class="fa fa-building fa-lg"></i> </div>
-                                </div>
-                                <div class="timeline-label">
-                                    <h4 class="mar-no pad-btm"><a href="#" class="text-danger">Job Meeting</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
-                                </div>
-                            </div>
-                            <div class="timeline-entry">
-                                <div class="timeline-stat">
-                                    <div class="timeline-icon"><img src="img/av4.png" alt="Profile picture"> </div>
-                                </div>
-                                <div class="timeline-label">
-                                    <p class="mar-no pad-btm"><a href="#" class="btn-link text-semibold">Lisa D.</a> commented on <a href="#">The Article</a> </p>
-                                    <blockquote class="bq-sm bq-open">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</blockquote>
-                                </div>
-                            </div>
-                            <div class="timeline-entry">
-                                <div class="timeline-stat">
-                                    <div class="timeline-icon bg-purple"><i class="fa fa-check fa-lg"></i> </div>
-                                </div>
-                                <div class="timeline-label"> <img class="img-xs img-circle" src="img/av3.png" alt="Profile picture"> <a href="#" class="btn-link text-semibold">Bobby Marz</a> followed you. </div>
-                            </div>
-                            <div class="timeline-entry">
-                                <div class="timeline-stat">
-                                    <div class="timeline-icon"><img src="img/av4.png" alt="Profile picture"></div>
-                                </div>
-                                <div class="timeline-label">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                     <!--===================================================-->

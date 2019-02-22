@@ -125,7 +125,6 @@ namespace TeknikServisci.Controllers
                         new OperationRepo().Insert(new Operation()
                         {
                             FailureId = model.FailureId,
-                            ClientId = model.ClientId,
                             Message = "Teknisyen yola çıktı.",
                             FromWhom = IdentityRoles.Technician
                         });
@@ -136,7 +135,6 @@ namespace TeknikServisci.Controllers
                         new OperationRepo().Insert(new Operation()
                         {
                             FailureId = model.FailureId,
-                            ClientId = model.ClientId,
                             Message = "Teknisyen işe başladı.",
                             FromWhom = IdentityRoles.Technician
                         });
@@ -146,7 +144,6 @@ namespace TeknikServisci.Controllers
                         new OperationRepo().Insert(new Operation()
                         {
                             FailureId = model.FailureId,
-                            ClientId = model.ClientId,
                             Message = "İş tamamlandı.",
                             FromWhom = IdentityRoles.Technician
                         });

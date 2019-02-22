@@ -30,7 +30,7 @@ namespace TeknikServisci.Controllers
                     .GetAll()
                     .Select(x => Mapper.Map<FailureViewModel>(x))
                     .Where(x => x.ClientId == clientId)
-                    .OrderBy(x => x.OperationTime)
+                    .OrderBy(x => x.CreatedTime)
                     .ToList();
                 return View(data);
             }
@@ -55,11 +55,16 @@ namespace TeknikServisci.Controllers
             {
                 var x = await new FailureRepo().GetByIdAsync(id);
                 var data = Mapper.Map<FailureViewModel>(x);
-                //data.Operations.Clear();
-                //foreach (Operation operation in x.Operations)
-                //{
-                //    data.Operations.Add(Mapper.Map<OperationViewModel>(x));
-                //}
+                var operations = new OperationRepo()
+                    .GetAll()
+                    .Where(y=>y.FailureId == data.FailureId)
+                    .OrderByDescending(y=>y.CreatedDate)
+                    .ToList();
+                data.Operations.Clear();
+                foreach (Operation operation in operations)
+                {
+                    data.Operations.Add(Mapper.Map<OperationViewModel>(operation));
+                }
 
                 return View(data);
             }
@@ -150,7 +155,6 @@ namespace TeknikServisci.Controllers
                 new OperationRepo().Insert(new Operation()
                 {
                     FailureId = data.Id,
-                    ClientId = data.ClientId,
                     Message = $"#{data.Id} - {data.FailureName} adlı arıza kaydı oluşturuldu.",
                     FromWhom = IdentityRoles.User
                 });
