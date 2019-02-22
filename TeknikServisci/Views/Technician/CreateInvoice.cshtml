@@ -1,14 +1,9 @@
 ﻿@model TeknikServisci.Models.ViewModels.FailureViewModel
 @{
-	ViewBag.Title = $"{Model.FailureName} arızasının ayrıntıları";
+	ViewBag.Title = "Invoice";
 	Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
-<div class="pageheader hidden-xs">
-	<h3><i class="fa fa-search-plus"></i>Arıza Ayrıntısı</h3>
-</div>
-<!--CONTENT CONTAINER-->
-<!--===================================================-->
 <div id="content-container">
 	<!--Page content-->
 	<!--===================================================-->
@@ -17,7 +12,7 @@
 			<div class="col-md-6 col-md-offset-3">
 				<div class="panel">
 					<div class="panel-heading">
-						<h3 class="panel-title">@Model.FailureName adlı arızanın ayrıntıları</h3>
+						<h3 class="panel-title">@Model.FailureName adlı arızanın fatura bilgileri</h3>
 						<h3>@TempData["Message"]</h3>
 						@Html.ValidationSummary()
 					</div><br /><br /><br /><br />
@@ -71,45 +66,33 @@
 										<th>Adresi</th>
 										<td>@Model.Address</td>
 									</tr>
-									<tr>
-										<th>Teknisyen</th>
-										<td>@Model.Technician</td>
-									</tr>
 								<tr>
-									<th>Teknisyenin durumu</th>
-									<td>
+									<th>Teknisyen</th>
+									<td>@Model.Technician</td>
+								</tr>
+								<tr>
+									<th>Garantisi var mı?</th>
+									<td>@Html.CheckBox("isNewlyEnrolled", true)</td>
+								</tr>
+								<tr>
+									<th>Fiyat:</th>
+									<td></td>
+								</tr>
 
-										@using (Html.BeginForm("TechnicianStartWork", "Technician", FormMethod.Post, new {@class = "form-horizontal"}))
-										{
-											@Html.AntiForgeryToken()
-											@Html.HiddenFor(x => x.FailureId)
-											switch (Model.TechnicianStatus)
+								<tr>
+									<th>Açıklama</th>
+									<td>
+										@using (Html.BeginForm("CreateInvoice", "Technician", FormMethod.Post, new { @class = "form-horizontal" }))
 											{
-												case TeknikServisci.Models.Enums.TechnicianStatuses.Available:
-													<button class="btn btn-warning" type="submit">Yola Çıktım</button>
-													break;
-												case TeknikServisci.Models.Enums.TechnicianStatuses.OnWay:
-													<button class="btn btn-success" type="submit">Hedefe Ulaştım</button>
-													break;
-												case TeknikServisci.Models.Enums.TechnicianStatuses.OnWork:
-													<button class="btn btn-success" type="submit">İşlem Tamamlandı</button>
-													break;
-												default:
-													break;
-											}
+												@Html.AntiForgeryToken()
+												@Html.HiddenFor(x => x.FailureId)
+												@Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
+												@Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+											
 										}
 									</td>
 								</tr>
 								
-								<tr>
-									<td></td>
-									<td class="text-left  ">
-										<a href="@Url.Action("CreateInvoice", "Technician", new {id = Model.FailureId})" class="btn btn-success">
-											Fatura Oluştur
-										</a>
-									</td>
-								</tr>
-                           
 								</tbody>
 							</table>
 						</div>
@@ -123,5 +106,5 @@
 		<!--END CONTENT CONTAINER-->
 	</div>
 </div>
-<!--===================================================-->
-<!-- END OF CONTAINER -->
+
+
