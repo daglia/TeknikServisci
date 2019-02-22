@@ -55,7 +55,8 @@
                                     <td>@data.ClientSurname</td>
                                     <td>@TeknikServisci.BLL.Helpers.EnumHelpers.GetDescription(data.OperationStatus)</td>
                                     <td class="text-center">@(data.Operator)</td>
-                                    <td class="text-center">@(data.Technician)</td>
+	                                <td class="text-center">@(data.Technician)</td>
+
 
                                     <td class="text-center">
                                         <a href="@Url.Action("Detail", "Technician", new {id = data.FailureId})" class="btn btn-success">

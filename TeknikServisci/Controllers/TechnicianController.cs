@@ -208,6 +208,45 @@ namespace TeknikServisci.Controllers
 
         }
 
+        public async Task<ActionResult> CreateInvoice(int id)
+        {
+            try
+            {
+                var x = await new FailureRepo().GetByIdAsync(id);
+                var data = Mapper.Map<FailureViewModel>(x);
+
+                var TechnicianRole = NewRoleManager().FindByName("Technician").Users.Select(y => y.UserId).ToList();
+                for (int i = 0; i < TechnicianRole.Count; i++)
+                {
+
+                    var User = NewUserManager().FindById(TechnicianRole[i]);
+                    Technicians.Add(new SelectListItem()
+                    {
+                        Text = User.Name + " " + User.Surname,
+                        Value = User.Id
+                    });
+                }
+
+                ViewBag.TechnicianList = Technicians;
+
+
+                return View(data);
+
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Model"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Detail",
+                    ControllerName = "Operator",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
         //public ActionResult ChangeStatus()
         //{
         //    var user = new User();
