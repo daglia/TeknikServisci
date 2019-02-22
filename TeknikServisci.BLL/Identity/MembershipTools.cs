@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web;
 using TeknikServisci.DAL;
+using TeknikServisci.Models.Enums;
 using TeknikServisci.Models.IdentityModels;
 
 namespace TeknikServisci.BLL.Identity
@@ -80,6 +81,27 @@ namespace TeknikServisci.BLL.Identity
             }
 
             return rolename;
+        }
+
+        public static TechnicianStatuses? GetTechnicianStatus(string userId)
+        {
+            User user;
+            if (string.IsNullOrEmpty(userId))
+            {
+                var id = HttpContext.Current.User.Identity.GetUserId();
+                if (string.IsNullOrEmpty(id))
+                    return null;
+
+                user = NewUserManager().FindById(id);
+            }
+            else
+            {
+                user = NewUserManager().FindById(userId);
+                if (user == null)
+                    return null;
+            }
+
+            return user.TechnicianStatus;
         }
 
         public static string GetRoleWithColor(string userId)

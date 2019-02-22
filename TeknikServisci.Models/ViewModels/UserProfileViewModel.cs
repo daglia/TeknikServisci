@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using TeknikServisci.Models.Enums;
 
 namespace TeknikServisci.Models.ViewModels
 {
@@ -28,6 +29,9 @@ namespace TeknikServisci.Models.ViewModels
         [Required]
         [Display(Name = "Telefon")]
         public string PhoneNumber { get; set; }
+
+        [Display(Name = "Durumu")]
+        public TechnicianStatuses? TechnicianStatus { get; set; }
 
         public string AvatarPath { get; set; }
         [Display(Name = "Kullanıcı Avatarı")]

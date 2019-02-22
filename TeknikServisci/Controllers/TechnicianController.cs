@@ -8,6 +8,7 @@ using AutoMapper;
 using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Repository;
 using TeknikServisci.Models.Enums;
+using TeknikServisci.Models.IdentityModels;
 using TeknikServisci.Models.ViewModels;
 using static TeknikServisci.BLL.Identity.MembershipTools;
 
@@ -187,5 +188,24 @@ namespace TeknikServisci.Controllers
 
         }
 
+        //public ActionResult ChangeStatus()
+        //{
+        //    var user = new User();
+        //    user = NewUserManager().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+        //    if (user.TechnicianStatus == TechnicianStatuses.Available)
+        //    {
+        //        user.TechnicianStatus = TechnicianStatuses.Busy;
+                
+        //        NewUserManager().Update(user);
+        //    }
+        //    else
+        //    {
+        //        user.TechnicianStatus = TechnicianStatuses.Available;
+        //        NewUserManager().Update(user);
+        //    }
+
+        //    return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
+        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿@using TeknikServisci.BLL.Identity
+@using TeknikServisci.Models.Enums
 
 <div class="navbar-content clearfix">
     <ul class="nav navbar-top-links pull-left">
@@ -171,6 +172,27 @@
         <!--End notifications dropdown-->
     </ul>
     <ul class="nav navbar-top-links pull-right">
+        @if (User.IsInRole("Technician"))
+        {
+            if (MembershipTools.GetTechnicianStatus(null) == TechnicianStatuses.Busy)
+            {
+                <li class="tgl-menu-btn">
+                    <a href="#" class="btn-link text-dark box-block"> <i class="fa fa-minus-circle fa-lg"></i> Meşgul</a>
+                </li>
+            }
+            else if(MembershipTools.GetTechnicianStatus(null) == TechnicianStatuses.Available)
+            {
+                <li class="tgl-menu-btn">
+                    <a href="#" class="btn-link text-dark box-block"> <i class="fa fa-check-circle fa-lg"></i> Uygun</a>
+                </li>
+            }
+            else
+            {
+                <li class="tgl-menu-btn">
+                    <a href="#" class="btn-link text-dark box-block"> <i class="fa fa-clock-o fa-lg"></i> İş Başında</a>
+                </li>
+            }
+        }
         <!--User dropdown-->
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <li id="dropdown-user" class="dropdown">

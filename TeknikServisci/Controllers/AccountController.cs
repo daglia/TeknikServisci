@@ -178,6 +178,7 @@ namespace TeknikServisci.Controllers
                         PhoneNumber = user.PhoneNumber,
                         Surname = user.Surname,
                         UserName = user.UserName,
+                        TechnicianStatus = user.TechnicianStatus,
                         AvatarPath = string.IsNullOrEmpty(user.AvatarPath) ? "/assets/img/avatars/avatar3.jpg" : user.AvatarPath
                     }
                 };
@@ -214,6 +215,10 @@ namespace TeknikServisci.Controllers
                 user.Name = model.UserProfileViewModel.Name;
                 user.Surname = model.UserProfileViewModel.Surname;
                 user.PhoneNumber = model.UserProfileViewModel.PhoneNumber;
+                if (user.TechnicianStatus != null)
+                {
+                    user.TechnicianStatus = model.UserProfileViewModel.TechnicianStatus;
+                }
                 if (user.Email != model.UserProfileViewModel.Email)
                 {
                     //todo tekrar aktivasyon maili gönderilmeli. rolü de aktif olmamış role çevrilmeli.
