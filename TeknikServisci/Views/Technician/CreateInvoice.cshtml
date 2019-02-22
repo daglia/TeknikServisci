@@ -4,6 +4,9 @@
 	Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
+<div class="pageheader hidden-xs">
+	<h3><i class="fa fa-search-plus"></i>Arıza Fatura Ayrıntısı</h3>
+</div>
 <div id="content-container">
 	<!--Page content-->
 	<!--===================================================-->
@@ -15,7 +18,7 @@
 						<h3 class="panel-title">@Model.FailureName adlı arızanın fatura bilgileri</h3>
 						<h3>@TempData["Message"]</h3>
 						@Html.ValidationSummary()
-					</div><br /><br /><br /><br />
+					</div><br />
 					<!-- Striped Table -->
 					<!--===================================================-->
 					<div class="panel-body">
@@ -30,67 +33,36 @@
 										<th>Kodu</th>
 										<td>@Model.FailureId</td>
 									</tr>
-									<tr>
-										<th>Adı</th>
-										<td>@Model.FailureName</td>
-									</tr>
-									<tr>
-										<th>Parçanın Modeli</th>
-										<td>@Model.ProductModel</td>
-									</tr>
-									<tr>
-										<th>Açıklama</th>
-										<td>@Model.Description</td>
-									</tr>
-									<tr>
-										<th>Fotoğrafı</th>
-										<td><img src="@(string.IsNullOrEmpty(Model.PhotoPath) ? "~/assets/img/thumbs/img2.jpg" : Model.PhotoPath)" width="200" height="200" /></td>
-									</tr>
-									<tr>
-										<th>Arızayı Bildirenin:</th>
-										<td></td>
-									</tr>
-									<tr>
-										<th>Kullanıcı ID</th>
-										<td>@Model.ClientId</td>
-									</tr>
-									<tr>
-										<th>Adı</th>
-										<td>@Model.ClientName</td>
-									</tr>
-									<tr>
-										<th>Soyadı</th>
-										<td>@Model.ClientSurname</td>
-									</tr>
-									<tr>
-										<th>Adresi</th>
-										<td>@Model.Address</td>
-									</tr>
-								<tr>
-									<th>Teknisyen</th>
-									<td>@Model.Technician</td>
-								</tr>
+									
 								<tr>
 									<th>Garantisi var mı?</th>
 									<td>@Html.CheckBox("isNewlyEnrolled", true)</td>
 								</tr>
 								<tr>
 									<th>Fiyat:</th>
-									<td></td>
+									<td>@Html.TextBoxFor(x => x.Price, new { @class = "form-control" })</td>
 								</tr>
 
 								<tr>
 									<th>Açıklama</th>
 									<td>
-										@using (Html.BeginForm("CreateInvoice", "Technician", FormMethod.Post, new { @class = "form-horizontal" }))
-											{
-												@Html.AntiForgeryToken()
-												@Html.HiddenFor(x => x.FailureId)
-												@Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
-												@Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+										@Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td>
+										@using (Html.BeginForm("CreateInvoice", "Technician", FormMethod.Post, new {@class = "form-horizontal"}))
+										{
+											@Html.AntiForgeryToken()
+											@Html.HiddenFor(x => x.FailureId)
+
+												<button class="btn btn-success" type="submit">Gelsin Paralar</button>
+
 											
 										}
-									</td>
+										</td>
+
 								</tr>
 								
 								</tbody>

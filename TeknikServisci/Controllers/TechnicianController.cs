@@ -211,29 +211,34 @@ namespace TeknikServisci.Controllers
 
         }
 
+        //[HttpGet]
+        //public async Task<ActionResult> CreateInvoice(FailureViewModel model)
+        //{
+        //    var failure =  await new FailureRepo().GetByIdAsync(model);
+        //    var data = Mapper.Map<FailureViewModel>(failure);
+        //    return View(data);
+        //}
+
+        //[HttpPost]
         public async Task<ActionResult> CreateInvoice(int id)
         {
             try
             {
-                var x = await new FailureRepo().GetByIdAsync(id);
-                var data = Mapper.Map<FailureViewModel>(x);
-
-                var TechnicianRole = NewRoleManager().FindByName("Technician").Users.Select(y => y.UserId).ToList();
-                for (int i = 0; i < TechnicianRole.Count; i++)
-                {
-
-                    var User = NewUserManager().FindById(TechnicianRole[i]);
-                    Technicians.Add(new SelectListItem()
-                    {
-                        Text = User.Name + " " + User.Surname,
-                        Value = User.Id
-                    });
-                }
-
-                ViewBag.TechnicianList = Technicians;
+                var failure = await new FailureRepo().GetByIdAsync(id);
+                var data = Mapper.Map<FailureViewModel>(failure);
+                if (data.FailureId.ToString().Replace("0", "").Replace("-", "").Length == 0)
+                    data.FailureId = 0;
+                failure.Price = data.Price;
+                failure.Report = data.Report;
+                new FailureRepo().Update(failure);
+                TempData["Message"] = $"{data.FailureId} no lu arıza için tutar girilmiştir.";
 
 
                 return View(data);
+
+                //var failure = await new FailureRepo().GetByIdAsync(id);
+                //var data = Mapper.Map<FailureViewModel>(failure);
+
 
 
             }
