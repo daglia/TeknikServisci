@@ -40,29 +40,57 @@ else if (User.IsInRole("Operator"))
 {
     <h1>Operatör Sayfası</h1>
     <div class="panel-body">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="jumbotron">
-                <h1>Hoş geldin<br>
-                    <strong>@MembershipTools.GetNameSurname(HttpContext.Current.User.Identity.GetUserId())</strong>!
-                </h1>
-                <p>Cana geleceğine mala gelsin, siz hiç üzülmeyin! Arızanızı alanında uzman ekiplerimize bildirin ve sadece bir gün içinde çözmeye gelelim!</p>
-                <h1 class="text-center"><a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Add", "Failure")" role="button">Yeni arıza ekleyin</a></h1>
+        <div class="col-md-6 col-md-offset-4">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
+                    <div class="widgetbox widgetbox-default widgetbox-item-icon">
+                        <div class="widgetbox-item-right widgetbox-icon-danger"> <span class="fa fa-clock-o"></span> </div>
+                        <div class="widgetbox-data-left">
+                            <div class="widgetbox-int">@ViewBag.pendingFailureCount</div>
+                            <p>Bekleyen Arıza</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
+                    <div class="widgetbox widgetbox-default widgetbox-item-icon">
+                        <div class="widgetbox-item-right widgetbox-icon-warning"> <span class="fa fa-user"></span> </div>
+                        <div class="widgetbox-data-left">
+                            <div class="widgetbox-int">@ViewBag.availableTechnicianCount</div>
+                            <p>Uygun Teknisyen</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div> 
-    </div>
-}
-else
-{
-    <div class="panel-body">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="jumbotron">
-                <h1>Hoş geldin<br>
-                    <strong>@MembershipTools.GetNameSurname(HttpContext.Current.User.Identity.GetUserId())</strong>!
+        </div>
+
+
+
+
+            <div class="col-md-6 col-md-offset-3">
+                <div class="jumbotron">
+                    <h1>
+                        Hoş geldin<br>
+                        <strong>@MembershipTools.GetNameSurname(HttpContext.Current.User.Identity.GetUserId())</strong>!
                     </h1>
-                <p>Cana geleceğine mala gelsin, siz hiç üzülmeyin! Arızanızı alanında uzman ekiplerimize bildirin ve sadece bir gün içinde çözmeye gelelim!</p>
-                <h1 class="text-center"><a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Add", "Failure")" role="button">Yeni arıza ekleyin</a></h1>
+                    <p>Cana geleceğine mala gelsin, siz hiç üzülmeyin! Arızanızı alanında uzman ekiplerimize bildirin ve sadece bir gün içinde çözmeye gelelim!</p>
+                    <h1 class="text-center"><a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Add", "Failure")" role="button">Yeni arıza ekleyin</a></h1>
+                </div>
             </div>
-        </div> 
-    </div>
-}
+        </div>
+        }
+        else
+        {
+        <div class="panel-body">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="jumbotron">
+                    <h1>
+                        Hoş geldin<br>
+                        <strong>@MembershipTools.GetNameSurname(HttpContext.Current.User.Identity.GetUserId())</strong>!
+                    </h1>
+                    <p>Cana geleceğine mala gelsin, siz hiç üzülmeyin! Arızanızı alanında uzman ekiplerimize bildirin ve sadece bir gün içinde çözmeye gelelim!</p>
+                    <h1 class="text-center"><a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Add", "Failure")" role="button">Yeni arıza ekleyin</a></h1>
+                </div>
+            </div>
+        </div>
+        }
 

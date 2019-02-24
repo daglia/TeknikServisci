@@ -38,6 +38,16 @@ namespace TeknikServisci.Controllers
             {
                 var x = await new FailureRepo().GetByIdAsync(id);
                 var data = Mapper.Map<FailureViewModel>(x);
+                var operations = new OperationRepo()
+                    .GetAll()
+                    .Where(y => y.FailureId == data.FailureId)
+                    .OrderByDescending(y => y.CreatedDate)
+                    .ToList();
+                data.Operations.Clear();
+                foreach (Operation operation in operations)
+                {
+                    data.Operations.Add(Mapper.Map<OperationViewModel>(operation));
+                }
 
                 var TechnicianRole = NewRoleManager().FindByName("Technician").Users.Select(y => y.UserId).ToList();
                 for (int i = 0; i < TechnicianRole.Count; i++)
@@ -221,12 +231,24 @@ namespace TeknikServisci.Controllers
             try
             {
                 var failure = new FailureRepo().GetById(model.FailureId);
-                failure.TechnicianId = null;
+                if (failure.OperationStatus == OperationStatuses.Declined)
+                {
+                    TempData["Message"] =
+                        $"{failure.Id} nolu arıza zaten reddedilmiştir.";
+                    return RedirectToAction("Detail", "Operator", new { id = model.FailureId });
+                }
                 failure.OperationStatus = OperationStatuses.Declined;
                 failure.OperationTime = DateTime.Now;
                 failure.OperatorId = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 failure.Report = model.Report;
                 new FailureRepo().Update(failure);
+                new OperationRepo().Insert(new Operation()
+                {
+                    FailureId = failure.Id,
+                    Message = $"Arızanız şu nedenden dolayı reddedilmiştir: {failure.Report}",
+                    FromWhom = IdentityRoles.Operator
+                });
+
                 TempData["Message"] =
                     $"{failure.Id} nolu arıza reddedilmiştir.";
 
