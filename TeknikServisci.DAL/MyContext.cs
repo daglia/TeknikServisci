@@ -31,5 +31,7 @@ namespace TeknikServisci.DAL
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Failure> Failures { get; set; }
         public virtual DbSet<Operation> Operations { get; set; }
+        public virtual DbSet<Survey> Surveys { get; set; }
+
     }
 }

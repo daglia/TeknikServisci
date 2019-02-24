@@ -85,6 +85,7 @@
     <Compile Include="Helpers\EntityHelpers.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
+    <Compile Include="Repository\SurveyRepo.cs" />
     <Compile Include="Services\Senders\EmailService.cs" />
     <Compile Include="Services\Senders\IMessageService.cs" />
   </ItemGroup>

@@ -19,6 +19,7 @@ namespace TeknikServisci.App_Start
                 FailureMapping(cfg);
                 InvoiceMapping(cfg);
                 RegisterMapping(cfg);
+                SurveyMapping(cfg);
             });
 
 
@@ -32,6 +33,12 @@ namespace TeknikServisci.App_Start
         private static void InvoiceMapping(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<Operation, OperationViewModel>().ReverseMap();
+        }
+        private static void SurveyMapping(IMapperConfigurationExpression cfg)
+        {
+            cfg.CreateMap<Survey, SurveyViewMdel>()
+                .ForMember(dest => dest.SurveyId, opt => opt.MapFrom(x => x.Id))
+                .ReverseMap();
         }
 
         private static void FailureMapping(IMapperConfigurationExpression cfg)

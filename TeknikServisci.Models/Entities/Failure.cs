@@ -61,6 +61,7 @@ namespace TeknikServisci.Models.Entities
         public string TechnicianId { get; set; }
         public string OperatorId { get; set; }
         public int? CategoryId { get; set; }
+        public string SurveyId { get; set; }
 
         [ForeignKey("ClientId")]
         public virtual User Client { get; set; }
@@ -68,7 +69,11 @@ namespace TeknikServisci.Models.Entities
         public virtual User Technician { get; set; }
         [ForeignKey("OperatorId")]
         public virtual User Operator { get; set; }
+        [ForeignKey("SurveyId")]
+        public virtual Survey Survey { get; set; }
+
         [ForeignKey("CategoryId")]
+
         public virtual Category Category { get; set; }
         public virtual ICollection<Operation> Operations { get; set; } = new HashSet<Operation>();
     }

@@ -184,5 +184,68 @@ namespace TeknikServisci.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+        [HttpGet]
+        [Authorize(Roles = "User")]
+        public ActionResult Survey(string code)
+        {
+            try
+            {
+                var surveyRepo = new SurveyRepo();
+                var survey = surveyRepo.GetById(code);
+                if (survey == null)
+                    return RedirectToAction("Index", "Home");
+                var data = Mapper.Map<Survey, SurveyViewMdel>(survey);
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+                TempData["Message2"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Survey",
+                    ControllerName = "Issue",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User")]
+        public ActionResult Survey(SurveyViewMdel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Hata Oluştu.");
+                return RedirectToAction("Survey", "Failure", model);
+            }
+            try
+            {
+                var surveyRepo = new SurveyRepo();
+                var survey = surveyRepo.GetById(model.SurveyId);
+                if (survey == null)
+                    return RedirectToAction("Index", "Home");
+                survey.Pricing = model.Pricing;
+                survey.Satisfaction = model.Satisfaction;
+                survey.Solving = model.Solving;
+                survey.Speed = model.Speed;
+                survey.Suggestions = model.Suggestions;
+                surveyRepo.Update(survey);
+                TempData["Message2"] = "Anket tamamlandı.";
+                return RedirectToAction("UserProfile", "Account");
+            }
+            catch (Exception ex)
+            {
+                TempData["Message2"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Survey",
+                    ControllerName = "Issue",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
+        }
     }
 }

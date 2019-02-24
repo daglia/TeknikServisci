@@ -81,6 +81,7 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Failure.cs" />
     <Compile Include="Entities\Operation.cs" />
+    <Compile Include="Entities\Survey.cs" />
     <Compile Include="Enums\FailureTypes.cs" />
     <Compile Include="Enums\IdentityRoles.cs" />
     <Compile Include="Enums\MessageStates.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="ViewModels\ProfilePasswordViewModel.cs" />
     <Compile Include="ViewModels\RecoverPasswordViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\SurveyViewModel.cs" />
     <Compile Include="ViewModels\UpdateUserRoleViewModel.cs" />
     <Compile Include="ViewModels\UserProfileViewModel.cs" />
     <Compile Include="ViewModels\OperationViewModel.cs" />
