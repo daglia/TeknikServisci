@@ -1,4 +1,5 @@
 ﻿@model TeknikServisci.Models.ViewModels.FailureViewModel
+@using TeknikServisci.Models.Enums
 @{
 	ViewBag.Title = "Invoice";
 	Layout = "~/Views/Shared/_LayoutMain.cshtml";
@@ -15,60 +16,53 @@
 			<div class="col-md-6 col-md-offset-3">
 				<div class="panel">
 					<div class="panel-heading">
-						<h3 class="panel-title">@Model.FailureName adlı arızanın fatura bilgileri</h3>
-						<h3>@TempData["Message"]</h3>
-						@Html.ValidationSummary()
+						<h3 class="panel-title">#@Model.FailureId - @Model.FailureName adlı arızanın fatura bilgileri</h3>
 					</div><br />
 					<!-- Striped Table -->
 					<!--===================================================-->
-					<div class="panel-body">
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<tbody>
-									<tr>
-										<th>Arızanın:</th>
-										<td></td>
-									</tr>
-									<tr>
-										<th>Kodu</th>
-										<td>@Model.FailureId</td>
-									</tr>
-									
-								<tr>
-									<th>Garantisi var mı?</th>
-									<td>@Html.CheckBox("isNewlyEnrolled", true)</td>
-								</tr>
-								<tr>
-									<th>Fiyat:</th>
-									<td>@Html.TextBoxFor(x => x.Price, new { @class = "form-control" })</td>
-								</tr>
+                          <div class="panel-body">
 
-								<tr>
-									<th>Açıklama</th>
-									<td>
-										@Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
-									</td>
-								</tr>
-								<tr>
-									<th></th>
-									<td>
-										@using (Html.BeginForm("CreateInvoice", "Technician", FormMethod.Post, new {@class = "form-horizontal"}))
-										{
-											@Html.AntiForgeryToken()
-											@Html.HiddenFor(x => x.FailureId)
+                              <br /><br /><br /><br />
+                              <h3>@TempData["Message"]</h3>
 
-												<button class="btn btn-success" type="submit">Gelsin Paralar</button>
+                              @using (Html.BeginForm("CreateInvoice", "Technician", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+                              {
+                                  @Html.AntiForgeryToken()
+                                  @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                  @Html.HiddenFor(x => x.FailureId)
 
-											
-										}
-										</td>
+                                  <div class="form-group row">
+                                      <div class="col-sm-9 control-label">
+                                          <label class="form-checkbox form-icon form-text">
+                                              @Html.CheckBoxFor(x => x.HasWarranty)
+                                              @Html.DisplayNameFor(x => x.HasWarranty)
+                                          </label>
+                                      </div>
+                                      <div class="col-sm-9 control-label">
+                                          @Html.LabelFor(x => x.Price)
+                                          @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                                          @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                                      </div>
+                                      <div class="col-sm-9 control-label">
+                                          @Html.LabelFor(x => x.Report)
+                                          @Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
+                                          @Html.ValidationMessageFor(x => x.Report, "", new { @class = "text-danger" })
+                                      </div>
+                                      <div class="col-sm-9 control-label">
+                                          @Html.RadioButtonFor(x => x.RepairProcess, RepairProcesses.Successful)@Html.Label("Başarılı")
+                                          @Html.RadioButtonFor(x => x.RepairProcess, RepairProcesses.Failed)@Html.Label("Başarısız")
+                                      </div>
+                                  </div>
+                                  <div class="row narrow-gutter">
+                                      <div class="col-xs-6">
+                                          <button type="submit" class="btn btn-primary">İşlemi Bitir</button>
+                                      </div>
+                                  </div>
 
-								</tr>
-								
-								</tbody>
-							</table>
-						</div>
-					</div>
+                              }
+
+
+                          </div>
 					<!--===================================================-->
 					<!-- End Striped Table -->
 				</div>

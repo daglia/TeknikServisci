@@ -51,6 +51,7 @@ namespace TeknikServisci.Models.Entities
 
         [DisplayName("Fiyat")]
         public decimal Price { get; set; }
+        [DisplayName("Garanti")]
         public bool HasWarranty { get; set; }
         [DisplayName("Rapor")]
         public string Report { get; set; }

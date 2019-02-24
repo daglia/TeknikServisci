@@ -77,43 +77,40 @@
                                         <th>Teknisyen</th>
                                         <td>@Model.Technician</td>
                                     </tr>
+                                    
                                     <tr>
                                         <th>Teknisyenin durumu</th>
                                         <td>
-                                            @using (Html.BeginForm("TechnicianStartWork", "Technician", FormMethod.Post, new { @class = "form-horizontal" }))
+                                            @if (!Model.FinishingTime.HasValue)
                                             {
-                                                @Html.AntiForgeryToken()
-                                                @Html.HiddenFor(x => x.FailureId)
-                                                switch (Model.TechnicianStatus)
+                                                using (Html.BeginForm("TechnicianStartWork", "Technician", FormMethod.Post, new { @class = "form-horizontal" }))
                                                 {
-                                                    case TeknikServisci.Models.Enums.TechnicianStatuses.Available:
-                                                        <button class="btn btn-warning" type="submit">Yola Çıktım</button>
-                                                        break;
-                                                    case TeknikServisci.Models.Enums.TechnicianStatuses.OnWay:
-                                                        <button class="btn btn-success" type="submit">Hedefe Ulaştım</button>
-                                                        break;
-                                                    case TeknikServisci.Models.Enums.TechnicianStatuses.OnWork:
-                                                        <button class="btn btn-success" type="submit">İşlem Tamamlandı</button>
-                                                        break;
-                                                    default:
-                                                        break;
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.HiddenFor(x => x.FailureId)
+                                                    switch (Model.TechnicianStatus)
+                                                    {
+                                                        case TeknikServisci.Models.Enums.TechnicianStatuses.Available:
+                                                            <button class="btn btn-warning" type="submit">Yola Çıktım</button>
+                                                            break;
+                                                        case TeknikServisci.Models.Enums.TechnicianStatuses.OnWay:
+                                                            <button class="btn btn-success" type="submit">Hedefe Ulaştım</button>
+                                                            break;
+                                                        case TeknikServisci.Models.Enums.TechnicianStatuses.OnWork:
+                                                            <button class="btn btn-success" type="submit">İşlem Tamamlandı</button>
+                                                            break;
+                                                        default:
+                                                            break;
+                                                    }
                                                 }
                                             }
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Reddet</th>
-                                        <td>
-                                            @using (Html.BeginForm("Decline", "Operator", FormMethod.Post, new { @class = "form-horizontal" }))
+                                            else
                                             {
-                                                @Html.AntiForgeryToken()
-                                                @Html.HiddenFor(x => x.FailureId)
-                                                @Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
-                                                <button class="btn btn-danger" type="submit">Reddet</button>
+                                                <button class="btn btn-success" disabled="disabled" type="submit">İşlem Tamamlandı</button>
                                             }
                                         </td>
                                     </tr>
+                                    
+                                    <tr>
                                 </tbody>
                             </table>
                         </div>

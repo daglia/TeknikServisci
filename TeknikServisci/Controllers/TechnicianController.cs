@@ -142,6 +142,7 @@ namespace TeknikServisci.Controllers
                         //todo: Kullanıcıya mail gitsin.
                         break;
                     case TechnicianStatuses.OnWay:
+                        failure.StartingTime = DateTime.Now;
                         model.TechnicianStatus = TechnicianStatuses.OnWork;
                         new OperationRepo().Insert(new Operation()
                         {
@@ -152,14 +153,17 @@ namespace TeknikServisci.Controllers
                         break;
                     case TechnicianStatuses.OnWork:
                         model.TechnicianStatus = TechnicianStatuses.Available;
+                        failure.FinishingTime = DateTime.Now;
                         new OperationRepo().Insert(new Operation()
                         {
                             FailureId = model.FailureId,
                             Message = "İş tamamlandı.",
                             FromWhom = IdentityRoles.Technician
                         });
-                        //todo: Rapor sayfasına yönlendirsin. Rapor sayfasında açıklama, garanti bilgisi ve fiyat girilsin.
-                        break;
+                        return RedirectToAction("CreateInvoice", "Technician", new
+                        {
+                            id = model.FailureId
+                        });
                     default:
                         break;
                 }
@@ -219,36 +223,38 @@ namespace TeknikServisci.Controllers
 
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult> CreateInvoice(FailureViewModel model)
-        //{
-        //    var failure =  await new FailureRepo().GetByIdAsync(model);
-        //    var data = Mapper.Map<FailureViewModel>(failure);
-        //    return View(data);
-        //}
-
-        //[HttpPost]
+        [HttpGet]
         public async Task<ActionResult> CreateInvoice(int id)
+        {
+            var failure =  await new FailureRepo().GetByIdAsync(id);
+            var data = Mapper.Map<FailureViewModel>(failure);
+            return View(data);
+        }
+
+        [HttpPost]
+        public ActionResult CreateInvoice(FailureViewModel model)
         {
             try
             {
-                var failure = await new FailureRepo().GetByIdAsync(id);
-                var data = Mapper.Map<FailureViewModel>(failure);
-                if (data.FailureId.ToString().Replace("0", "").Replace("-", "").Length == 0)
-                    data.FailureId = 0;
-                failure.Price = data.Price;
-                failure.Report = data.Report;
+                var failure = new FailureRepo().GetById(model.FailureId);
+                if (model.HasWarranty)
+                {
+                    failure.Price = 0m;
+                }
+                else
+                {
+                    failure.Price = model.Price;
+                }
+                failure.HasWarranty = model.HasWarranty;
+                failure.Report = model.Report;
+                failure.RepairProcess = model.RepairProcess;
                 new FailureRepo().Update(failure);
-                TempData["Message"] = $"{data.FailureId} no lu arıza için tutar girilmiştir.";
+                TempData["Message"] = $"{model.FailureId} no lu arıza için tutar girilmiştir.";
 
-
-                return View(data);
-
-                //var failure = await new FailureRepo().GetByIdAsync(id);
-                //var data = Mapper.Map<FailureViewModel>(failure);
-
-
-
+                return RedirectToAction("Detail", "Technician", new
+                {
+                    id = model.FailureId
+                });
             }
             catch (Exception ex)
             {
