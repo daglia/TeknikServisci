@@ -6,6 +6,13 @@
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
+@section top{
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="/assets/css/demo/gamma-gallery.css" rel="stylesheet">
+    <!--SCRIPT-->
+    <!--=================================================-->
+    <script src="/assets/plugins/gamma-gallery/js/modernizr.custom.70736.js"></script>
+}
 <div class="pageheader hidden-xs">
     <h3><i class="fa fa-search-plus"></i>Arıza Ayrıntısı</h3>
 </div>
@@ -51,7 +58,22 @@
                                     </tr>
                                     <tr>
                                         <th>Fotoğrafı</th>
-                                        <td><img src="@(string.IsNullOrEmpty(Model.PhotoPath) ? "/assets/img/nofailurephoto.png" : Model.PhotoPath)" width="400" height="300" /></td>
+                                        <td>
+                                            <div class="gamma-container" id="gamma-container">
+                                                <ul class="gamma-gallery masonry" style="position: relative;">
+                                                    @foreach (var photo in Model.PhotoPath)
+                                                    {
+                                                        <li>
+                                                            <img alt="@Model.FailureId arıza fotoğrafı" src="@(string.IsNullOrEmpty(photo) ? "/assets/img/nofailurephoto.png" : photo)">
+                                                            <div class="gamma-description">
+                                                                <h3>Büyüt</h3>
+                                                            </div>
+                                                        </li>
+                                                    }
+
+                                                </ul>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Arızayı Bildirenin:</th>
@@ -162,3 +184,14 @@
 </div>
 <!--===================================================-->
 <!-- END OF CONTAINER -->
+
+@section bottom{
+    <script src="/assets/plugins/gamma-gallery/js/jquery.history.js"></script>
+    <script src="/assets/plugins/gamma-gallery/js/js-url.min.js"></script>
+    <script src="/assets/plugins/gamma-gallery/js/jquerypp.custom.js"></script>
+    <script src="/assets/plugins/gamma-gallery/js/jquery.masonry.min.js"></script>
+    <script src="/assets/plugins/gamma-gallery/js/gamma.js"></script>
+    <script src="/assets/js/jquery-1.11.2.min.js"></script>
+    <script src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/assets/js/demo/pages-gallery.js"></script>
+}

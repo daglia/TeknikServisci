@@ -55,7 +55,8 @@ namespace TeknikServisci.Models.Entities
         public bool HasWarranty { get; set; }
         [DisplayName("Rapor")]
         public string Report { get; set; }
-        public string PhotoPath { get; set; }
+        [DisplayName("Fotoğraf")]
+        public List<string> PhotoPath { get; set; }
 
         public string ClientId { get; set; }
         public string TechnicianId { get; set; }
@@ -76,5 +77,6 @@ namespace TeknikServisci.Models.Entities
 
         public virtual Category Category { get; set; }
         public virtual ICollection<Operation> Operations { get; set; } = new HashSet<Operation>();
+        public virtual ICollection<Photo> Photos { get; set; } = new HashSet<Photo>();
     }
 }

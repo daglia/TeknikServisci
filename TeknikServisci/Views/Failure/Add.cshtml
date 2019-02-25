@@ -46,8 +46,8 @@
                     @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-sm-9 control-label">
-                    @Html.LabelFor(x => x.PostedFile)
-                    @Html.TextBoxFor(x => x.PostedFile, new {@class = "form-control col-sm-9", type = "file", multiple = false})
+                    @Html.TextBoxFor(x => x.PostedPhoto, new { type = "file", multiple = true })
+                    @Html.ValidationMessageFor(x => x.PostedPhoto, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row narrow-gutter">

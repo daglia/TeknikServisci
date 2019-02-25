@@ -123,35 +123,47 @@ namespace TeknikServisci.Controllers
             {
                 model.ClientId = System.Web.HttpContext.Current.User.Identity.GetUserId();
 
-                if (model.PostedFile != null &&
-                    model.PostedFile.ContentLength > 0)
-                {
-                    var file = model.PostedFile;
-                    string fileName = "failure-";
-                    fileName += Path.GetFileNameWithoutExtension(file.FileName);
-                    string extName = Path.GetExtension(file.FileName);
-                    fileName = StringHelpers.UrlFormatConverter(fileName);
-                    fileName += StringHelpers.GetCode();
-                    var klasoryolu = Server.MapPath("~/Upload/Failure/");
-                    var dosyayolu = Server.MapPath("~/Upload/Failure/") + fileName + extName;
-
-                    if (!Directory.Exists(klasoryolu))
-                        Directory.CreateDirectory(klasoryolu);
-                    file.SaveAs(dosyayolu);
-
-                    WebImage img = new WebImage(dosyayolu);
-                    img.Resize(800, 600, false);
-                    img.AddTextWatermark("Teknik Servisçi");
-                    img.Save(dosyayolu);
-                    var oldPath = model.PhotoPath;
-                    model.PhotoPath = "/Upload/Failure/" + fileName + extName;
-
-                    System.IO.File.Delete(Server.MapPath(oldPath));
-                }
-
                 var data = Mapper.Map<FailureViewModel, Failure>(model);
 
-                new FailureRepo().Insert(data);
+                var failureRepo = new FailureRepo();
+                failureRepo.Insert(data);
+                var photoRepo = new PhotoRepo();
+                if (model.PostedPhoto.Count > 0)
+                {
+                    model.PostedPhoto.ForEach(file =>
+                    {
+                        if (file == null || file.ContentLength <= 0)
+                            return;
+
+                        string fileName = "failure-";
+                        fileName += Path.GetFileNameWithoutExtension(file.FileName);
+                        string extName = Path.GetExtension(file.FileName);
+                        fileName = StringHelpers.UrlFormatConverter(fileName);
+                        fileName += StringHelpers.GetCode();
+                        var klasoryolu = Server.MapPath("~/Upload/Failure/");
+                        var dosyayolu = Server.MapPath("~/Upload/Failure/") + fileName + extName;
+
+                        if (!Directory.Exists(klasoryolu))
+                            Directory.CreateDirectory(klasoryolu);
+                        file.SaveAs(dosyayolu);
+
+                        WebImage img = new WebImage(dosyayolu);
+                        img.Resize(800, 600, false);
+                        img.AddTextWatermark("Teknik Servisçi");
+                        img.Save(dosyayolu);
+                        photoRepo.Insert(new Photo()
+                        {
+                            FailureId = data.Id,
+                            Path = "/Upload/Failure/" + fileName + extName
+                        });
+                    });
+                }
+
+                var photos = photoRepo.GetAll(x => x.FailureId == data.Id).ToList();
+                var photo = photos.Select(x => x.Path).ToList();
+                data.PhotoPath = photo;
+                failureRepo.Update(data);
+
                 new OperationRepo().Insert(new Operation()
                 {
                     FailureId = data.Id,

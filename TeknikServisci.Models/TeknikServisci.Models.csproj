@@ -81,6 +81,7 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Failure.cs" />
     <Compile Include="Entities\Operation.cs" />
+    <Compile Include="Entities\Photo.cs" />
     <Compile Include="Entities\Survey.cs" />
     <Compile Include="Enums\FailureTypes.cs" />
     <Compile Include="Enums\IdentityRoles.cs" />

@@ -72,9 +72,9 @@ namespace TeknikServisci.Models.ViewModels
         public int? CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
-        public string PhotoPath { get; set; }
-        [Display(Name = "Arıza Fotoğrafı")]
-        public HttpPostedFileBase PostedFile { get; set; }
+        public List<string> PhotoPath { get; set; }
+        [DisplayName("Fotoğraf")]
+        public List<HttpPostedFileBase> PostedPhoto { get; set; }
 
         public List<OperationViewModel> Operations { get; set; }
     }

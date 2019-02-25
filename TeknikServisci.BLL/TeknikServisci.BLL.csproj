@@ -81,6 +81,7 @@
     <Compile Include="Repository\CategoryRepo.cs" />
     <Compile Include="Repository\FailureRepo.cs" />
     <Compile Include="Repository\OperationRepo.cs" />
+    <Compile Include="Repository\PhotoRepo.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Helpers\EntityHelpers.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
