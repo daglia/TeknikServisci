@@ -13,10 +13,10 @@ namespace TeknikServisci.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
-                return RedirectToAction("Logout", "Account");
+            //if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            //    return RedirectToAction("Logout", "Account");
 
-            if (!User.IsInRole("User"))
+            if (!User.IsInRole("User") && User.Identity.IsAuthenticated)
             {
                 ViewBag.pendingFailureCount = new FailureRepo().GetAll().Where(x => x.OperationStatus == Models.Enums.OperationStatuses.Pending).Count();
 

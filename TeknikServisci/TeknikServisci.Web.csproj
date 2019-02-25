@@ -18,9 +18,12 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44395</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -159,6 +162,7 @@
     <Content Include="assets\img\av5.png" />
     <Content Include="assets\img\av6.png" />
     <Content Include="assets\img\av7.png" />
+    <Content Include="assets\img\devices-icons-free-vector.jpg" />
     <Content Include="assets\img\favicon.ico" />
     <Content Include="assets\img\favicon.png" />
     <Content Include="assets\img\flags\france.png" />

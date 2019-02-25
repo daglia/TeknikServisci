@@ -34,23 +34,35 @@
         <!--User dropdown-->
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <li id="dropdown-user" class="dropdown">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
-                <span class="pull-right"> <img class="img-circle img-user media-object" src="@MembershipTools.GetAvatarPath(null)" alt="Profil Resmi"> </span>
-                <div class="username hidden-xs">@MembershipTools.GetNameSurname(null)</div>
-            </a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                    <span class="pull-right"> <img class="img-circle img-user media-object" src="@MembershipTools.GetAvatarPath(null)" alt="Profil Resmi"> </span>
+                    <div class="username hidden-xs">@MembershipTools.GetNameSurname(null)</div>
+                </a>
+            }
+            
             <div class="dropdown-menu dropdown-menu-right with-arrow">
                 <!-- User dropdown menu -->
                 <ul class="head-list">
-                    @if (User.IsInRole("User"))
+                    @if (User.Identity.IsAuthenticated)
                     {
-                        <li><a href="@Url.Action("Add", "Failure")"> <i class="fa fa-plus"></i> <span class="menu-title">Arıza Ekle</span></a></li>
+                        if (User.IsInRole("User"))
+                        {
+                            <li><a href="@Url.Action("Add", "Failure")"> <i class="fa fa-plus"></i> <span class="menu-title">Arıza Ekle</span></a></li>
+                        }
+                        <li>
+                            <a href="@Url.Action("UserProfile", "Account")"> <i class="fa fa-user fa-fw"></i>Profil</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Logout", "Account")"> <i class="fa fa-sign-out fa-fw"></i>Çıkış Yap</a>
+                        </li>
                     }
-                    <li>
-                        <a href="@Url.Action("UserProfile", "Account")"> <i class="fa fa-user fa-fw"></i>Profil</a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Logout", "Account")"> <i class="fa fa-sign-out fa-fw"></i>Çıkış Yap</a>
-                    </li>
+                    else
+                    {
+                        <li><a href="@Url.Action("Index", "Account")"> <i class="fa fa-paper-plane"></i> <span class="menu-title">Giriş Yap</span></a></li>
+                        <li><a href="@Url.Action("Register", "Account")"> <i class="fa fa-paper-user"></i> <span class="menu-title">Kaydol</span></a></li>
+                    }
                 </ul>
             </div>
         </li>
