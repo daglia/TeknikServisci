@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Repository;
+using TeknikServisci.BLL.Services.Senders;
 using TeknikServisci.Models.Entities;
 using TeknikServisci.Models.Enums;
 using TeknikServisci.Models.IdentityModels;
@@ -251,10 +252,31 @@ namespace TeknikServisci.Controllers
                 new FailureRepo().Update(failure);
                 TempData["Message"] = $"{model.FailureId} no lu arıza için tutar girilmiştir.";
 
+                //var survey = new SurveyRepo().GetById(model.FailureId);
+                var survey = new Survey();
+                var surverRepo = new SurveyRepo();
+                surverRepo.Insert(survey);
+                failure.SurveyId = survey.Id;
+                surverRepo.Update(survey);
+
+                var user = NewUserManager().FindById(failure.ClientId);
+                var clientNameSurname = GetNameSurname(failure.ClientId);
+
+                string siteUrl = Request.Url.Scheme + System.Uri.SchemeDelimiter + Request.Url.Host +
+                                 (Request.Url.IsDefaultPort ? "" : ":" + Request.Url.Port);
+
+
+
+                var emailService = new EmailService();
+                var body = $"Merhaba <b>{clientNameSurname}</b><br>{failure.Description} adlı arıza kaydınız kapanmıştır.<br>Değerlendirmeniz için aşağıda linki bulunan anketi doldurmanızı rica ederiz.<br> <a href='{siteUrl}/failure/survey?code={failure.SurveyId}' >Anket Linki </a> ";
+                emailService.Send(new IdentityMessage() { Body = body, Subject = "Değerlendirme Anketi" }, user.Email);
+
                 return RedirectToAction("Detail", "Technician", new
                 {
                     id = model.FailureId
                 });
+                
+
             }
             catch (Exception ex)
             {

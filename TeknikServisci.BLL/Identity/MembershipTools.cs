@@ -2,7 +2,9 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web;
+using TeknikServisci.BLL.Repository;
 using TeknikServisci.DAL;
+using TeknikServisci.Models.Entities;
 using TeknikServisci.Models.Enums;
 using TeknikServisci.Models.IdentityModels;
 
@@ -140,6 +142,22 @@ namespace TeknikServisci.BLL.Identity
             }
 
             return span;
+        }
+        public static string GetTechPoint(string techId)
+        {
+            var tech = NewUserManager().FindById(techId);
+            if (tech == null)
+                return "0";
+            var failures = new FailureRepo().GetAll(x => x.TechnicianId == techId && x.Survey.IsDone == true);
+            if (failures == null)
+                return "0";
+
+            var count = 0.0;
+            foreach (var failure in failures)
+            {
+                count += failure.Survey.TechPoint;
+            }
+            return $"{count / failures.Count}";
         }
     }
 }

@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Identity;
 using TeknikServisci.BLL.Repository;
+using TeknikServisci.Models.Enums;
+using static TeknikServisci.BLL.Identity.MembershipTools;
 
 namespace TeknikServisci.Controllers
 {
@@ -15,7 +18,7 @@ namespace TeknikServisci.Controllers
         protected List<SelectListItem> GetUserSelectList()
         {
             var data = new List<SelectListItem>();
-            MembershipTools.NewUserStore().Users
+            NewUserStore().Users
                 .ToList()
                 .ForEach(x =>
                 {
@@ -40,7 +43,7 @@ namespace TeknikServisci.Controllers
         protected List<SelectListItem> GetRoleSelectList()
         {
             var data = new List<SelectListItem>();
-            MembershipTools.NewRoleStore().Roles
+            NewRoleStore().Roles
                 .ToList()
                 .ForEach(x =>
                 {
@@ -50,6 +53,31 @@ namespace TeknikServisci.Controllers
                         Value = x.Id
                     });
                 });
+            return data;
+        }
+        protected List<SelectListItem> GetTechnicianList()
+        {
+            var data = new List<SelectListItem>();
+            var userManager = NewUserManager();
+            var users = userManager.Users.ToList();
+
+            var techIds = new FailureRepo().GetAll(x => x.Technician.TechnicianStatus == TechnicianStatuses.OnWay || x.Technician.TechnicianStatus == TechnicianStatuses.OnWork).Select(x => x.TechnicianId).ToList();
+
+            foreach (var user in users)
+            {
+                if (userManager.IsInRole(user.Id, IdentityRoles.Technician.ToString()))
+                {
+                    if (!techIds.Contains(user.Id))
+                    {
+                        var techPoint = GetTechPoint(user.Id);
+                        data.Add(new SelectListItem()
+                        {
+                            Text = $"{user.Name} {user.Surname} ({techPoint})",
+                            Value = user.Id
+                        });
+                    }
+                }
+            }
             return data;
         }
     }

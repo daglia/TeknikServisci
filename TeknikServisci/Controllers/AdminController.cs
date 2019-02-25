@@ -8,7 +8,9 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using TeknikServisci.Helpers;
 using Microsoft.AspNet.Identity;
+using TeknikServisci.BLL.Repository;
 using TeknikServisci.BLL.Services.Senders;
+using TeknikServisci.Models.Entities;
 using TeknikServisci.Models.Models;
 using TeknikServisci.Models.ViewModels;
 using static TeknikServisci.BLL.Identity.MembershipTools;
@@ -255,6 +257,51 @@ namespace TeknikServisci.Controllers
             }
 
             return RedirectToAction("EditUser", new { id = userId });
+        }
+        [HttpGet]
+        public ActionResult Reports()
+        {
+            try
+            {
+                var failureRepo = new FailureRepo();
+                var surveyRepo = new SurveyRepo();
+                var failureList = failureRepo.GetAll(x => x.SurveyId != null).ToList();
+
+                var surveyList = surveyRepo.GetAll().Where(x => x.IsDone == true).ToList();
+                var totalSpeed = 0.0;
+                var totalTech = 0.0;
+                var totalPrice = 0.0;
+                var totalSatisfaction = 0.0;
+                var totalSolving = 0.0;
+                var count = failureList.Count;
+                foreach (var survey in surveyList)
+                {
+                    totalSpeed += survey.Speed;
+                    totalTech += survey.TechPoint;
+                    totalPrice += survey.Pricing;
+                    totalSatisfaction += survey.Satisfaction;
+                    totalSolving += survey.Solving;
+                }
+
+                ViewBag.AvgSpeed = totalSpeed / count;
+                ViewBag.AvgTech = totalTech / count;
+                ViewBag.AvgPrice = totalPrice / count;
+                ViewBag.AvgSatisfaction = totalSatisfaction / count;
+                ViewBag.AvgSolving = totalSolving / count;
+
+                return View(surveyList);
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = new ErrorViewModel()
+                {
+                    Text = $"Bir hata oluştu {ex.Message}",
+                    ActionName = "Reports",
+                    ControllerName = "Admin",
+                    ErrorCode = 500
+                };
+                return RedirectToAction("Error", "Home");
+            }
         }
     }
 }

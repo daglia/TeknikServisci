@@ -230,7 +230,9 @@ namespace TeknikServisci.Controllers
                 survey.Satisfaction = model.Satisfaction;
                 survey.Solving = model.Solving;
                 survey.Speed = model.Speed;
+                survey.TechPoint = model.TechPoint;
                 survey.Suggestions = model.Suggestions;
+                survey.IsDone = true;
                 surveyRepo.Update(survey);
                 TempData["Message2"] = "Anket tamamlandı.";
                 return RedirectToAction("UserProfile", "Account");
