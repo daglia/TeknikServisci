@@ -39,9 +39,14 @@
                         <li><a href="@Url.Action("FailureList","Operator")"> <i class="fa fa-briefcase"></i> <span class="menu-title">Arıza Listesi</span></a></li>
                         <li><a href="@Url.Action("OperationList","Operator")"> <i class="fa fa-clock-o"></i> <span class="menu-title">Operatör İşlemlerim</span></a></li>
                     }
-                    else
+                    else if (User.IsInRole("User"))
                     {
                         <li><a href="@Url.Action("Index","Failure")"> <i class="fa fa-briefcase"></i> <span class="menu-title">Arıza Listem</span></a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Index","Account")"> <i class="fa fa-paper-plane"></i> <span class="menu-title">Giriş Yap</span></a></li>
+                        <li><a href="@Url.Action("Register","Account")"> <i class="fa fa-user"></i> <span class="menu-title">Kaydol</span></a></li>
                     }
                 </ul>
             </div>
