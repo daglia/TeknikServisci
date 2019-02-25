@@ -29,6 +29,7 @@
                         <li><a href="@Url.Action("Index","Failure")"> <i class="fa fa-briefcase"></i> <span class="menu-title">Kullanıcı Arıza Listesi</span></a></li>
                         <li><a href="@Url.Action("FailureList","Technician")"> <i class="fa fa-briefcase"></i> <span class="menu-title">Teknisyen Arıza Listesi</span></a></li>
                         <li><a href="@Url.Action("FailureList","Operator")"> <i class="fa fa-clock-o"></i> <span class="menu-title">Operatör Arıza Listesi</span></a></li>
+                        <li><a href="@Url.Action("Reports","Admin")"> <i class="fa fa-bar-chart"></i> <span class="menu-title">Raporlar</span></a></li>
                     }
                     else if (User.IsInRole("Technician"))
                     {

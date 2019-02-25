@@ -254,10 +254,10 @@ namespace TeknikServisci.Controllers
 
                 //var survey = new SurveyRepo().GetById(model.FailureId);
                 var survey = new Survey();
-                var surverRepo = new SurveyRepo();
-                surverRepo.Insert(survey);
+                var surveyRepo = new SurveyRepo();
+                surveyRepo.Insert(survey);
                 failure.SurveyId = survey.Id;
-                surverRepo.Update(survey);
+                surveyRepo.Update(survey);
 
                 var user = NewUserManager().FindById(failure.ClientId);
                 var clientNameSurname = GetNameSurname(failure.ClientId);

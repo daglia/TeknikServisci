@@ -13,9 +13,12 @@ namespace TeknikServisci.Models.Entities
     [Table("Surveys")]
     public class Survey:BaseEntity<string>
     {
+        public Survey()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
 
-
-    [DisplayName("Genel Memnuniyet")] public double Satisfaction { get; set; } = 0;
+        [DisplayName("Genel Memnuniyet")] public double Satisfaction { get; set; } = 0;
 
     [DisplayName("Teknisyen")] public double TechPoint { get; set; } = 0;
 
