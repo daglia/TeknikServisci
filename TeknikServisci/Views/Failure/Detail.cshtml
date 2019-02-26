@@ -2,19 +2,21 @@
 @using TeknikServisci.Models.ViewModels
 @model TeknikServisci.Models.ViewModels.FailureViewModel
 @{
-	ViewBag.Title = $"{Model.FailureName} arızasının ayrıntıları";
-	Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ViewBag.Title = $"{Model.FailureName} arızasının ayrıntıları";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
-
+@section top{
+    <link href="~/Content/lightbox.css" rel="stylesheet" />
+}
 <div class="pageheader hidden-xs">
-	<h3><i class="fa fa-search-plus"></i>Arıza Ayrıntısı</h3>
+    <h3><i class="fa fa-search-plus"></i>Arıza Ayrıntısı</h3>
 </div>
 <!--CONTENT CONTAINER-->
 <!--===================================================-->
 <div id="content-container">
-	<!--Page content-->
-	<!--===================================================-->
-	<div id="page-content">
+    <!--Page content-->
+    <!--===================================================-->
+    <div id="page-content">
         <div class="row">
             <div class="col-md-6">
                 <div class="panel">
@@ -58,7 +60,12 @@
                                     </tr>
                                     <tr>
                                         <th>Fotoğrafı</th>
-                                        <td><img src="@(string.IsNullOrEmpty(Model.PhotoPath) ? "/assets/img/nofailurephoto.png" : Model.PhotoPath)" width="400" height="300" /></td>
+                                        <td>
+                                            @foreach (var photo in Model.PhotoPath)
+                                            {
+                                                <a href="@photo" class="img-thumbnail" data-lightbox="FailurePhoto"><img src="@photo" width="100px" height="100px" alt="@photo" /></a>
+                                            }
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Arızayı Bildirenin:</th>
@@ -89,18 +96,18 @@
                                         <td>@TeknikServisci.BLL.Helpers.EnumHelpers.GetDescription(Model.TechnicianStatus)</td>
                                     </tr>
                                     @*<tr>
-                                    <th>Reddet</th>
-                                    <td>
-                                        @using (Html.BeginForm("Decline", "Operator", FormMethod.Post, new { @class = "form-horizontal" }))
-                                        {
-                                            @Html.AntiForgeryToken()
-                                            @Html.HiddenFor(x => x.FailureId)
-                                            @Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
-                                            <button class="btn btn-danger" type="submit">Reddet</button>
-                                        }
-                                    </td>
-                                </tr>*@
+                                            <th>Reddet</th>
+                                            <td>
+                                                @using (Html.BeginForm("Decline", "Operator", FormMethod.Post, new { @class = "form-horizontal" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.HiddenFor(x => x.FailureId)
+                                                    @Html.TextBoxFor(x => x.Report, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                                                    <button class="btn btn-danger" type="submit">Reddet</button>
+                                                }
+                                            </td>
+                                        </tr>*@
                                 </tbody>
                             </table>
                         </div>
@@ -120,7 +127,7 @@
                             <div class="timeline-header">
                                 <div class="timeline-header-title bg-info">Şimdi</div>
                             </div>
-                            
+
                             @foreach (OperationViewModel operation in Model.Operations)
                             {
                                 <div class="timeline-entry">
@@ -129,13 +136,13 @@
                                         {
                                             case IdentityRoles.Operator:
                                                 <div class="timeline-icon bg-success"><i class="fa fa-clipboard fa-lg"></i> </div>
-                                            break;
+                                                break;
                                             case IdentityRoles.User:
                                                 <div class="timeline-icon bg-info"><i class="fa fa-check fa-lg"></i> </div>
                                                 break;
                                             case IdentityRoles.Technician:
                                                 <div class="timeline-icon bg-warning"><i class="fa fa-briefcase fa-lg"></i> </div>
-                                            break;
+                                                break;
                                             default:
                                                 <div class="timeline-icon bg-purple"><i class="fa fa-check fa-lg"></i> </div>
                                                 break;
@@ -154,9 +161,19 @@
                 </div>
             </div>
         </div>
-		<!--===================================================-->
-		<!--END CONTENT CONTAINER-->
-	</div>
+        <!--===================================================-->
+        <!--END CONTENT CONTAINER-->
+    </div>
 </div>
 <!--===================================================-->
 <!-- END OF CONTAINER -->
+@section bottom{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/lightbox-2.6.js"></script>
+    <script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        })
+    </script>
+}
