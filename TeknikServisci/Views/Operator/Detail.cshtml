@@ -7,11 +7,7 @@
 }
 
 @section top{
-    <!--Demo [ DEMONSTRATION ]-->
-    <link href="/assets/css/demo/gamma-gallery.css" rel="stylesheet">
-    <!--SCRIPT-->
-    <!--=================================================-->
-    <script src="/assets/plugins/gamma-gallery/js/modernizr.custom.70736.js"></script>
+    <link href="~/Content/lightbox.css" rel="stylesheet" />
 }
 <div class="pageheader hidden-xs">
     <h3><i class="fa fa-search-plus"></i>Arıza Ayrıntısı</h3>
@@ -59,20 +55,10 @@
                                     <tr>
                                         <th>Fotoğrafı</th>
                                         <td>
-                                            <div class="gamma-container" id="gamma-container">
-                                                <ul class="gamma-gallery masonry" style="position: relative;">
-                                                    @foreach (var photo in Model.PhotoPath)
-                                                    {
-                                                        <li>
-                                                            <img alt="@Model.FailureId arıza fotoğrafı" src="@(string.IsNullOrEmpty(photo) ? "/assets/img/nofailurephoto.png" : photo)">
-                                                            <div class="gamma-description">
-                                                                <h3>Büyüt</h3>
-                                                            </div>
-                                                        </li>
-                                                    }
-
-                                                </ul>
-                                            </div>
+                                            @foreach (var photo in Model.PhotoPath)
+                                            {
+                                                <a href="@photo" class="img-thumbnail" data-lightbox="FailurePhoto"><img src="@photo" width="100px" height="100px" alt="@photo"/></a>
+                                            }
                                         </td>
                                     </tr>
                                     <tr>
@@ -186,12 +172,12 @@
 <!-- END OF CONTAINER -->
 
 @section bottom{
-    <script src="/assets/plugins/gamma-gallery/js/jquery.history.js"></script>
-    <script src="/assets/plugins/gamma-gallery/js/js-url.min.js"></script>
-    <script src="/assets/plugins/gamma-gallery/js/jquerypp.custom.js"></script>
-    <script src="/assets/plugins/gamma-gallery/js/jquery.masonry.min.js"></script>
-    <script src="/assets/plugins/gamma-gallery/js/gamma.js"></script>
-    <script src="/assets/js/jquery-1.11.2.min.js"></script>
-    <script src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/assets/js/demo/pages-gallery.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/lightbox-2.6.js"></script>
+    <script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        })
+    </script>
 }

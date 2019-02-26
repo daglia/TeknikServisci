@@ -53,7 +53,8 @@ namespace TeknikServisci.App_Start
                 .ForMember(dest => dest.Technician,
                     opt => opt.MapFrom((s, d) =>
                         s.Technician == null ? "-" : (s.Technician.Name + " " + s.Technician.Surname)))
-                .ForMember(dest => dest.TechnicianStatus, opt => opt.MapFrom(x => x.Technician.TechnicianStatus));
+                .ForMember(dest => dest.TechnicianStatus, opt => opt.MapFrom(x => x.Technician.TechnicianStatus))
+                .ForMember(dest=>dest.PhotoPath,opt=>opt.MapFrom(x=>x.PhotoPath));
 
             // .ReverseMap() metodu çağrıldığında eğer bir entity başka bir entity ile ilişkiliyse, mapping oluşturulurken ilişkili olan entity'nin yeni bir instance'ı oluşturulur. Bunu istemeyiz. Bu yüzden tersine mapping ayrıca yapılmalıdır.
 

@@ -79,6 +79,7 @@ namespace TeknikServisci.Controllers
             {
                 var x = await new FailureRepo().GetByIdAsync(id);
                 var data = Mapper.Map<FailureViewModel>(x);
+                data.PhotoPath = new PhotoRepo().GetAll(y => y.FailureId == id).Select(y => y.Path).ToList();
                 var operations = new OperationRepo()
                     .GetAll()
                     .Where(y => y.FailureId == data.FailureId)
