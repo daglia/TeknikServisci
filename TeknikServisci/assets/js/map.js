@@ -60,3 +60,20 @@ function markerLocation() {
 
 //Load the map when the page has finished loading.
 google.maps.event.addDomListener(window, 'load', initMap);
+
+var x;
+function getLocation() {
+    x = document.getElementById("location");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(putPosition);
+    }
+    else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function putPosition(position) {
+    document.getElementById('ltd').value = position.coords.latitude; //latitude
+    document.getElementById('lng').value = position.coords.longitude; //longitude
+    document.getElementById('lng').value = document.getElementById('lng').value.replace(".", ",");
+    document.getElementById('ltd').value = document.getElementById('ltd').value.replace(".", ",");
+}
