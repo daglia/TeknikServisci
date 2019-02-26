@@ -46,8 +46,10 @@ namespace TeknikServisci.Models.Entities
         [Required]
         public string Address { get; set; }
 
-        //public string Latitude { get; set; }
-        //public string Longitude { get; set; }
+        [DisplayName("Enlem")]
+        public double? Latitude { get; set; }
+        [DisplayName("Boylam")]
+        public double? Longitude { get; set; }
 
         [DisplayName("Fiyat")]
         public decimal Price { get; set; }

@@ -4,7 +4,16 @@
     ViewBag.Title = "Yeni Arıza Ekle";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
-
+@section top{
+    <style type="text/css">
+        #map {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+}
 <div id="container" class="effect mainnav-sm navbar-fixed mainnav-fixed">
     <div class="boxed">
         <!--CONTENT CONTAINER-->
@@ -46,6 +55,17 @@
                     @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-sm-9 control-label">
+                    <div id="map"></div>
+                    <div class="col-sm-6 control-label">
+                        @Html.LabelFor(x => x.Latitude)
+                        @Html.TextBoxFor(x => x.Latitude, new { @class = "form-control", @id = "ltd", @readonly = "readonly" })
+                    </div>
+                    <div class="col-sm-6 control-label">
+                        @Html.LabelFor(x => x.Longitude)
+                        @Html.TextBoxFor(x => x.Longitude, new { @class = "form-control", @id="lng", @readonly = "readonly" })
+                    </div>
+                </div>
+                <div class="col-sm-9 control-label">
                     @Html.TextBoxFor(x => x.PostedPhoto, new { type = "file", multiple = true })
                     @Html.ValidationMessageFor(x => x.PostedPhoto, "", new { @class = "text-danger" })
                 </div>
@@ -69,3 +89,6 @@
 <!--===================================================-->
 <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
 <!--===================================================-->
+@section bottom{
+<script type="text/javascript" src="/assets/js/map.js"></script>
+}

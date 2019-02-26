@@ -30,6 +30,9 @@ namespace TeknikServisci.Models.ViewModels
         [Display(Name = "Telefon")]
         public string PhoneNumber { get; set; }
 
+        // Teknisyene özel
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
         [Display(Name = "Durumu")]
         public TechnicianStatuses? TechnicianStatus { get; set; }
 
