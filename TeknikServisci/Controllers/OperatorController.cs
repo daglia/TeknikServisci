@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -53,24 +54,31 @@ namespace TeknikServisci.Controllers
                 var TechnicianRole = NewRoleManager().FindByName("Technician").Users.Select(y => y.UserId).ToList();
                 for (int i = 0; i < TechnicianRole.Count; i++)
                 {
+                    var distance = 0.0;
+                    string distanceString = "";
+                    var technician = NewUserManager().FindById(TechnicianRole[i]);
+                    if (technician.Latitude.HasValue && technician.Longitude.HasValue && data.Latitude.HasValue && data.Longitude.HasValue)
+                    {
+                        var failureCoordinate = new GeoCoordinate(data.Latitude.Value, data.Longitude.Value);
+                        var technicianCoordinate = new GeoCoordinate(technician.Latitude.Value, technician.Longitude.Value);
 
-                    var User = NewUserManager().FindById(TechnicianRole[i]);
-                    if (User.TechnicianStatus == TechnicianStatuses.Available)
+                        distance = failureCoordinate.GetDistanceTo(technicianCoordinate);
+                        distanceString = $"({distance/1000} km)";
+                    }
+
+                    if (technician.TechnicianStatus == TechnicianStatuses.Available)
                     {
                         Technicians.Add(new SelectListItem()
                         {
-                            Text = User.Name + " " + User.Surname,
-                            Value = User.Id
+                            Text = technician.Name + " " + technician.Surname + " " + distanceString,
+                            Value = technician.Id
                         });
                     }
                 }
 
                 ViewBag.TechnicianList = Technicians;
 
-
                 return View(data);
-
-
             }
             catch (Exception ex)
             {

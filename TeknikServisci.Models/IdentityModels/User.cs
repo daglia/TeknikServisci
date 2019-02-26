@@ -28,6 +28,8 @@ namespace TeknikServisci.Models.IdentityModels
 
         public string[] TechSpacilities { get; set; }
         public TechnicianStatuses? TechnicianStatus { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
         
 
         public virtual List<Operation> Operations { get; set; } = new List<Operation>();
