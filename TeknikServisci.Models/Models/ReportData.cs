@@ -6,24 +6,16 @@ using System.Threading.Tasks;
 
 namespace TeknikServisci.Models.Models
 {
-    public class ReportData
-    {
-    }
-    public class DailyReport
-    {
-        public int completed { get; set; }
-        public bool success { get; set; }
-    }
-    public class DailyProfitReport
-    {
-        public decimal completed { get; set; }
-        public bool success { get; set; }
-    }
-
+   
     public class SurveyReport
     {
         public string question { get; set; }
         public double point { get; set; }
+    }
+    public class WeeklyReport
+    {
+        public string date { get; set; }
+        public int count { get; set; }
     }
 
     public class TechReport
