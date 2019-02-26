@@ -1,7 +1,7 @@
 ﻿@using TeknikServisci.BLL.Identity
 @model TeknikServisci.Models.ViewModels.ProfilePasswordViewModel
 @{
-    ViewBag.Title = "UserProfile";
+    ViewBag.Title = "Kullanıcı Profili";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 @section top{
@@ -98,17 +98,20 @@
                                                             });
                                                         }
                                                         @Html.LabelFor(x => x.UserProfileViewModel.TechnicianStatus)
-                                                        @Html.DropDownListFor(x => x.UserProfileViewModel.TechnicianStatus, listItems, new { @class = "form-control" })
+                                                        @Html.DropDownListFor(x => x.UserProfileViewModel.TechnicianStatus, listItems, new { @class = "form-control" })<br/>
                                                     </div>
                                                     <div class="col-sm-9 control-label">
                                                         <div id="map"></div>
-                                                        <div class="col-sm-6 control-label">
+                                                        <div class="col-sm-5 control-label">
                                                             @Html.LabelFor(x => x.UserProfileViewModel.Latitude)
                                                             @Html.TextBoxFor(x => x.UserProfileViewModel.Latitude, new { @class = "form-control", @id = "ltd", @readonly = "readonly" })
                                                         </div>
-                                                        <div class="col-sm-6 control-label">
+                                                        <div class="col-sm-5 control-label">
                                                             @Html.LabelFor(x => x.UserProfileViewModel.Longitude)
                                                             @Html.TextBoxFor(x => x.UserProfileViewModel.Longitude, new { @class = "form-control", @id = "lng", @readonly = "readonly" })
+                                                        </div>
+                                                        <div class="col-sm-2 control-label"><br/>
+                                                            <input type="button" class="btn btn-danger" value="Bul" onclick="getLocation()" />
                                                         </div>
                                                     </div>
                                                 }

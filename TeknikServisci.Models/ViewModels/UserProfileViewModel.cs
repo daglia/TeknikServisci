@@ -31,9 +31,10 @@ namespace TeknikServisci.Models.ViewModels
         public string PhoneNumber { get; set; }
 
         // Teknisyene özel
+        [Display(Name = "Enlem")]
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
-        [Display(Name = "Durumu")]
+        [Display(Name = "Boylam")]
         public TechnicianStatuses? TechnicianStatus { get; set; }
 
         public string AvatarPath { get; set; }

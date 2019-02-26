@@ -62,8 +62,8 @@ namespace TeknikServisci.Controllers
                         var failureCoordinate = new GeoCoordinate(data.Latitude.Value, data.Longitude.Value);
                         var technicianCoordinate = new GeoCoordinate(technician.Latitude.Value, technician.Longitude.Value);
 
-                        distance = failureCoordinate.GetDistanceTo(technicianCoordinate);
-                        distanceString = $"({distance/1000} km)";
+                        distance = failureCoordinate.GetDistanceTo(technicianCoordinate)/1000;
+                        distanceString = $"(~{Convert.ToInt32(distance)} km)";
                     }
 
                     if (technician.TechnicianStatus == TechnicianStatuses.Available)

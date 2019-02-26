@@ -56,14 +56,18 @@
                 </div>
                 <div class="col-sm-9 control-label">
                     <div id="map"></div>
-                    <div class="col-sm-6 control-label">
+                    <div class="col-sm-5 control-label">
                         @Html.LabelFor(x => x.Latitude)
                         @Html.TextBoxFor(x => x.Latitude, new { @class = "form-control", @id = "ltd", @readonly = "readonly" })
                     </div>
-                    <div class="col-sm-6 control-label">
+                    <div class="col-sm-5 control-label">
                         @Html.LabelFor(x => x.Longitude)
                         @Html.TextBoxFor(x => x.Longitude, new { @class = "form-control", @id="lng", @readonly = "readonly" })
                     </div>
+                    <div class="col-sm-2 control-label"><br/>
+                        <input type="button" class="btn btn-danger" value="Bul" onclick="getLocation()" />
+                    </div>
+
                 </div>
                 <div class="col-sm-9 control-label">
                     @Html.TextBoxFor(x => x.PostedPhoto, new { type = "file", multiple = true })

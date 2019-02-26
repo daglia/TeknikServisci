@@ -179,7 +179,9 @@ namespace TeknikServisci.Controllers
                         Surname = user.Surname,
                         UserName = user.UserName,
                         TechnicianStatus = user.TechnicianStatus,
-                        AvatarPath = string.IsNullOrEmpty(user.AvatarPath) ? "/assets/img/avatars/avatar3.jpg" : user.AvatarPath
+                        AvatarPath = string.IsNullOrEmpty(user.AvatarPath) ? "/assets/img/avatars/avatar3.jpg" : user.AvatarPath,
+                        Latitude = user.Latitude,
+                        Longitude = user.Longitude
                     }
                 };
                 return View(data);
