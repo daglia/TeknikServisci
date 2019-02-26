@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web;
@@ -148,16 +149,27 @@ namespace TeknikServisci.BLL.Identity
             var tech = NewUserManager().FindById(techId);
             if (tech == null)
                 return "0";
-            var failures = new FailureRepo().GetAll(x => x.TechnicianId == techId && x.Survey.IsDone == true);
+            var failures = new FailureRepo().GetAll(x => x.TechnicianId == techId /*&& x.Survey.IsDone == true*/);
             if (failures == null)
                 return "0";
 
-            var count = 0.0;
+            var isDoneFailures = new List<Failure>();
             foreach (var failure in failures)
             {
-                count += failure.Survey.TechPoint;
+                var survey = new SurveyRepo().GetById(failure.SurveyId);
+                if (survey.IsDone)
+                    isDoneFailures.Add(failure);
+
             }
-            return $"{count / failures.Count}";
+            var count = 0.0;
+            foreach (var item in isDoneFailures)
+            {
+                var survey = new SurveyRepo().GetById(item.SurveyId);
+                count += survey.TechPoint;
+            }
+            
+            //return $"{count / failures.Count}";
+            return isDoneFailures.Count != 0 ? $"{count / isDoneFailures.Count}" : "--";
         }
     }
 }

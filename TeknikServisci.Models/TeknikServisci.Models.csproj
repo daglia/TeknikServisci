@@ -91,6 +91,7 @@
     <Compile Include="Enums\TechnicianStatuses.cs" />
     <Compile Include="IdentityModels\Role.cs" />
     <Compile Include="IdentityModels\User.cs" />
+    <Compile Include="Models\ReportData.cs" />
     <Compile Include="Models\ResponseData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />

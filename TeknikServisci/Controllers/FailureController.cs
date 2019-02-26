@@ -262,5 +262,14 @@ namespace TeknikServisci.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+        [HttpGet]
+        [Authorize(Roles = "Admin, Operator")]
+        public ActionResult GetAllFailures()
+        {
+            var data = new FailureRepo().GetAll(x => x.FinishingTime != null);
+            if (data == null)
+                return RedirectToAction("Index", "Home");
+            return View(data);
+        }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Repository;
 using TeknikServisci.BLL.Services.Senders;
 using TeknikServisci.Models.Entities;
+using TeknikServisci.Models.Enums;
 using TeknikServisci.Models.Models;
 using TeknikServisci.Models.ViewModels;
 using static TeknikServisci.BLL.Identity.MembershipTools;
@@ -267,13 +268,19 @@ namespace TeknikServisci.Controllers
                 var surveyRepo = new SurveyRepo();
                 var failureList = failureRepo.GetAll(x => x.SurveyId != null).ToList();
 
-                var surveyList = surveyRepo.GetAll().Where(x => x.IsDone == true).ToList();
+                var surveyList = surveyRepo.GetAll().Where(x => x.IsDone ).ToList();
                 var totalSpeed = 0.0;
                 var totalTech = 0.0;
                 var totalPrice = 0.0;
                 var totalSatisfaction = 0.0;
                 var totalSolving = 0.0;
                 var count = failureList.Count;
+
+                if (count == 0)
+                {
+                    TempData["Message"] = "Herhangi bir kayıt bulunamadı.";
+                    return RedirectToAction("Index", "Home");
+                }
                 foreach (var survey in surveyList)
                 {
                     totalSpeed += survey.Speed;
@@ -282,12 +289,20 @@ namespace TeknikServisci.Controllers
                     totalSatisfaction += survey.Satisfaction;
                     totalSolving += survey.Solving;
                 }
+                var totalDays = 0;
+                
+                foreach (var failure in failureList)
+                {
+                    if(failure.FinishingTime.HasValue)
+                    totalDays += failure.FinishingTime.Value.DayOfYear - failure.CreatedDate.DayOfYear;
+                }
 
                 ViewBag.AvgSpeed = totalSpeed / count;
                 ViewBag.AvgTech = totalTech / count;
                 ViewBag.AvgPrice = totalPrice / count;
                 ViewBag.AvgSatisfaction = totalSatisfaction / count;
                 ViewBag.AvgSolving = totalSolving / count;
+                ViewBag.AvgTime = totalDays / failureList.Count;
 
                 return View(surveyList);
             }
@@ -303,5 +318,151 @@ namespace TeknikServisci.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+        [HttpGet]
+        public JsonResult GetDailyReport()
+        {
+            try
+            {
+                var dailyFailures = new FailureRepo().GetAll(x => x.CreatedDate.DayOfYear == DateTime.Now.DayOfYear).Count;
+
+                return Json(new ResponseData()
+                {
+                    data = dailyFailures,
+                    success = true
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResponseData()
+                {
+                    data = 0,
+                    message = ex.Message,
+                    success = false
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetDailyProfit()
+        {
+            try
+            {
+                var dailyFailures = new FailureRepo().GetAll(x => x.CreatedDate.DayOfYear == DateTime.Now.DayOfYear && x.FinishingTime != null);
+                decimal data = 0;
+                foreach (var item in dailyFailures)
+                {
+                    data += item.Price;
+                }
+                return Json(new ResponseData()
+                {
+                    data = data,
+                    success = true
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResponseData()
+                {
+                    data = 0,
+                    message = ex.Message,
+                    success = false
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetSurveyReport()
+        {
+            try
+            {
+                var surveys = new SurveyRepo();
+                var count = surveys.GetAll().Count;
+                var quest1 = surveys.GetAll().Select(x => x.Satisfaction).Sum() / count;
+                var quest2 = surveys.GetAll().Select(x => x.TechPoint).Sum() / count;
+                var quest3 = surveys.GetAll().Select(x => x.Speed).Sum() / count;
+                var quest4 = surveys.GetAll().Select(x => x.Pricing).Sum() / count;
+                var quest5 = surveys.GetAll().Select(x => x.Solving).Sum() / count;
+
+                var data = new List<SurveyReport>();
+                data.Add(new SurveyReport()
+                {
+                    question = "Genel Memnuniyet",
+                    point = quest1
+                });
+                data.Add(new SurveyReport()
+                {
+                    question = "Teknisyen",
+                    point = quest2
+                });
+                data.Add(new SurveyReport()
+                {
+                    question = "Hız",
+                    point = quest3
+                });
+                data.Add(new SurveyReport()
+                {
+                    question = "Fiyat",
+                    point = quest4
+                });
+                data.Add(new SurveyReport()
+                {
+                    question = "Çözüm Odaklılık",
+                    point = quest5
+                });
+
+                return Json(new ResponseData()
+                {
+                    message = $"{data.Count} adet kayıt bulundu",
+                    success = true,
+                    data = data
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResponseData()
+                {
+                    message = "Kayıt bulunamadı"+ex.Message,
+                    success = false
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetTechReport()
+        {
+            try
+            {
+                var userManager = NewUserManager();
+                var users = NewUserManager().Users.ToList();
+                var data = new List<TechReport>();
+                foreach (var user in users)
+                {
+                    var techFailures = new FailureRepo().GetAll(x => x.TechnicianId == user.Id);
+                    foreach (var failure in techFailures)
+                    {
+                        if (failure.FinishingTime !=null)
+                        {
+                        data.Add(new TechReport()
+                            {
+                            nameSurname = GetNameSurname(user.Id),
+                            point = double.Parse(GetTechPoint(user.Id))
+                            });
+                        }
+                    }
+                }
+
+                return Json(new ResponseData()
+                {
+                    success = true,
+                    data = data
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResponseData()
+                {
+                    message = $"{ex}",
+                    success = false
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }

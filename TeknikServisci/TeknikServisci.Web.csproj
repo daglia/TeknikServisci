@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44395</IISExpressSSLPort>
+    <IISExpressSSLPort>44332</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>
     </IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>
@@ -901,6 +901,7 @@
     <Content Include="Views\Technician\CreateInvoice.cshtml" />
     <Content Include="Views\Failure\Survey.cshtml" />
     <Content Include="Views\Admin\Reports.cshtml" />
+    <Content Include="Views\Failure\GetAllFailures.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
