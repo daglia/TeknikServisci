@@ -60,7 +60,7 @@ namespace TeknikServisci.Controllers
                         Technicians.Add(new SelectListItem()
                         {
                             Text = User.Name + " " + User.Surname,
-                            Value = User.Id,
+                            Value = User.Id
                         });
                     }
                 }

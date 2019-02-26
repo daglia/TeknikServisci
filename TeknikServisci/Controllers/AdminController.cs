@@ -27,6 +27,11 @@ namespace TeknikServisci.Controllers
             return View(NewUserStore().Users.ToList());
         }
 
+        private readonly FailureRepo failureRepo;
+        public AdminController()
+        {
+            failureRepo = new FailureRepo();
+        }
         [HttpGet]
         public ActionResult UserList()
         {
@@ -323,7 +328,7 @@ namespace TeknikServisci.Controllers
         {
             try
             {
-                var dailyFailures = new FailureRepo().GetAll(x => x.CreatedDate.DayOfYear == DateTime.Now.DayOfYear).Count;
+                var dailyFailures = failureRepo.GetAll(x => x.CreatedDate.DayOfYear == DateTime.Now.DayOfYear).Count;
 
                 return Json(new ResponseData()
                 {
@@ -342,11 +347,43 @@ namespace TeknikServisci.Controllers
             }
         }
         [HttpGet]
+        public JsonResult GetWeeklyReport()
+        {
+            try
+            {
+                List<WeeklyReport> weeklies = new List<WeeklyReport>();
+
+                for (int i = 6; i >= 0; i--)
+                {
+                    var data = failureRepo.GetAll(x => x.CreatedDate.DayOfYear == DateTime.Now.AddDays(-i).DayOfYear).Count();
+                    weeklies.Add(new WeeklyReport()
+                    {
+                        date = DateTime.Now.AddDays(-i).ToShortDateString(),
+                        count = data
+                    });
+                }
+
+                return Json(new ResponseData()
+                {
+                    data = weeklies,
+                    success = true
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResponseData()
+                {
+                    message = ex.Message,
+                    success = false
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpGet]
         public JsonResult GetDailyProfit()
         {
             try
             {
-                var dailyFailures = new FailureRepo().GetAll(x => x.CreatedDate.DayOfYear == DateTime.Now.DayOfYear && x.FinishingTime != null);
+                var dailyFailures = failureRepo.GetAll(x => x.CreatedDate.DayOfYear == DateTime.Now.DayOfYear && x.FinishingTime != null);
                 decimal data = 0;
                 foreach (var item in dailyFailures)
                 {
@@ -430,20 +467,24 @@ namespace TeknikServisci.Controllers
             try
             {
                 var userManager = NewUserManager();
-                var users = NewUserManager().Users.ToList();
+                var users = userManager.Users.ToList();
                 var data = new List<TechReport>();
                 foreach (var user in users)
                 {
-                    var techFailures = new FailureRepo().GetAll(x => x.TechnicianId == user.Id);
-                    foreach (var failure in techFailures)
+
+                    if (userManager.IsInRole(user.Id, IdentityRoles.Technician.ToString()))
                     {
-                        if (failure.FinishingTime !=null)
+                        var techFailures = new FailureRepo().GetAll(x => x.TechnicianId == user.Id);
+                        foreach (var failure in techFailures)
                         {
-                        data.Add(new TechReport()
+                            if (failure.FinishingTime != null)
                             {
-                            nameSurname = GetNameSurname(user.Id),
-                            point = double.Parse(GetTechPoint(user.Id))
-                            });
+                                data.Add(new TechReport()
+                                {
+                                    nameSurname = GetNameSurname(user.Id),
+                                    point = double.Parse(GetTechPoint(user.Id))
+                                });
+                            }
                         }
                     }
                 }
@@ -463,6 +504,7 @@ namespace TeknikServisci.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
+       
 
     }
 }

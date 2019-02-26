@@ -38,7 +38,7 @@
 												<th>@(i + 1)</th>
 												<td>@current.Id</td>
 												<td>@current.Description</td>
-												<td>@current.OperationStatuses</td>
+												<td>@current.RepairProcess</td>
 												<td style="text-align:justify">@(current.TechnicianId == null ? "Teknisyen Atanmadı" : MembershipTools.GetNameSurname(current.TechnicianId))</td>
 												<td>@current.Address</td>
 												<td>@current.FinishingTime.ToLongDateString()</td>

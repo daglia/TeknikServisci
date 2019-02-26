@@ -169,7 +169,7 @@ namespace TeknikServisci.BLL.Identity
             }
             
             //return $"{count / failures.Count}";
-            return isDoneFailures.Count != 0 ? $"{count / isDoneFailures.Count}" : "--";
+            return isDoneFailures.Count != 0 ? $"{count / isDoneFailures.Count}" : "0";
         }
     }
 }
