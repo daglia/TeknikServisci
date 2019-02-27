@@ -5,7 +5,6 @@
 	Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
-<h3 style="color:red">@TempData["Message2"]</h3>
 
 @using (Html.BeginForm("Survey", "Failure", FormMethod.Post, new { @class = "form-horizontal" }))
 {
@@ -13,7 +12,7 @@
 	@Html.HiddenFor(x => x.SurveyId)
 	@Html.AntiForgeryToken()
 
-	<div class="form-horizontal">
+	<div class="form-horizontal col-md-6">
 		<hr />
 
 		<div class="form-group">
@@ -68,10 +67,10 @@
 			<div class="col-md-offset-2 col-md-10">
 				<input type="submit" value="Gönder" class="btn btn-default" />
 			</div>
+			<br />
+			<br />
+			<br />
 		</div>
 	</div>
 }
 
-<div>
-	@Html.ActionLink("Ana Sayfaya Dönün", "Index")
-</div>
