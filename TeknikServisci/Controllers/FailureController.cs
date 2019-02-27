@@ -253,7 +253,7 @@ namespace TeknikServisci.Controllers
                 survey.IsDone = true;
                 surveyRepo.Update(survey);
                 TempData["Message2"] = "Anket tamamlandı.";
-                return RedirectToAction("UserProfile", "Account");
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
