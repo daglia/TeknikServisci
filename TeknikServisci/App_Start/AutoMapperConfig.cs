@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
 using TeknikServisci.BLL.Identity;
 using TeknikServisci.Models.Entities;
 using TeknikServisci.Models.ViewModels;
