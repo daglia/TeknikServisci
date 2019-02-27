@@ -272,7 +272,6 @@ namespace TeknikServisci.Controllers
                 var failureRepo = new FailureRepo();
                 var surveyRepo = new SurveyRepo();
                 var failureList = failureRepo.GetAll(x => x.SurveyId != null).ToList();
-
                 var surveyList = surveyRepo.GetAll().Where(x => x.IsDone ).ToList();
                 var totalSpeed = 0.0;
                 var totalTech = 0.0;

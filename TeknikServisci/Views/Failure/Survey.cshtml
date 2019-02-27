@@ -5,7 +5,6 @@
 	Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
-<h3 style="color:red">@TempData["Message2"]</h3>
 
 @using (Html.BeginForm("Survey", "Failure", FormMethod.Post, new { @class = "form-horizontal" }))
 {
@@ -68,10 +67,13 @@
 			<div class="col-md-offset-2 col-md-10">
 				<input type="submit" value="Gönder" class="btn btn-default" />
 			</div>
+			<br />
+			<br />
+			<br />
+			<div class="col-md-offset-2 col-md-10">
+				@Html.ActionLink("Arızalarım", "Index")
+			</div>
 		</div>
 	</div>
 }
 
-<div>
-	@Html.ActionLink("Ana Sayfaya Dönün", "Index")
-</div>
