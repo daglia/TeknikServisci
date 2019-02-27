@@ -129,7 +129,7 @@ else if (User.IsInRole("Operator"))
                         <strong>@MembershipTools.GetNameSurname(HttpContext.Current.User.Identity.GetUserId())</strong>!
                     </h1>
                     <p>Her geçen saniye dünyada 30 bin kadar elektronik alet bozuluyor. Gayet sallama bir rakam oldu bu. Senin işin de bu arızaları doğru teknisyenlere atamak. Kolay gelsin!</p>
-                    <h1 class="text-center"><a class="btn btn-primary btn-lg btn-block" href="@Url.Action("Add", "Failure")" role="button">Yeni arıza ekleyin</a></h1>
+                    <h1 class="text-center"><a class="btn btn-primary btn-lg btn-block" href="@Url.Action("FailureList", "Operator")" role="button">Arıza Listesine Git</a></h1>
                 </div>
             </div>
         </div>

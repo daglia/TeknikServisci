@@ -9,6 +9,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
+using TeknikServisci.BLL.Identity;
 using TeknikServisci.BLL.Repository;
 using TeknikServisci.BLL.Services.Senders;
 using static TeknikServisci.BLL.Identity.MembershipTools;
@@ -56,6 +57,10 @@ namespace TeknikServisci.Controllers
                 var x = await new FailureRepo().GetByIdAsync(id);
                 var data = Mapper.Map<FailureViewModel>(x);
                 data.PhotoPath = new PhotoRepo().GetAll(y => y.FailureId == id).Select(y => y.Path).ToList();
+                data.ClientId = x.ClientId;
+                var client = await NewUserManager().FindByIdAsync(data.ClientId);
+                data.ClientName = client.Name;
+                data.ClientSurname = client.Surname;
                 var operations = new OperationRepo()
                     .GetAll()
                     .Where(y=>y.FailureId == data.FailureId)
